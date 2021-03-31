@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">digicu_customer</string>
+    <string name="app_title">Digicu</string>
+    <string name="app_description">모아봐요 디지털 쿠폰!</string>
+    <string name="signin_signup_find">회원가입/비밀번호 찾기</string>
+    <string name="digicu_email">이메일</string>
+    <string name="digicu_pw">비밀번호</string>
+    <string name="digicu_login">로그인</string>
+    <string name="digicu_remember_info">로그인 정보 저장</string>
+    <string name="bottom_menu_title1">A</string>
+    <string name="bottom_menu_title2">B</string>
+    <string name="bottom_menu_title3">C</string>
+    <string name="bottom_menu_title4">D</string>
 </resources>
