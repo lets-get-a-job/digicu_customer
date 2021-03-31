@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "547207036785",
+    "firebase_url": "https://digicu-default-rtdb.firebaseio.com",
+    "project_id": "digicu",
+    "storage_bucket": "digicu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547207036785:android:84cd46cc1e28fc8c5240d0",
+        "android_client_info": {
+          "package_name": "com.example.digicu_customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547207036785-0qi2g70552hbge5njkr0uiafr78vfpei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ-JP5W061nHaC-55KN-_KoqdbgdVMJ2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547207036785-0qi2g70552hbge5njkr0uiafr78vfpei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547207036785:android:252afad9ed2c8ae45240d0",
+        "android_client_info": {
+          "package_name": "com.example.digicu_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547207036785-0qi2g70552hbge5njkr0uiafr78vfpei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ-JP5W061nHaC-55KN-_KoqdbgdVMJ2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547207036785-0qi2g70552hbge5njkr0uiafr78vfpei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547207036785:android:5a514b67222bdf4f5240d0",
+        "android_client_info": {
+          "package_name": "com.example.firebasetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547207036785-0qi2g70552hbge5njkr0uiafr78vfpei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ-JP5W061nHaC-55KN-_KoqdbgdVMJ2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547207036785-0qi2g70552hbge5njkr0uiafr78vfpei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

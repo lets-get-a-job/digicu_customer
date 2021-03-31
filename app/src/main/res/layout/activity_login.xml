@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/digicu_basic_shadow"
+        android:text="@string/app_title"
+        android:textAlignment="center"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="55dp"
+        android:textColor="@color/digicu_base_primary_color"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/digicu_login_description"
+
+        android:text="@string/app_description"
+        android:textAlignment="center"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/digicu_base_primary_color"
+        android:textSize="18dp"
+        android:layout_below="@+id/tv_title"
+        android:gravity="center_horizontal" />
+
+    <RelativeLayout
+        android:layout_below="@id/digicu_login_description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:boxBackgroundColor="@color/digicu_white_color"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/digicu_email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:boxBackgroundColor="@color/digicu_white_color"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/digicu_pw">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <CheckBox
+                android:text="@string/digicu_remember_info"
+                android:buttonTint="@color/digicu_base_primary_color"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/digicu_login_btn"
+                android:text="@string/digicu_login"
+                android:textStyle="bold"
+                android:backgroundTint="@color/digicu_btn_color"
+                android:textColor="@color/digicu_white_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"/>
+
+            <TextView
+                android:text="@string/signin_signup_find"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/digicu_black_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>
