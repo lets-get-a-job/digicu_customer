@@ -12,4 +12,7 @@
     <string name="bottom_menu_title2">Coupon</string>
     <string name="bottom_menu_title3">Search</string>
     <string name="bottom_menu_title4">Menu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="coupon_list">쿠폰목록</string>
+
 </resources>

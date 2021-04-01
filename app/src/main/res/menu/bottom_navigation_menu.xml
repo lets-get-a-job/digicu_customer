@@ -7,14 +7,17 @@
         android:title="@string/bottom_menu_title1"/>
     <item
         android:id="@+id/page_2"
+        android:icon="@drawable/ic_baseline_payment_24"
         android:enabled="true"
         android:title="@string/bottom_menu_title2"/>
     <item
         android:id="@+id/page_3"
+        android:icon="@drawable/ic_baseline_search_24"
         android:enabled="true"
         android:title="@string/bottom_menu_title3"/>
     <item
         android:id="@+id/page_4"
+        android:icon="@drawable/ic_baseline_more_horiz_24"
         android:enabled="true"
         android:title="@string/bottom_menu_title4"/>
 </menu>
