@@ -10,56 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.digicu_customer.adapter.CardAdapter;
+import com.example.digicu_customer.adapter.CouponAdapter;
+import com.example.digicu_customer.dataset.CouponInfo;
+import com.example.digicu_customer.dataset.Shop;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HomeFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     RecyclerView mRecyclerView;
-    CardAdapter cardAdapter;
+    CouponAdapter couponAdapter;
+    CouponInfoFragmentBottomSheet fragmentBottomSheet;
 
     public HomeFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -68,13 +29,38 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        Shop shops[] = new Shop[5];
+        shops[0] = new Shop("test1", "상도동1", "010-1234-1234");
+        shops[1] = new Shop("test2", "상도동2", "010-1234-1234");
+        shops[2] = new Shop("test3", "상도동3", "010-1234-1234");
+        shops[3] = new Shop("test4", "상도동4", "010-1234-1234");
+        shops[4] = new Shop("test5", "상도동5", "010-1234-1234");
+
+        CouponInfo couponInfos[] = new CouponInfo[5];
+        couponInfos[0] = new CouponInfo(shops[0], CouponInfo.CouponType.STAMP, 0, 5, 10);
+        couponInfos[1] = new CouponInfo(shops[1], CouponInfo.CouponType.MILEAGE, 1750, 0, 0);
+        couponInfos[2] = new CouponInfo(shops[2], CouponInfo.CouponType.STAMP, 0, 2, 15);
+        couponInfos[3] = new CouponInfo(shops[3], CouponInfo.CouponType.STAMP, 0, 4, 10);
+        couponInfos[4] = new CouponInfo(shops[4], CouponInfo.CouponType.MILEAGE, 5003, 0, 0);
+
         // read user data and set list;
-        cardAdapter = new CardAdapter(new String[]{"aa", "b", "c"});
+        couponAdapter = new CouponAdapter(couponInfos);
 
         mRecyclerView = view.findViewById(R.id.digicu_home_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setAdapter(couponAdapter);
 
-        mRecyclerView.setAdapter(cardAdapter);
+//        requireFragmentManager()
+
+        fragmentBottomSheet = new CouponInfoFragmentBottomSheet();
+
+        couponAdapter.setOnItemClickLister(new CouponAdapter.OnItemClickLister() {
+            @Override
+            public void onItemClick(View v, int pos, CouponInfo data) {
+                fragmentBottomSheet.setCouponInfo(data);
+                fragmentBottomSheet.show(requireFragmentManager(), fragmentBottomSheet.getTag());
+            }
+        });
 
         return view;
     }

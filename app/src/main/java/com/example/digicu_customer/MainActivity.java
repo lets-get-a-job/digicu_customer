@@ -2,11 +2,15 @@ package com.example.digicu_customer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -51,19 +55,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+
         switch (item.getItemId()) {
             case R.id.page_1:
-                getSupportFragmentManager().beginTransaction().replace(R.id.digicu_main_fg_linearLayout, homeFragment).commit();
+                transaction.replace(R.id.digicu_main_fg_linearLayout, homeFragment).commit();
                 return true;
             case R.id.page_2:
                 return true;
             case R.id.page_3:
                 return true;
             case R.id.page_4:
-                getSupportFragmentManager().beginTransaction().replace(R.id.digicu_main_fg_linearLayout, menuFragment).commit();
+                transaction.replace(R.id.digicu_main_fg_linearLayout, menuFragment).commit();
                 return true;
         }
 
         return false;
     }
+
 }

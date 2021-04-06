@@ -14,5 +14,9 @@
     <string name="bottom_menu_title4">Menu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="coupon_list">쿠폰목록</string>
-
+    <string name="coupon_tab_log">적립기록</string>
+    <string name="coupon_tab_item">쿠폰함</string>
+    <string name="coupon_add_msg">쿠폰을 추가해 봐요!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
