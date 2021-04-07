@@ -1,4 +1,4 @@
-package com.example.digicu_customer;
+package com.example.digicu_customer.ui.home;
 
 import android.os.Bundle;
 
@@ -10,14 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.digicu_customer.adapter.CouponAdapter;
+import com.example.digicu_customer.ui.couponinfo.CouponInfoFragment;
+import com.example.digicu_customer.R;
+import com.example.digicu_customer.ui.adapter.CouponAdapter;
 import com.example.digicu_customer.dataset.CouponInfo;
 import com.example.digicu_customer.dataset.Shop;
 
 public class HomeFragment extends Fragment {
     RecyclerView mRecyclerView;
     CouponAdapter couponAdapter;
-    CouponInfoFragmentBottomSheet fragmentBottomSheet;
+    CouponInfoFragment fragmentBottomSheet;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -52,13 +54,13 @@ public class HomeFragment extends Fragment {
 
 //        requireFragmentManager()
 
-        fragmentBottomSheet = new CouponInfoFragmentBottomSheet();
+        fragmentBottomSheet = new CouponInfoFragment();
 
         couponAdapter.setOnItemClickLister(new CouponAdapter.OnItemClickLister() {
             @Override
             public void onItemClick(View v, int pos, CouponInfo data) {
-                fragmentBottomSheet.setCouponInfo(data);
-                fragmentBottomSheet.show(requireFragmentManager(), fragmentBottomSheet.getTag());
+//                fragmentBottomSheet.setCouponInfo(data);
+//                fragmentBottomSheet.show(requireFragmentManager(), fragmentBottomSheet.getTag());
             }
         });
 

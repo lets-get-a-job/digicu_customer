@@ -1,6 +1,5 @@
-package com.example.digicu_customer.adapter;
+package com.example.digicu_customer.ui.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.digicu_customer.GeneralVariable;
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.dataset.Coupon;
 import com.example.digicu_customer.dataset.CouponInfo;
@@ -100,7 +98,7 @@ public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Coupon coupon = data.get(position);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("~ YYYY-MM-DD(E)");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("~ yyyy-MM-dd(E)");
 
         holder.getCouponName().setText(coupon.getName());
         holder.getExpiration().setText(dateFormat.format(coupon.getExpirationDate()));

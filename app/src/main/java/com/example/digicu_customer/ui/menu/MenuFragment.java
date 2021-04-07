@@ -1,4 +1,4 @@
-package com.example.digicu_customer;
+package com.example.digicu_customer.ui.menu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.digicu_customer.adapter.MenuAdapter;
+import com.example.digicu_customer.GeneralVariable;
+import com.example.digicu_customer.LoginActivity;
+import com.example.digicu_customer.R;
+import com.example.digicu_customer.ui.adapter.MenuAdapter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
