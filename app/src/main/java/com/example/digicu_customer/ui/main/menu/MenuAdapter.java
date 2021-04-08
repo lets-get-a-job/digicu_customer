@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.adapter;
+package com.example.digicu_customer.ui.main.menu;
 
 import android.content.Context;
 import android.view.LayoutInflater;

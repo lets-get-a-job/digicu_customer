@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.adapter;
+package com.example.digicu_customer.ui.main.couponinfo;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,20 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
-import com.example.digicu_customer.dataset.CouponInfo;
-import com.example.digicu_customer.dataset.RecordOfPurchase;
+import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
+import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder> {
     public interface OnItemClickLister {
-        void onItemClick(View v, int pos, RecordOfPurchase data);
+        void onItemClick(View v, int pos, RecordOfPurchaseDataModel data);
     }
 
-    private ArrayList<RecordOfPurchase> data;
+    private List<RecordOfPurchaseDataModel> data;
     private OnItemClickLister onItemClickLister;
 
     public void setOnItemClickLister(OnItemClickLister onItemClickLister) {
@@ -74,22 +74,12 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
         }
     }
 
-    public void setData(RecordOfPurchase[] data) {
-        this.data.clear();
-
-        for (RecordOfPurchase rp : data) {
-            this.data.add(rp);
-        }
+    public void setData(List<RecordOfPurchaseDataModel> data) {
+        this.data = data;
     }
 
-    public RecordAdapter(RecordOfPurchase[] data) {
-        this.data = new ArrayList<>();
-
-        if(data != null) {
-            for (RecordOfPurchase rp : data) {
-                this.data.add(rp);
-            }
-        }
+    public RecordAdapter(List<RecordOfPurchaseDataModel> data) {
+        this.data = data;
     }
 
     @NonNull
@@ -104,18 +94,18 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        if(data == null) return;
 
-        RecordOfPurchase record = data.get(position);
+        RecordOfPurchaseDataModel record = data.get(position);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd(E) HH:mm");
 
         holder.getPurchaseDate().setText(dateFormat.format(record.getPurchaseDate()));
         holder.getTotalPrice().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice())  + "원");
-        if (record.getCouponInfo().getType() == CouponInfo.CouponType.STAMP) {
+        if (record.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
             holder.getMileage_lv().setText("적립 도장 ");
-            holder.getMileage().setText(record.getProducts().length + "개");
+            holder.getMileage().setText(record.getProductDataModels().size() + "개");
         } else {
             holder.getMileage_lv().setText("적립 마일리지 ");
-            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice() * record.getCouponInfo().getPercent()) + " Points");
+            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice() * record.getCouponInfoDataModel().getPercent()) + " Points");
         }
     }
 

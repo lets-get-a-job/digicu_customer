@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.adapter;
+package com.example.digicu_customer.ui.main.couponinfo;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,29 +9,29 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
-import com.example.digicu_customer.dataset.Coupon;
-import com.example.digicu_customer.dataset.CouponInfo;
+import com.example.digicu_customer.data.dataset.CouponDataModel;
+import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.ViewHolder> {
     public interface OnItemClickLister {
-        void onItemClick(View v, int pos, CouponInfo data);
+        void onItemClick(View v, int pos, CouponInfoDataModel data);
     }
 
-    private ArrayList<Coupon> data;
+    private ArrayList<CouponDataModel> data;
     private OnItemClickLister onItemClickLister;
 
     public void setOnItemClickLister(OnItemClickLister onItemClickLister) {
         this.onItemClickLister = onItemClickLister;
     }
 
-    public void setData(Coupon[] data) {
+    public void setData(CouponDataModel[] data) {
         this.data.clear();
 
         if (data != null) {
-            for(Coupon cp : data) {
+            for(CouponDataModel cp : data) {
                 this.data.add(cp);
             }
         }
@@ -76,11 +76,11 @@ public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.ViewHolder> {
         }
     }
 
-    public BoxAdapter(Coupon[] data) {
+    public BoxAdapter(CouponDataModel[] data) {
         this.data = new ArrayList<>();
 
         if (data != null) {
-            for(Coupon cp : data) {
+            for(CouponDataModel cp : data) {
                 this.data.add(cp);
             }
         }
@@ -96,13 +96,13 @@ public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Coupon coupon = data.get(position);
+        CouponDataModel couponDataModel = data.get(position);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("~ yyyy-MM-dd(E)");
 
-        holder.getCouponName().setText(coupon.getName());
-        holder.getExpiration().setText(dateFormat.format(coupon.getExpirationDate()));
-        holder.getAvailable().setText(coupon.isAvailable()?"사용가능":"사용불가");
+        holder.getCouponName().setText(couponDataModel.getName());
+        holder.getExpiration().setText(dateFormat.format(couponDataModel.getExpirationDate()));
+        holder.getAvailable().setText(couponDataModel.isAvailable()?"사용가능":"사용불가");
     }
 
     @Override

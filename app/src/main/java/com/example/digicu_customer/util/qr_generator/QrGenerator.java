@@ -1,4 +1,4 @@
-package com.example.digicu_customer.qr_generator;
+package com.example.digicu_customer.util.qr_generator;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

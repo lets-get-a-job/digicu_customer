@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.adapter;
+package com.example.digicu_customer.ui.main.home;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,16 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.digicu_customer.GeneralVariable;
+import com.example.digicu_customer.general.GeneralVariable;
 import com.example.digicu_customer.R;
-import com.example.digicu_customer.dataset.CouponInfo;
+import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 
-public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public interface OnItemClickLister {
-        void onItemClick(View v, int pos, CouponInfo data);
+        void onItemClick(View v, int pos, CouponInfoDataModel data);
     }
 
-    private CouponInfo[] data;
+    private List<CouponInfoDataModel> data;
     private OnItemClickLister onItemClickLister;
 
     public void setOnItemClickLister(OnItemClickLister onItemClickLister) {
@@ -41,9 +44,9 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION){
 
-                        Log.d(GeneralVariable.TAG, data[pos].toString());
+                        Log.d(GeneralVariable.TAG, data.get(pos).toString());
                         if (onItemClickLister != null)
-                            onItemClickLister.onItemClick(view, pos, data[pos]);
+                            onItemClickLister.onItemClick(view, pos, data.get(pos));
                     }
                 }
             });
@@ -58,7 +61,11 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
         }
     }
 
-    public CouponAdapter(CouponInfo[] data) {
+    public HomeAdapter() {
+        this.data = new ArrayList<>();
+    }
+
+    public HomeAdapter(List<CouponInfoDataModel> data) {
         this.data = data;
     }
 
@@ -72,17 +79,22 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CouponInfo couponInfo = data[position];
+        CouponInfoDataModel couponInfoDataModel = data.get(position);
 
-        holder.getShopName().setText(couponInfo.getShop().getName());
-        if (couponInfo.getType() == CouponInfo.CouponType.STAMP)
-            holder.getMileage().setText(couponInfo.getStampCnt() + "/" + couponInfo.getCountCanBeTransfer());
-        else
-            holder.getMileage().setText(couponInfo.getMileage() + " points");
+        holder.getShopName().setText(couponInfoDataModel.getShopDataModel().getName());
+        if (couponInfoDataModel.getType() == CouponInfoDataModel.CouponType.STAMP) {
+            holder.getMileage().setText(couponInfoDataModel.getStampCnt() + "/" + couponInfoDataModel.getCountCanBeTransfer());
+        } else {
+            holder.getMileage().setText(couponInfoDataModel.getMileage() + " points");
+        }
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return data.size();
+    }
+
+    public void setData(List<CouponInfoDataModel> data) {
+        this.data = data;
     }
 }

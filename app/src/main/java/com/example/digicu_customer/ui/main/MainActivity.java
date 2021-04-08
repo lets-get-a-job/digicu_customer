@@ -1,4 +1,4 @@
-package com.example.digicu_customer;
+package com.example.digicu_customer.ui.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.digicu_customer.ui.home.HomeFragment;
-import com.example.digicu_customer.ui.menu.MenuFragment;
+import com.example.digicu_customer.R;
+import com.example.digicu_customer.general.GeneralVariable;
+import com.example.digicu_customer.ui.main.couponinfo.CouponInfoFragment;
+import com.example.digicu_customer.ui.main.home.HomeFragment;
+import com.example.digicu_customer.ui.main.menu.MenuFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     BottomNavigationView mBottomNavigationView;
     HomeFragment homeFragment;
     MenuFragment menuFragment;
+    CouponInfoFragment couponInfoFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         homeFragment = new HomeFragment();
         menuFragment = new MenuFragment();
+        couponInfoFragment = new CouponInfoFragment();
 
         // First Fragment is HomeFragment
         getSupportFragmentManager().beginTransaction().replace(R.id.digicu_main_fg_linearLayout, homeFragment).commit();
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 transaction.replace(R.id.digicu_main_fg_linearLayout, homeFragment).commit();
                 return true;
             case R.id.page_2:
+                transaction.replace(R.id.digicu_main_fg_linearLayout, couponInfoFragment).commit();
                 return true;
             case R.id.page_3:
                 return true;

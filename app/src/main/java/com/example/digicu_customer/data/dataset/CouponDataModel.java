@@ -1,17 +1,17 @@
-package com.example.digicu_customer.dataset;
+package com.example.digicu_customer.data.dataset;
 
 import java.util.Date;
 
-public class Coupon {
-    private Shop shop;
+public class CouponDataModel {
+    private ShopDataModel shopDataModel;
     // 쿠폰 일련번호
     private int couponKey;
     private String name;
     private Date expirationDate;
     private boolean available;
 
-    public Coupon(Shop shop, int couponKey, String name, Date expirationDate, boolean available) {
-        this.shop = shop;
+    public CouponDataModel(ShopDataModel shopDataModel, int couponKey, String name, Date expirationDate, boolean available) {
+        this.shopDataModel = shopDataModel;
         this.couponKey = couponKey;
         this.name = name;
         this.expirationDate = expirationDate;
@@ -21,7 +21,7 @@ public class Coupon {
     @Override
     public String toString() {
         return "Coupon{" +
-                "shop=" + shop +
+                "shop=" + shopDataModel +
                 ", couponNum=" + couponKey +
                 ", name='" + name + '\'' +
                 ", expirationDate=" + expirationDate +
@@ -29,12 +29,12 @@ public class Coupon {
                 '}';
     }
 
-    public Shop getShop() {
-        return shop;
+    public ShopDataModel getShopDataModel() {
+        return shopDataModel;
     }
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
+    public void setShopDataModel(ShopDataModel shopDataModel) {
+        this.shopDataModel = shopDataModel;
     }
 
     public int getCouponNum() {

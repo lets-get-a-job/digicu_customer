@@ -1,13 +1,13 @@
-package com.example.digicu_customer.dataset;
+package com.example.digicu_customer.data.dataset;
 
-public class CouponInfo {
+public class CouponInfoDataModel {
     // coupon type ex) mileage or stamp
     public enum CouponType {
         MILEAGE,
         STAMP
     }
 
-    private Shop shop;
+    private ShopDataModel shopDataModel;
     private CouponType type;
     //if type is MILEAGE
     private int mileage;
@@ -16,8 +16,8 @@ public class CouponInfo {
     private int stampCnt;
     private int countCanBeTransfer;
 
-    public CouponInfo(Shop shop, CouponType type, int mileage, int stampCnt, int countCanBeTransfer) {
-        this.shop = shop;
+    public CouponInfoDataModel(ShopDataModel shopDataModel, CouponType type, int mileage, int stampCnt, int countCanBeTransfer) {
+        this.shopDataModel = shopDataModel;
         this.type = type;
         this.mileage = mileage;
         this.stampCnt = stampCnt;
@@ -27,7 +27,7 @@ public class CouponInfo {
     @Override
     public String toString() {
         return "Coupon{" +
-                "shop=" + shop +
+                "shop=" + shopDataModel +
                 ", type=" + type +
                 ", mileage=" + mileage +
                 ", stampCnt=" + stampCnt +
@@ -35,12 +35,12 @@ public class CouponInfo {
                 '}';
     }
 
-    public Shop getShop() {
-        return shop;
+    public ShopDataModel getShopDataModel() {
+        return shopDataModel;
     }
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
+    public void setShopDataModel(ShopDataModel shopDataModel) {
+        this.shopDataModel = shopDataModel;
     }
 
     public CouponType getType() {

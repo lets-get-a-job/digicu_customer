@@ -1,11 +1,11 @@
-package com.example.digicu_customer.dataset;
+package com.example.digicu_customer.data.dataset;
 
-public class Shop {
+public class ShopDataModel {
     private String name;
     private String address;
     private String number;
 
-    public Shop(String name, String address, String number) {
+    public ShopDataModel(String name, String address, String number) {
         this.name = name;
         this.address = address;
         this.number = number;

@@ -1,14 +1,16 @@
-package com.example.digicu_customer;
+package com.example.digicu_customer.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.digicu_customer.R;
+import com.example.digicu_customer.general.GeneralVariable;
+import com.example.digicu_customer.ui.main.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
