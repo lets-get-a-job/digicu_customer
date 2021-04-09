@@ -20,12 +20,16 @@
             app:destination="@id/couponInfoFragment" />
     </fragment>
 
-    <fragment android:id="@+id/page_2" >
+    <fragment android:id="@+id/page_2"
+        >
         <action
             android:id="@+id/action_placeholder5_to_placeholder6"
             app:destination="@id/page_3" />
     </fragment>
-    <fragment android:id="@+id/page_3" >
+    <fragment android:id="@+id/page_3"
+        android:name="com.example.digicu_customer.ui.main.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_placeholder6_to_menuFragment2"
             app:destination="@id/page_4" />

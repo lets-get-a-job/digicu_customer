@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.digicu_customer.R;
@@ -21,10 +22,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-//    HomeFragment homeFragment;
-//    MenuFragment menuFragment;
-//    CouponInfoFragment couponInfoFragment;
-
     BottomNavigationView bottomNavigationView;
 
     @Override
