@@ -2,9 +2,14 @@ package com.example.digicu_customer.ui.main.home;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +29,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     HomeViewModel homeViewModel;
     RecyclerView mRecyclerView;
-    CouponInfoFragment fragmentBottomSheet;
+    CouponInfoFragment couponInfoFragment;
     MaterialCardView materialCardView;
     HomeAdapter homeAdapter;
 
@@ -33,9 +38,15 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         homeViewModel.loadCouponInfo();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        homeAdapter = new HomeAdapter();
     }
 
     @Override
@@ -48,20 +59,17 @@ public class HomeFragment extends Fragment {
         final Observer<List<CouponInfoDataModel>> couponInfoObserver = new Observer<List<CouponInfoDataModel>>() {
             @Override
             public void onChanged(List<CouponInfoDataModel> couponInfo) {
-                Log.d(GeneralVariable.TAG, "onChanged: " + couponInfo.size());
                 homeAdapter.setData(couponInfo);
                 homeAdapter.notifyDataSetChanged();
             }
         };
         homeViewModel.getCouponInfo().observe(requireActivity(), couponInfoObserver);
 
-
-        homeAdapter = new HomeAdapter();
         mRecyclerView = view.findViewById(R.id.digicu_home_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(homeAdapter);
 
-        fragmentBottomSheet = new CouponInfoFragment();
+        couponInfoFragment = new CouponInfoFragment();
 
         materialCardView = view.findViewById(R.id.digicu_home_add_coupon);
         materialCardView.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +85,10 @@ public class HomeFragment extends Fragment {
         homeAdapter.setOnItemClickLister(new HomeAdapter.OnItemClickLister() {
             @Override
             public void onItemClick(View v, int pos, CouponInfoDataModel data) {
-//                fragmentBottomSheet.setCouponInfo(data);
-//                fragmentBottomSheet.show(requireFragmentManager(), fragmentBottomSheet.getTag());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("CouponInfo", data);
+
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_page_1_to_couponInfoFragment, bundle);
             }
         });
 

@@ -14,6 +14,7 @@ import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -24,6 +25,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
 
     private List<RecordOfPurchaseDataModel> data;
     private OnItemClickLister onItemClickLister;
+
 
     public void setOnItemClickLister(OnItemClickLister onItemClickLister) {
         this.onItemClickLister = onItemClickLister;
@@ -79,7 +81,11 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
     }
 
     public RecordAdapter(List<RecordOfPurchaseDataModel> data) {
+
         this.data = data;
+        if(this.data == null) {
+            this.data = new ArrayList<>();
+        }
     }
 
     @NonNull
@@ -92,7 +98,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        if(data == null) return;
+
 
         RecordOfPurchaseDataModel record = data.get(position);
 

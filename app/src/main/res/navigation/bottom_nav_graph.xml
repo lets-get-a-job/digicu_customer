@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/page_1">
+
+
+    <fragment
+        android:id="@+id/page_1"
+        android:name="com.example.digicu_customer.ui.main.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <argument
+            android:name="couponInfoArgu"
+            app:argType="com.example.digicu_customer.data.dataset.CouponInfoDataModel"
+            android:defaultValue="@null"
+            app:nullable="true"/>
+        <action
+            android:id="@+id/action_homeFragment_to_placeholder5"
+            app:destination="@id/page_2" />
+        <action
+            android:id="@+id/action_page_1_to_couponInfoFragment"
+            app:destination="@id/couponInfoFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/page_2" >
+        <action
+            android:id="@+id/action_placeholder5_to_placeholder6"
+            app:destination="@id/page_3" />
+    </fragment>
+    <fragment android:id="@+id/page_3" >
+        <action
+            android:id="@+id/action_placeholder6_to_menuFragment2"
+            app:destination="@id/page_4" />
+    </fragment>
+    <fragment
+        android:id="@+id/page_4"
+        android:name="com.example.digicu_customer.ui.main.menu.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/couponInfoFragment"
+        android:name="com.example.digicu_customer.ui.main.couponinfo.CouponInfoFragment"
+        android:label="CouponInfoFragment" >
+        <action
+            android:id="@+id/action_couponInfoFragment_to_page_1"
+            app:destination="@id/page_1" />
+    </fragment>
+
+
+</navigation>

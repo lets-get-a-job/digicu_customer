@@ -3,6 +3,9 @@ package com.example.digicu_customer.ui.main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -17,12 +20,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    BottomNavigationView mBottomNavigationView;
-    HomeFragment homeFragment;
-    MenuFragment menuFragment;
-    CouponInfoFragment couponInfoFragment;
+public class MainActivity extends AppCompatActivity {
+//    HomeFragment homeFragment;
+//    MenuFragment menuFragment;
+//    CouponInfoFragment couponInfoFragment;
 
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,37 +49,28 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Log.d(GeneralVariable.TAG, "onCreate: personId : " + personId);
         // Google Login test
 
-        mBottomNavigationView = findViewById(R.id.digicu_main_bottom_navigation);
-        mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+//        homeFragment = new HomeFragment();
+//        menuFragment = new MenuFragment();
+//        couponInfoFragment = new CouponInfoFragment();
 
-        homeFragment = new HomeFragment();
-        menuFragment = new MenuFragment();
-        couponInfoFragment = new CouponInfoFragment();
+        if (savedInstanceState == null) {
+            setUpBottomNav();
+        }
+    }
 
-        // First Fragment is HomeFragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.digicu_main_fg_linearLayout, homeFragment).commit();
+    private void setUpBottomNav() {
+        bottomNavigationView = findViewById(R.id.digicu_main_bottom_navigation);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.digicu_main_nav_host);
+        NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+    public boolean onSupportNavigateUp() {
+//        NavHostFragment.findNavController(couponInfoFragment).navigate(R.id);
+        Log.d(GeneralVariable.TAG, "onSupportNavigateUp: ");
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.digicu_main_nav_host);
+        NavController navController = navHostFragment.getNavController();
 
-        switch (item.getItemId()) {
-            case R.id.page_1:
-                transaction.replace(R.id.digicu_main_fg_linearLayout, homeFragment).commit();
-                return true;
-            case R.id.page_2:
-                transaction.replace(R.id.digicu_main_fg_linearLayout, couponInfoFragment).commit();
-                return true;
-            case R.id.page_3:
-                return true;
-            case R.id.page_4:
-                transaction.replace(R.id.digicu_main_fg_linearLayout, menuFragment).commit();
-                return true;
-        }
-
-        return false;
+        return navController.navigateUp() || super.onSupportNavigateUp();
     }
-
 }

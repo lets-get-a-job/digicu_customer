@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">digicu_customer</string>
+    <string name="app_name">Digicu</string>
     <string name="app_title">Digicu</string>
     <string name="app_description">모아봐요 디지털 쿠폰!</string>
     <string name="signin_signup_find">회원가입/비밀번호 찾기</string>

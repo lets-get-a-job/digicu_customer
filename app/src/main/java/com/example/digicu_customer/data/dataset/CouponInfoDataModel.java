@@ -1,6 +1,8 @@
 package com.example.digicu_customer.data.dataset;
 
-public class CouponInfoDataModel {
+import java.io.Serializable;
+
+public class CouponInfoDataModel implements Serializable {
     // coupon type ex) mileage or stamp
     public enum CouponType {
         MILEAGE,
@@ -11,7 +13,7 @@ public class CouponInfoDataModel {
     private CouponType type;
     //if type is MILEAGE
     private int mileage;
-    private int percent;
+    private double percent;
     //if type is STAMP
     private int stampCnt;
     private int countCanBeTransfer;
@@ -22,6 +24,7 @@ public class CouponInfoDataModel {
         this.mileage = mileage;
         this.stampCnt = stampCnt;
         this.countCanBeTransfer = countCanBeTransfer;
+        this.percent = 0.05;
     }
 
     @Override
@@ -71,7 +74,7 @@ public class CouponInfoDataModel {
         return countCanBeTransfer;
     }
 
-    public int getPercent() {
+    public double getPercent() {
         return percent;
     }
 

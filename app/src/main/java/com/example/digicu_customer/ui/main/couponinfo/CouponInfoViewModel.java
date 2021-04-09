@@ -1,5 +1,8 @@
 package com.example.digicu_customer.ui.main.couponinfo;
 
+import android.util.Log;
+
+import androidx.annotation.LongDef;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -7,6 +10,7 @@ import com.example.digicu_customer.data.dataset.CouponDataModel;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.data.dataset.ProductDataModel;
 import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
+import com.example.digicu_customer.general.GeneralVariable;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,11 +21,13 @@ public class CouponInfoViewModel extends ViewModel {
     private MutableLiveData<List<CouponDataModel>> couponData;
     private MutableLiveData<CouponInfoDataModel> couponInfoDataModel;
 
-    public MutableLiveData<CouponInfoDataModel> getCouponInfoDataModel(CouponInfoDataModel couponInfo) {
+    public MutableLiveData<CouponInfoDataModel> getCouponInfoDataModel() {
         if (couponInfoDataModel == null) {
             this.couponInfoDataModel = new MutableLiveData<>();
-            this.couponInfoDataModel.setValue(couponInfo);
-            loadCouponInfoData();
+
+            if(couponInfoDataModel.getValue() != null) {
+                loadCouponInfoData();
+            }
         }
 
         return couponInfoDataModel;
@@ -60,6 +66,8 @@ public class CouponInfoViewModel extends ViewModel {
         if (couponData == null) {
             couponData = new MutableLiveData<>();
         }
+
+        Log.d(GeneralVariable.TAG, "loadCouponData: " + couponInfoDataModel.getValue().toString());
 
         List<CouponDataModel> couponDataModels = new ArrayList<>();
         couponDataModels.add(new CouponDataModel(couponInfoDataModel.getValue().getShopDataModel(), 1,"무적권올해취업 7000원 할인 쿠폰", new Date(), true));

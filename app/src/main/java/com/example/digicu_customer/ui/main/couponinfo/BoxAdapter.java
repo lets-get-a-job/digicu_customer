@@ -14,27 +14,22 @@ import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.ViewHolder> {
     public interface OnItemClickLister {
         void onItemClick(View v, int pos, CouponInfoDataModel data);
     }
 
-    private ArrayList<CouponDataModel> data;
+    private List<CouponDataModel> data;
     private OnItemClickLister onItemClickLister;
 
     public void setOnItemClickLister(OnItemClickLister onItemClickLister) {
         this.onItemClickLister = onItemClickLister;
     }
 
-    public void setData(CouponDataModel[] data) {
-        this.data.clear();
-
-        if (data != null) {
-            for(CouponDataModel cp : data) {
-                this.data.add(cp);
-            }
-        }
+    public void setData(List<CouponDataModel> data) {
+        this.data = data;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -76,13 +71,10 @@ public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.ViewHolder> {
         }
     }
 
-    public BoxAdapter(CouponDataModel[] data) {
-        this.data = new ArrayList<>();
-
-        if (data != null) {
-            for(CouponDataModel cp : data) {
-                this.data.add(cp);
-            }
+    public BoxAdapter(List<CouponDataModel> data) {
+        this.data = data;
+        if(this.data == null) {
+            this.data = new ArrayList<>();
         }
     }
 
