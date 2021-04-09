@@ -13,8 +13,10 @@ import com.example.digicu_customer.general.GeneralVariable;
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public interface OnItemClickLister {
@@ -83,9 +85,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         holder.getShopName().setText(couponInfoDataModel.getShopDataModel().getName());
         if (couponInfoDataModel.getType() == CouponInfoDataModel.CouponType.STAMP) {
-            holder.getMileage().setText(couponInfoDataModel.getStampCnt() + "/" + couponInfoDataModel.getCountCanBeTransfer());
+            holder.getMileage().setText(0 + "/" + couponInfoDataModel.getCountCanBeTransfer());
         } else {
-            holder.getMileage().setText(couponInfoDataModel.getMileage() + " points");
+            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(0) + " points");
         }
     }
 

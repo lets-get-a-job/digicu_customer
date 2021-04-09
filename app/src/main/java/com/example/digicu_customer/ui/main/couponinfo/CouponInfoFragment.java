@@ -1,5 +1,6 @@
 package com.example.digicu_customer.ui.main.couponinfo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +21,7 @@ import com.example.digicu_customer.data.dataset.CouponDataModel;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
+import com.example.digicu_customer.ui.main.home.HomeFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
@@ -44,12 +47,6 @@ public class CouponInfoFragment extends Fragment {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_coupon_info, container, false);
@@ -62,6 +59,16 @@ public class CouponInfoFragment extends Fragment {
         boxRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         recordAdapter = new RecordAdapter(null);
+        recordAdapter.setOnItemClickLister(new RecordAdapter.OnItemClickLister() {
+            @Override
+            public void onItemClick(View v, int pos, RecordOfPurchaseDataModel data) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("record", data);
+
+                NavHostFragment.findNavController(CouponInfoFragment.this).navigate(R.id.action_couponInfoFragment_to_receiptFragment, bundle);
+            }
+        });
+
         recordRecyclerView.setAdapter(recordAdapter);
 
         boxAdapter = new BoxAdapter(null);

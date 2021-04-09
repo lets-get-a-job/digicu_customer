@@ -31,11 +31,11 @@ public class HomeViewModel extends ViewModel {
         shopDataModels[4] = new ShopDataModel("test5", "상도동5", "010-1234-1234");
 
         List<CouponInfoDataModel> couponInfoDataModelList = new ArrayList<>();
-        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[0], CouponInfoDataModel.CouponType.STAMP, 0, 5, 10));
-        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[1], CouponInfoDataModel.CouponType.MILEAGE, 1750, 0, 0));
-        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[2], CouponInfoDataModel.CouponType.STAMP, 0, 2, 15));
-        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[3], CouponInfoDataModel.CouponType.STAMP, 0, 4, 10));
-        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[4], CouponInfoDataModel.CouponType.MILEAGE, 5003, 0, 0));
+        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[0], CouponInfoDataModel.CouponType.STAMP, 10));
+        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[1], CouponInfoDataModel.CouponType.MILEAGE, 0));
+        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[2], CouponInfoDataModel.CouponType.STAMP, 15));
+        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[3], CouponInfoDataModel.CouponType.STAMP, 10));
+        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[4], CouponInfoDataModel.CouponType.MILEAGE, 0));
 
         this.couponInfo.setValue(couponInfoDataModelList);
     }

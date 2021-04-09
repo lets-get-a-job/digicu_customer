@@ -1,8 +1,9 @@
 package com.example.digicu_customer.data.dataset;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CouponDataModel {
+public class CouponDataModel implements Serializable {
     private ShopDataModel shopDataModel;
     // 쿠폰 일련번호
     private int couponKey;

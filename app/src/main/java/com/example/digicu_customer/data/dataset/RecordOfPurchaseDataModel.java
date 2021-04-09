@@ -1,19 +1,31 @@
 package com.example.digicu_customer.data.dataset;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class RecordOfPurchaseDataModel {
+public class RecordOfPurchaseDataModel implements Serializable {
     private CouponInfoDataModel couponInfoDataModel;
     private int receiptNumber;
     private Date purchaseDate;
     private List<ProductDataModel> productDataModels;
+    private double mileage;
+    private int stampCnt;
 
     public RecordOfPurchaseDataModel(CouponInfoDataModel couponInfoDataModel, int receiptNumber, Date purchaseDate, List<ProductDataModel> productDataModels) {
         this.couponInfoDataModel = couponInfoDataModel;
         this.receiptNumber = receiptNumber;
         this.purchaseDate = purchaseDate;
         this.productDataModels = productDataModels;
+        mileage = getTotalPrice() * couponInfoDataModel.getPercent();
+
+        int product_cnt = 0;
+
+        for (ProductDataModel productDataModel: productDataModels) {
+            product_cnt+=productDataModel.getCount();
+        }
+
+        stampCnt = product_cnt;
     }
 
     @Override
@@ -66,5 +78,13 @@ public class RecordOfPurchaseDataModel {
         }
 
         return totalPrice;
+    }
+
+    public double getMileage() {
+        return mileage;
+    }
+
+    public int getStampCnt() {
+        return stampCnt;
     }
 }

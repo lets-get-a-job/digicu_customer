@@ -1,6 +1,8 @@
 package com.example.digicu_customer.data.dataset;
 
-public class ShopDataModel {
+import java.io.Serializable;
+
+public class ShopDataModel implements Serializable {
     private String name;
     private String address;
     private String number;

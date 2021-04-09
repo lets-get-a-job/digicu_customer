@@ -12,17 +12,13 @@ public class CouponInfoDataModel implements Serializable {
     private ShopDataModel shopDataModel;
     private CouponType type;
     //if type is MILEAGE
-    private int mileage;
     private double percent;
     //if type is STAMP
-    private int stampCnt;
     private int countCanBeTransfer;
 
-    public CouponInfoDataModel(ShopDataModel shopDataModel, CouponType type, int mileage, int stampCnt, int countCanBeTransfer) {
+    public CouponInfoDataModel(ShopDataModel shopDataModel, CouponType type, int countCanBeTransfer) {
         this.shopDataModel = shopDataModel;
         this.type = type;
-        this.mileage = mileage;
-        this.stampCnt = stampCnt;
         this.countCanBeTransfer = countCanBeTransfer;
         this.percent = 0.05;
     }
@@ -32,8 +28,6 @@ public class CouponInfoDataModel implements Serializable {
         return "Coupon{" +
                 "shop=" + shopDataModel +
                 ", type=" + type +
-                ", mileage=" + mileage +
-                ", stampCnt=" + stampCnt +
                 ", countCanBeTransfer=" + countCanBeTransfer +
                 '}';
     }
@@ -52,22 +46,6 @@ public class CouponInfoDataModel implements Serializable {
 
     public void setType(CouponType type) {
         this.type = type;
-    }
-
-    public int getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(int mileage) {
-        this.mileage = mileage;
-    }
-
-    public int getStampCnt() {
-        return stampCnt;
-    }
-
-    public void setStampCnt(int stampCnt) {
-        this.stampCnt = stampCnt;
     }
 
     public int getCountCanBeTransfer() {
