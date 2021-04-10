@@ -24,11 +24,11 @@ public class HomeViewModel extends ViewModel {
     protected void loadCouponInfo() {
         // get data from server
         ShopDataModel shopDataModels[] = new ShopDataModel[5];
-        shopDataModels[0] = new ShopDataModel("test1", "상도동1", "010-1234-1234");
-        shopDataModels[1] = new ShopDataModel("test2", "상도동2", "010-1234-1234");
-        shopDataModels[2] = new ShopDataModel("test3", "상도동3", "010-1234-1234");
-        shopDataModels[3] = new ShopDataModel("test4", "상도동4", "010-1234-1234");
-        shopDataModels[4] = new ShopDataModel("test5", "상도동5", "010-1234-1234");
+        shopDataModels[0] = new ShopDataModel("test1", "상도동1", "010-1234-1234", "");
+        shopDataModels[1] = new ShopDataModel("test2", "상도동2", "010-1234-1234", "");
+        shopDataModels[2] = new ShopDataModel("test3", "상도동3", "010-1234-1234", "");
+        shopDataModels[3] = new ShopDataModel("test4", "상도동4", "010-1234-1234", "");
+        shopDataModels[4] = new ShopDataModel("test5", "상도동5", "010-1234-1234", "");
 
         List<CouponInfoDataModel> couponInfoDataModelList = new ArrayList<>();
         couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[0], CouponInfoDataModel.CouponType.STAMP, 10));

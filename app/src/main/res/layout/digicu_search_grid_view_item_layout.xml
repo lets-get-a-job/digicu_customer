@@ -19,14 +19,14 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/search_shop_image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/nologo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="200dp"/>
 
             <TextView
                 android:text="sample"
