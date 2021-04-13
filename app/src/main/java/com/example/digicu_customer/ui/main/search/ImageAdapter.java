@@ -74,7 +74,7 @@ public class ImageAdapter extends BaseAdapter {
         drawable.start();
 
         Glide.with(context).load(shopDataModel.getLogo_url())
-                           .centerCrop()
+                           .fitCenter()
                            .placeholder(drawable)
                            .error(R.drawable.ic_baseline_error_40)
                            .into(img);

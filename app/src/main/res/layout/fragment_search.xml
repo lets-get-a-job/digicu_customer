@@ -12,23 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_sv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_sv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:iconifiedByDefault="false"
-                app:queryHint="@string/search_shop" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/search_shop" />
 
         <GridView
             android:id="@+id/search_grid"
-            android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"
+            android:verticalSpacing="5dp"
             android:numColumns="1"
             android:stretchMode="columnWidth"
             android:layout_width="match_parent"
