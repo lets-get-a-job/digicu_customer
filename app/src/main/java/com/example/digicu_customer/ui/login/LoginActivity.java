@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mLogin_btn = (SignInButton) findViewById(R.id.digicu_google_login_btn);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.server_client_id))
                 .requestEmail()
                 .build();
 
@@ -48,11 +49,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
         updateUI(account);
     }
 
     private void updateUI(GoogleSignInAccount account) {
         if (account != null) {
+            // check sign in user
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
@@ -80,12 +83,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
-
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> task) {
         try {
             GoogleSignInAccount account = task.getResult(ApiException.class);
+//            Log.d(GeneralVariable.TAG, "handleSignInResult: IdToken : " + account.getIdToken());
+//            Log.d(GeneralVariable.TAG, "handleSignInResult: ServerAuthCode : " + account.getServerAuthCode());
+
             updateUI(account);
         } catch (ApiException e) {
             Log.d(GeneralVariable.TAG, "signInResult : failed code = " + e.getStatusCode());

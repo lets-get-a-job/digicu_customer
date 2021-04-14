@@ -38,12 +38,16 @@ public class MainActivity extends AppCompatActivity {
         String personEmail = acct.getEmail();
         String personId = acct.getId();
 
+        Log.d(GeneralVariable.TAG, "onCreate: IdToken : " + acct.getIdToken());
+//        Log.d(GeneralVariable.TAG, "onCreate: ServerAuthCode : " + acct.getServerAuthCode());
+        Log.d(GeneralVariable.TAG, "onCreate: GrantedScope : " + acct.getGrantedScopes().toString());
         Log.d(GeneralVariable.TAG, "onCreate: personName : " + personName);
         Log.d(GeneralVariable.TAG, "onCreate: personGivenName : " + personGivenName);
         Log.d(GeneralVariable.TAG, "onCreate: person" +
                 "FamilyName : " + personFamilyName);
         Log.d(GeneralVariable.TAG, "onCreate: personEmail : " + personEmail);
         Log.d(GeneralVariable.TAG, "onCreate: personId : " + personId);
+        Log.d(GeneralVariable.TAG, "onCreate: photoURL : " + acct.getPhotoUrl());
         // Google Login test
 
 //        homeFragment = new HomeFragment();

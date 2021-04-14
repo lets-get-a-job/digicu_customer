@@ -21,6 +21,9 @@
     </fragment>
 
     <fragment android:id="@+id/page_2"
+        android:name="com.example.digicu_customer.ui.main.trade.TradeFragment"
+        android:label="fragment_trade"
+        tools:layout="@layout/fragment_trade"
         >
         <action
             android:id="@+id/action_placeholder5_to_placeholder6"
