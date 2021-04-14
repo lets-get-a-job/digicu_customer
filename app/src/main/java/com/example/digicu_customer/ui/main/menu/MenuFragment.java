@@ -5,16 +5,15 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.digicu_customer.general.GeneralVariable;
 import com.example.digicu_customer.ui.login.LoginActivity;
 import com.example.digicu_customer.R;
+import com.example.digicu_customer.ui.main.menu.userinfo.UserInfoActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -43,7 +42,8 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         switch (position) {
                 case 0:
-                    Log.d(GeneralVariable.TAG, "onItemClick: ");
+                    startActivity(new Intent(getContext(), UserInfoActivity.class));
+                    getActivity().overridePendingTransition(R.anim.in_from_up, R.anim.fade_out);
                     break;
                 case 1:
                     Intent intent = new Intent(getContext(), LoginActivity.class);
