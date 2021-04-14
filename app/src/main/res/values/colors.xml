@@ -14,6 +14,7 @@
     <color name="digicu_white_color">#FFFFFFFF</color>
     <color name="digicu_black_color">#FF2E2E2E</color>
     <color name="digicu_gray_color">#FFF5F5F5</color>
+    <color name="digicu_dark_gray_color">#FF989393</color>
     <color name="digicu_btn_color">#FF5589EB</color>
     <color name="digicu_white_transparency_color">#55FFFFFF</color>
 </resources>

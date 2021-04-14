@@ -4,9 +4,11 @@
     <string name="app_description">모아봐요 디지털 쿠폰!</string>
     <string name="signin_signup_find">회원가입/비밀번호 찾기</string>
     <string name="digicu_email">이메일</string>
+    <string name="digicu_auth">본인인증</string>
     <string name="digicu_pw">비밀번호</string>
     <string name="digicu_login">로그인</string>
     <string name="digicu_remember_info">로그인 정보 저장</string>
+    <string name="digicu_simple_pass">간편 로그인 비밀번호 변경</string>
     <string name="receipt">영수증</string>
     <string name="date">날짜 : </string>
     <string name="price">총 금액 : </string>
@@ -16,6 +18,9 @@
     <string name="product_one_price">단가</string>
 
     <string name="search_shop">가게 이름을 입력</string>
+
+    <string name="honorific_title">님</string>
+    <string name="plz_use_safety_account">안전한 계정 이용을 위해 본인인증 정보를 등록해주세요!</string>
 
     <string name="bottom_menu_title1">Home</string>
     <string name="bottom_menu_title2">Coupon</string>
@@ -27,8 +32,7 @@
     <string name="coupon_tab_item">쿠폰함</string>
     <string name="coupon_add_msg">쿠폰을 추가해 봐요!</string>
 
-    <string name="server_client_id">547207036785-pl6vbj6vkbh12se1frq5pn371djq66dj.apps.googleusercontent.com</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="server_client_id">547207036785-pl6vbj6vkbh12se1frq5pn371djq66dj.apps.googleusercontent.com</string>
 </resources>
