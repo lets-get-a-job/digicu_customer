@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_item"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        android:clickable="true"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="발행처 : "
+                        android:textStyle="bold"
+                        android:textColor="@color/digicu_black_color"
+                        />
+
+                    <TextView
+                        android:id="@+id/market_publisher"
+                        android:textStyle="bold"
+                        android:textColor="@color/digicu_black_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/coupon_name"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/digicu_black_color"
+                    android:text="무적권올해취업 3000원 할인 쿠폰"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Title, secondary and supporting text -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="유효기간 : "
+                        android:textColor="@color/digicu_black_color"
+                        />
+
+                    <TextView
+                        android:id="@+id/expiration_date"
+                        android:textColor="@color/digicu_black_color"
+                        android:text="03-31(수) 까지"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/market_expand_more"
+                android:clickable="true"
+                android:src="@drawable/ic_baseline_expand_more_24"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width=""-->
+<!--            android:layout_height=""-->
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

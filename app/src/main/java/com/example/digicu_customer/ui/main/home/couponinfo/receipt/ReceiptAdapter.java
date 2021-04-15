@@ -1,6 +1,5 @@
-package com.example.digicu_customer.ui.main.couponinfo.receipt;
+package com.example.digicu_customer.ui.main.home.couponinfo.receipt;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
-import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.data.dataset.ProductDataModel;
-import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
-import com.example.digicu_customer.general.GeneralVariable;
 
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

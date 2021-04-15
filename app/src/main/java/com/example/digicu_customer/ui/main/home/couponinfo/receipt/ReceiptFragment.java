@@ -1,7 +1,8 @@
-package com.example.digicu_customer.ui.main.couponinfo.receipt;
+package com.example.digicu_customer.ui.main.home.couponinfo.receipt;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -14,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.digicu_customer.R;
@@ -66,6 +66,14 @@ public class ReceiptFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_receipt, container, false);
 
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
         RecordOfPurchaseDataModel recordOfPurchaseDataModel = (RecordOfPurchaseDataModel) getArguments().getSerializable("record");
 
         recyclerView = view.findViewById(R.id.receipt_products_rv);
@@ -82,7 +90,5 @@ public class ReceiptFragment extends Fragment {
             ((TextView)view.findViewById(R.id.receipt_mileage)).setText("적립 포인트 : " + NumberFormat.getInstance(Locale.getDefault()).format(recordOfPurchaseDataModel.getMileage()) + "points");
         }
         ((TextView)view.findViewById(R.id.receipt_price)).setText(NumberFormat.getInstance(Locale.getDefault()).format(recordOfPurchaseDataModel.getTotalPrice()) + "원");
-
-        return view;
     }
 }

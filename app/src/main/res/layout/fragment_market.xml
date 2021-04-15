@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    tools:context=".ui.main.search.SearchFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    tools:context=".ui.main.trade.tabs.market.MarketFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,7 +17,7 @@
             app:endIconMode="custom"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:endIconCheckable="true"
-            android:hint="@string/search_shop"
+            android:hint="@string/shopname_or_couponname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -27,16 +27,11 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <GridView
-            android:id="@+id/search_grid"
-            android:verticalSpacing="5dp"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="5dp"
-            android:numColumns="1"
-            android:stretchMode="columnWidth"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
     </LinearLayout>
-
 
 </FrameLayout>

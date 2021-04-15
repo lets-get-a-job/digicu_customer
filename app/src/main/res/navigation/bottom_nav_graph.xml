@@ -44,7 +44,7 @@
         tools:layout="@layout/fragment_menu" />
     <fragment
         android:id="@+id/couponInfoFragment"
-        android:name="com.example.digicu_customer.ui.main.couponinfo.CouponInfoFragment"
+        android:name="com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment"
         android:label="CouponInfoFragment" >
         <action
             android:id="@+id/action_couponInfoFragment_to_page_1"
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/receiptFragment"
-        android:name="com.example.digicu_customer.ui.main.couponinfo.receipt.ReceiptFragment"
+        android:name="com.example.digicu_customer.ui.main.home.couponinfo.receipt.ReceiptFragment"
         android:label="fragment_receipt"
         tools:layout="@layout/fragment_receipt" >
         <action

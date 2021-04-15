@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context=".ui.main.couponinfo.receipt.ReceiptFragment">
+    android:background="@color/digicu_gray_color"
+    tools:context=".ui.main.home.couponinfo.receipt.ReceiptFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/digicu_home_add_coupon"
