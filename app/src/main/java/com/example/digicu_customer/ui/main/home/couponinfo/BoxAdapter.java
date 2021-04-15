@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.couponinfo;
+package com.example.digicu_customer.ui.main.home.couponinfo;
 
 import android.view.LayoutInflater;
 import android.view.View;

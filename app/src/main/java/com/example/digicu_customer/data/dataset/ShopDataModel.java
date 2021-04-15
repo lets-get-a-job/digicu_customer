@@ -1,10 +1,15 @@
 package com.example.digicu_customer.data.dataset;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class ShopDataModel implements Serializable {
+    @SerializedName("company_name")
     private String name;
+    @SerializedName("company_address")
     private String address;
+    @SerializedName("company_phone")
     private String number;
     private String logo_url;
 

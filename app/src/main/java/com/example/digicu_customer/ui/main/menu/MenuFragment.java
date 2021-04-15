@@ -3,6 +3,9 @@ package com.example.digicu_customer.ui.main.menu;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -39,6 +42,12 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         switch (position) {
                 case 0:
@@ -61,6 +70,13 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         dataStrings = new String[]{"회원정보", "로그아웃"};
         ArrayList<String> list = new ArrayList<>();
 
@@ -71,7 +87,5 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
         menuAdapter = new MenuAdapter(getContext(), list);
         mListView.setAdapter(menuAdapter);
         mListView.setOnItemClickListener(this);
-
-        return view;
     }
 }

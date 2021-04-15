@@ -3,8 +3,12 @@ package com.example.digicu_customer.util.qr_generator;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.hardware.camera2.CameraCharacteristics;
 import android.widget.ImageView;
 
+import androidx.fragment.app.Fragment;
+
+import com.example.digicu_customer.ui.main.home.HomeFragment;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -14,15 +18,22 @@ import com.google.zxing.qrcode.QRCodeWriter;
 public class QrGenerator {
 
     Activity mActivity;
+    Fragment mFragment;
 
     public QrGenerator(Activity activity) {
         this.mActivity = activity;
     }
 
+    public QrGenerator(Activity mActivity, Fragment mFragment) {
+        this.mActivity = mActivity;
+        this.mFragment = mFragment;
+    }
+
     public void startQRCode() {
         IntentIntegrator integrator = new IntentIntegrator(mActivity);
-        integrator.setCameraId(1);
-        integrator.initiateScan();
+        // 전면카메라 세팅
+        integrator.setCameraId(CameraCharacteristics.LENS_FACING_FRONT);
+        integrator.forSupportFragment(mFragment).initiateScan();
     }
 
     public void generateQRCode(String contents, int width, int height, ImageView imageView) {

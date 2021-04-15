@@ -1,12 +1,12 @@
-package com.example.digicu_customer.ui.main.couponinfo;
+package com.example.digicu_customer.ui.main.home.couponinfo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -21,7 +21,6 @@ import com.example.digicu_customer.data.dataset.CouponDataModel;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
-import com.example.digicu_customer.ui.main.home.HomeFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
@@ -50,6 +49,15 @@ public class CouponInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_coupon_info, container, false);
+
+        // Inflate the layout for this fragment
+        return view;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         // set RecyclerView
         recordRecyclerView = view.findViewById(R.id.record_recyclerview);
@@ -129,10 +137,5 @@ public class CouponInfoFragment extends Fragment {
 
             }
         });
-
-        // Inflate the layout for this fragment
-        return view;
     }
-
-
 }
