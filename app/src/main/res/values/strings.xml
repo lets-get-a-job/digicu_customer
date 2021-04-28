@@ -34,6 +34,8 @@
     <string name="coupon_tab_item">쿠폰함</string>
     <string name="coupon_add_msg">쿠폰을 추가해 봐요!</string>
 
+    <string name="signup">회원가입</string>
+    <string name="do_signup">가입하기</string>
 
     <string name="server_client_id">547207036785-pl6vbj6vkbh12se1frq5pn371djq66dj.apps.googleusercontent.com</string>
 </resources>
