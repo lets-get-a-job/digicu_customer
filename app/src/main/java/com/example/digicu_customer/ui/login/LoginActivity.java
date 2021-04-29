@@ -15,6 +15,7 @@ import com.example.digicu_customer.data.dataset.SocialUserDataModel;
 import com.example.digicu_customer.data.remote.ApiUtils;
 import com.example.digicu_customer.data.remote.DigicuService;
 import com.example.digicu_customer.general.GeneralVariable;
+import com.example.digicu_customer.ui.login.signup.SignUpActivity;
 import com.example.digicu_customer.ui.main.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -67,55 +68,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void updateUI(GoogleSignInAccount account) {
         if (account != null) {
             // Check Server
+            DigicuService digicuService = ApiUtils.getDigicuUserService();
 
-            DigicuService digicuService = ApiUtils.getDigicuService();
+            Log.d(GeneralVariable.TAG, "updateUI: " + account.getId());
 
-            // make SocialUserDataModel
-            SocialUserDataModel socialUserDataModel = new SocialUserDataModel(
-                    account.getId(),
-                    account.getIdToken(),
-                    account.getEmail(),
-                    account.getDisplayName(),
-                    account.getPhotoUrl().toString(),
-                    account.getPhotoUrl().toString(),
-                    new Date(),
-                    new Date()
-            );
-
-            Log.d(GeneralVariable.TAG, "updateUI: " + socialUserDataModel.toString());
-
-            digicuService.getSocial(socialUserDataModel.getSocial_id()).enqueue(new Callback<SocialUserDataModel>() {
+            digicuService.getSocial(account.getId()).enqueue(new Callback<SocialUserDataModel>() {
                 @Override
                 public void onResponse(Call<SocialUserDataModel> call, Response<SocialUserDataModel> response) {
                     Log.d(GeneralVariable.TAG, "getSocial : " + response.code());
 
                     if(response.code() == 404) {
-                        // not digicu user
-                        digicuService.postSocial(socialUserDataModel).enqueue(new Callback<String>() {
-                            @Override
-                            public void onResponse(Call<String> call, Response<String> response) {
-                                Log.d(GeneralVariable.TAG, "postSocial: " + response.code());
-                                switch (response.code()) {
-                                    case 200:
-                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                        finish();
-                                        break;
-                                    case 400:
-                                    case 500:
-                                        Toast.makeText(LoginActivity.this, "digicu server error", Toast.LENGTH_LONG).show();
-                                        break;
-                                    default:
-                                        Toast.makeText(LoginActivity.this, "unknown res code", Toast.LENGTH_LONG).show();
-                                }
-                            }
+                        // Todo modify data model
+                        SocialUserDataModel socialUserDataModel = new SocialUserDataModel(
+                                account.getId(),
+                                account.getIdToken(),
+                                account.getEmail(),
+                                account.getDisplayName(),
+                                account.getPhotoUrl() != null? account.getPhotoUrl().toString(): "",
+                                account.getPhotoUrl() != null? account.getPhotoUrl().toString(): "",
+                                new Date(),
+                                new Date()
+                        );
 
-                            @Override
-                            public void onFailure(Call<String> call, Throwable t) {
-                                Log.d(GeneralVariable.TAG, "postSocial onFailure: " + t.getMessage());
-                                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        });
+                        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                        intent.putExtra("account", socialUserDataModel);
+                        startActivityForResult(intent, SignUpActivity.SIGNUP_REQUEST);
                     } else if(response.code() == 200) {
+                        // Already digicu user
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
                     }
@@ -126,6 +105,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Log.d(GeneralVariable.TAG, "getSocial onFailure: " + t.getMessage());
                 }
             });
+        } else {
+            Log.d(GeneralVariable.TAG, "updateUI: not account");
         }
     }
 
@@ -143,6 +124,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
     }
 
+    private void signOut() {
+        // signOut routine
+        mGoogleSignInClient.signOut();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -150,6 +136,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (requestCode == GOOGLE_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
+        } else if(requestCode == SignUpActivity.SIGNUP_REQUEST) {
+            if (resultCode == SignUpActivity.SIGNUP_SUCCESS) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            } else {
+                signOut();
+            }
         }
     }
 

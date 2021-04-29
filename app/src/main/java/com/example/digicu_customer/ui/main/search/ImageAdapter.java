@@ -1,6 +1,7 @@
 package com.example.digicu_customer.ui.main.search;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 import com.bumptech.glide.Glide;
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
+import com.example.digicu_customer.general.GeneralVariable;
 
 import org.w3c.dom.Text;
 
@@ -73,11 +75,15 @@ public class ImageAdapter extends BaseAdapter {
         // set all other properties as you would see fit and start it
         drawable.start();
 
-        Glide.with(context).load(shopDataModel.getLogo_url())
-                           .fitCenter()
-                           .placeholder(drawable)
-                           .error(R.drawable.ic_baseline_error_40)
-                           .into(img);
+        try {
+            Glide.with(context).load(shopDataModel.getLogo_url())
+                               .fitCenter()
+                               .placeholder(drawable)
+                               .error(R.drawable.ic_baseline_error_40)
+                               .into(img);
+        } catch (Exception e) {
+            Log.d(GeneralVariable.TAG, "getView: " + e.getMessage());
+        }
 
         tv.setText(shopDataModel.getName());
 

@@ -30,7 +30,7 @@ public class SearchViewModel extends ViewModel {
     }
 
     private void loadShopDataModel() {
-        DigicuService digicuService = ApiUtils.getDigicuService();
+        DigicuService digicuService = ApiUtils.getDigicuUserService();
 
         digicuService.getCompanyInfo("rlsmd9@naver.com").enqueue(new Callback<ShopDataModel>() {
             @Override
