@@ -35,6 +35,8 @@ public class SearchViewModel extends ViewModel {
         digicuService.getCompanyInfo("rlsmd9@naver.com").enqueue(new Callback<ShopDataModel>() {
             @Override
             public void onResponse(Call<ShopDataModel> call, Response<ShopDataModel> response) {
+                if (response.body() == null) return;
+
                 List<ShopDataModel> shopDataModels = shopDataModelMutableLiveData.getValue();
                 if (shopDataModels == null) {
                     shopDataModels = new ArrayList<>();

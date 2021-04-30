@@ -21,6 +21,8 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.digicu_customer.general.GeneralVariable.TAG;
+
 public class ImageAdapter extends BaseAdapter {
     List<ShopDataModel> shopDataModels;
 
@@ -64,6 +66,8 @@ public class ImageAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.digicu_search_grid_view_item_layout, viewGroup, false);
         }
 
+        Log.d(TAG, "getView: " + shopDataModel.toString());
+
         ImageView img = view.findViewById(R.id.search_shop_image);
         TextView tv = view.findViewById(R.id.search_shop_name);
 
@@ -82,7 +86,7 @@ public class ImageAdapter extends BaseAdapter {
                                .error(R.drawable.ic_baseline_error_40)
                                .into(img);
         } catch (Exception e) {
-            Log.d(GeneralVariable.TAG, "getView: " + e.getMessage());
+            Log.d(TAG, "getView: " + e.getMessage());
         }
 
         tv.setText(shopDataModel.getName());
