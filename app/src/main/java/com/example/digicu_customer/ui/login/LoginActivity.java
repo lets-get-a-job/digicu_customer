@@ -56,15 +56,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mLogin_btn.setOnClickListener(this);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-
-        updateUI(account);
-    }
-
     private void updateUI(GoogleSignInAccount account) {
         if (account != null) {
             // Check Server
