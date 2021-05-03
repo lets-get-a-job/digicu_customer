@@ -29,7 +29,7 @@
     <string name="bottom_menu_title3">Search</string>
     <string name="bottom_menu_title4">Menu</string>
 
-    <string name="coupon_list">쿠폰목록</string>
+    <string name="coupon_list">적립중인 쿠폰 목록</string>
     <string name="coupon_tab_log">적립기록</string>
     <string name="coupon_tab_item">쿠폰함</string>
     <string name="coupon_add_msg">쿠폰을 추가해 봐요!</string>

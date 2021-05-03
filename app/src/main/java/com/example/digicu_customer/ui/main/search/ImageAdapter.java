@@ -5,29 +5,38 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import com.bumptech.glide.Glide;
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
-import com.example.digicu_customer.general.GeneralVariable;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.digicu_customer.general.GeneralVariable.TAG;
 
-public class ImageAdapter extends BaseAdapter {
-    List<ShopDataModel> shopDataModels;
+public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
+    public interface OnItemClickLister {
+        void onItemClick(View v, int pos);//, CouponInfoDataModel data);
+    }
 
-    public ImageAdapter() {
+    List<ShopDataModel> shopDataModels;
+    private OnItemClickLister onItemClickLister;
+    private Context context;
+
+    public void setOnItemClickLister(OnItemClickLister onItemClickLister) {
+        this.onItemClickLister = onItemClickLister;
+    }
+
+    public ImageAdapter(Context context) {
         this.shopDataModels = new ArrayList<>();
+        this.context = context;
     }
 
     public ImageAdapter(List<ShopDataModel> shopDataModels) {
@@ -41,37 +50,50 @@ public class ImageAdapter extends BaseAdapter {
         this.shopDataModels = shopDataModels;
     }
 
-    @Override
-    public int getCount() {
-        return shopDataModels.size();
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private final ImageView img;
+        private final TextView tv;
 
-    @Override
-    public ShopDataModel getItem(int i) {
-        return shopDataModels.get(i);
-    }
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
+            img = itemView.findViewById(R.id.search_shop_image);
+            tv = itemView.findViewById(R.id.search_shop_name);
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        Context context = viewGroup.getContext();
-        ShopDataModel shopDataModel = shopDataModels.get(i);
-
-        if (view == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.digicu_search_grid_view_item_layout, viewGroup, false);
+            itemView.findViewById(R.id.digicu_search_shop_card).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION){
+                        if (onItemClickLister != null)
+                            onItemClickLister.onItemClick(view, pos);
+                    }
+                }
+            });
         }
 
-        Log.d(TAG, "getView: " + shopDataModel.toString());
+        public ImageView getImg() {
+            return img;
+        }
 
-        ImageView img = view.findViewById(R.id.search_shop_image);
-        TextView tv = view.findViewById(R.id.search_shop_name);
+        public TextView getTv() {
+            return tv;
+        }
+    }
 
-        // create a ProgressDrawable object which we will show as placeholder
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.digicu_search_recyclerview_item_layout, parent, false);
+
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ShopDataModel shopDataModel = shopDataModels.get(position);
+
         CircularProgressDrawable drawable = new CircularProgressDrawable(context);
         drawable.setColorSchemeColors(R.color.design_default_color_primary, R.color.design_default_color_primary_dark, R.color.white);
         drawable.setCenterRadius(30f);
@@ -81,16 +103,22 @@ public class ImageAdapter extends BaseAdapter {
 
         try {
             Glide.with(context).load(shopDataModel.getLogo_url())
-                               .fitCenter()
-                               .placeholder(drawable)
-                               .error(R.drawable.ic_baseline_error_40)
-                               .into(img);
+                    .fitCenter()
+                    .placeholder(drawable)
+                    .error(R.drawable.ic_baseline_error_40)
+                    .into(holder.getImg());
         } catch (Exception e) {
-            Log.d(TAG, "getView: " + e.getMessage());
+//            Log.d(TAG, "getView: " + e.getMessage());
         }
 
-        tv.setText(shopDataModel.getName());
+        Log.d(TAG, "onBindViewHolder: " + shopDataModel.toString());
 
-        return view;
+        holder.getTv().setText(shopDataModel.getName());
     }
+
+    @Override
+    public int getItemCount() {
+        return shopDataModels.size();
+    }
+
 }

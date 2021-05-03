@@ -11,6 +11,7 @@ public class ShopDataModel implements Serializable {
     private String address;
     @SerializedName("company_phone")
     private String number;
+    @SerializedName("company_logo")
     private String logo_url;
 
     public ShopDataModel(String name, String address, String number, String logo_url) {

@@ -1,5 +1,9 @@
 package com.example.digicu_customer.data.remote;
 
+import android.util.Log;
+
+import com.example.digicu_customer.general.GeneralVariable;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -23,6 +27,8 @@ public class DigicuAuthIntercepter implements Interceptor {
         Request newRequest = originRequest.newBuilder()
                 .header("Authorization", "Bearer " + token)
                 .build();
+
+        Log.d(GeneralVariable.TAG, "intercept: " + newRequest.headers().get("Authorization"));
 
         return chain.proceed(newRequest);
     }

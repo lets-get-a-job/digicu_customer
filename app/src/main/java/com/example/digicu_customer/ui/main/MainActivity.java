@@ -41,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(GeneralVariable.TAG, "onResume: Main");
+    }
+
     private void setUpBottomNav() {
         bottomNavigationView = findViewById(R.id.digicu_main_bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

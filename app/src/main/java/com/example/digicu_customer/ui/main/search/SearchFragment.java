@@ -1,5 +1,6 @@
 package com.example.digicu_customer.ui.main.search;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,15 +9,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
+import android.widget.AbsListView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
+import com.example.digicu_customer.data.remote.ApiUtils;
+import com.example.digicu_customer.data.remote.DigicuUserService;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
@@ -24,7 +31,8 @@ import static com.example.digicu_customer.general.GeneralVariable.TAG;
 
 public class SearchFragment extends Fragment {
     ImageAdapter imageAdapter;
-    GridView gridView;
+    RecyclerView recycler;
+    TextInputLayout textInputLayout;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -53,10 +61,14 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
-        imageAdapter = new ImageAdapter();
-        gridView = view.findViewById(R.id.search_grid);
-        gridView.setAdapter(imageAdapter);
+        textInputLayout = view.findViewById(R.id.search_textfield_layout);
+
+        imageAdapter = new ImageAdapter(getContext());
+        recycler = view.findViewById(R.id.search_recyclerview);
+        recycler.setLayoutManager(linearLayoutManager);
+        recycler.setAdapter(imageAdapter);
 
         SearchViewModel searchViewModel = new ViewModelProvider(requireActivity()).get(SearchViewModel.class);
 
@@ -70,5 +82,23 @@ public class SearchFragment extends Fragment {
         };
 
         searchViewModel.getShopDataModelMutableLiveData().observe(requireActivity(), listObserver);
+
+        textInputLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchViewModel.loadShopDataModel(textInputLayout.getEditText().getText().toString());
+            }
+        });
+
+//        recycler.setOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//
+//                if (!recyclerView.canScrollVertically(1)) {
+//                    searchViewModel.nextPage();
+//                }
+//            }
+//        });
     }
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/digicu_home_add_coupon"
+        android:id="@+id/digicu_search_shop_card"
         app:cardBackgroundColor="@android:color/white"
         app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
@@ -36,7 +35,7 @@
                 android:gravity="center"
                 android:textColor="@color/digicu_black_color"
                 android:textStyle="bold"
-                android:background="#30000000"
+                android:background="@color/digicu_gray_color"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </LinearLayout>

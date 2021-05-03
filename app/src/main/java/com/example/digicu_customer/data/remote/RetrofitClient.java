@@ -1,5 +1,7 @@
 package com.example.digicu_customer.data.remote;
 
+import android.util.Log;
+
 import com.example.digicu_customer.auth.DigicuAuth;
 import com.example.digicu_customer.data.dataset.SocialUserDataModel;
 import com.google.gson.Gson;
@@ -10,11 +12,14 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.digicu_customer.general.GeneralVariable.TAG;
+
 public class RetrofitClient {
     private static Retrofit retrofit = null;
+    private static String prevBaseUrl = "";
     private static SocialUserDataModel socialUserDataModel = null;
 
-    public static Retrofit getClient(String baseUrl) {
+    public static Retrofit createClient(String baseUrl) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -25,9 +30,11 @@ public class RetrofitClient {
         builder.addInterceptor(httpLoggingInterceptor);
 //        client.networkInterceptors().add(new DigicuOKHttpIntercepter());
 
+        Log.d(TAG, "getClient: " + socialUserDataModel);
+
         if (socialUserDataModel != null) {
             String token = DigicuAuth.getToken(socialUserDataModel);
-
+            Log.d(TAG, "getClient token: " + token);
             DigicuAuthIntercepter digicuAuthIntercepter = new DigicuAuthIntercepter(token);
 
             builder.addInterceptor(digicuAuthIntercepter);
@@ -35,18 +42,29 @@ public class RetrofitClient {
 
         OkHttpClient client = builder.build();
 
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
+
+        retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-        }
+
+
+        return retrofit;
+    }
+
+    public static Retrofit getClient(String baseUrl) {
+        prevBaseUrl = baseUrl;
+
+        if (retrofit == null) createClient(baseUrl);
 
         return retrofit;
     }
 
     public static void setSocialUserDataModel(SocialUserDataModel socialUserDataModel) {
         RetrofitClient.socialUserDataModel = socialUserDataModel;
+        if (prevBaseUrl != null || !prevBaseUrl.isEmpty()) {
+            createClient(prevBaseUrl);
+        }
     }
 }

@@ -13,6 +13,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_textfield_layout"
             app:endIconDrawable="@drawable/ic_baseline_search_24"
             app:endIconMode="custom"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -22,17 +23,14 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <GridView
-            android:id="@+id/search_grid"
-            android:verticalSpacing="5dp"
-            android:layout_marginTop="5dp"
-            android:numColumns="1"
-            android:stretchMode="columnWidth"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
