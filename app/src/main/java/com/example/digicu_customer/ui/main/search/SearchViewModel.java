@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.example.digicu_customer.data.remote.ApiUtils;
-import com.example.digicu_customer.data.remote.DigicuService;
+import com.example.digicu_customer.data.remote.DigicuUserService;
 import com.example.digicu_customer.general.GeneralVariable;
 
 import java.util.ArrayList;
@@ -30,9 +30,9 @@ public class SearchViewModel extends ViewModel {
     }
 
     private void loadShopDataModel() {
-        DigicuService digicuService = ApiUtils.getDigicuUserService();
+        DigicuUserService digicuUserService = ApiUtils.getDigicuUserService();
 
-        digicuService.getCompanyInfo("rlsmd9@naver.com").enqueue(new Callback<ShopDataModel>() {
+        digicuUserService.getCompanyInfo("rlsmd9@naver.com").enqueue(new Callback<ShopDataModel>() {
             @Override
             public void onResponse(Call<ShopDataModel> call, Response<ShopDataModel> response) {
                 if (response.body() == null) return;

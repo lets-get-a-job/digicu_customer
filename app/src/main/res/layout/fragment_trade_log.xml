@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.trade.tabs.tradelog.TradeLogFragment">
 
-    <TextView
-        android:gravity="center"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/trade_log_recyclerview"
+        android:nestedScrollingEnabled="false"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="View3" />
+        />
 
 </FrameLayout>

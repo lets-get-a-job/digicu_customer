@@ -1,5 +1,7 @@
 package com.example.digicu_customer.data.remote;
 
+import com.example.digicu_customer.auth.DigicuAuth;
+import com.example.digicu_customer.data.dataset.SocialUserDataModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -10,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit retrofit = null;
+    private static SocialUserDataModel socialUserDataModel = null;
 
     public static Retrofit getClient(String baseUrl) {
         Gson gson = new GsonBuilder()
@@ -18,8 +21,19 @@ public class RetrofitClient {
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient().newBuilder().addInterceptor(httpLoggingInterceptor).build();
+        OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
+        builder.addInterceptor(httpLoggingInterceptor);
+//        client.networkInterceptors().add(new DigicuOKHttpIntercepter());
 
+        if (socialUserDataModel != null) {
+            String token = DigicuAuth.getToken(socialUserDataModel);
+
+            DigicuAuthIntercepter digicuAuthIntercepter = new DigicuAuthIntercepter(token);
+
+            builder.addInterceptor(digicuAuthIntercepter);
+        }
+
+        OkHttpClient client = builder.build();
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -30,5 +44,9 @@ public class RetrofitClient {
         }
 
         return retrofit;
+    }
+
+    public static void setSocialUserDataModel(SocialUserDataModel socialUserDataModel) {
+        RetrofitClient.socialUserDataModel = socialUserDataModel;
     }
 }

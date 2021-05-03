@@ -24,8 +24,12 @@ public class SocialUserDataModel implements Serializable {
     private String registration_date;
     @SerializedName("letter_ok")
     private String letter_ok;
+    @SerializedName("phone")
+    private String phone;
 
-    public SocialUserDataModel(String social_id, String token, String email, String nickname, String profile_image, String thumbnail_image, Date registration_date, Date letter_ok) {
+    private DigicuTokenDataModel digicuTokenDataModel;
+
+    public SocialUserDataModel(String social_id, String token, String email, String nickname, String profile_image, String thumbnail_image, Date registration_date, Date letter_ok, String phone) {
         this.social_id = social_id;
         this.token = token;
         this.email = email;
@@ -37,6 +41,8 @@ public class SocialUserDataModel implements Serializable {
 
         this.registration_date = dateFormat.format(registration_date);
         this.letter_ok = dateFormat.format(letter_ok);
+
+        this.phone = phone;
     }
 
     @Override
@@ -48,8 +54,9 @@ public class SocialUserDataModel implements Serializable {
                 ", nickname='" + nickname + '\'' +
                 ", profile_image='" + profile_image + '\'' +
                 ", thumbnail_image='" + thumbnail_image + '\'' +
-                ", registration_date=" + registration_date +
-                ", letter_ok=" + letter_ok +
+                ", registration_date='" + registration_date + '\'' +
+                ", letter_ok='" + letter_ok + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 
@@ -115,5 +122,29 @@ public class SocialUserDataModel implements Serializable {
 
     public void setLetter_ok(Date letter_ok) {
         this.letter_ok = CustomDate.getDigicuDataFormat().format(letter_ok);
+    }
+
+    public void setRegistration_date(String registration_date) {
+        this.registration_date = registration_date;
+    }
+
+    public void setLetter_ok(String letter_ok) {
+        this.letter_ok = letter_ok;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public DigicuTokenDataModel getDigicuTokenDataModel() {
+        return digicuTokenDataModel;
+    }
+
+    public void setDigicuTokenDataModel(DigicuTokenDataModel digicuTokenDataModel) {
+        this.digicuTokenDataModel = digicuTokenDataModel;
     }
 }

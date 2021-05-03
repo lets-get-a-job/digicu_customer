@@ -13,6 +13,9 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.digicu_customer.R;
+import com.example.digicu_customer.auth.DigicuAuth;
+import com.example.digicu_customer.data.dataset.SocialUserDataModel;
+import com.example.digicu_customer.data.remote.RetrofitClient;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -20,36 +23,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    SocialUserDataModel socialUserDataModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Google login
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        socialUserDataModel = (SocialUserDataModel) getIntent().getSerializableExtra("social_data");
+        RetrofitClient.setSocialUserDataModel(socialUserDataModel);
+        Log.d(GeneralVariable.TAG, "onCreate: " + socialUserDataModel.toString());
 
-        String personName = acct.getDisplayName();
-        String personGivenName = acct.getGivenName();
-        String personFamilyName = acct.getFamilyName();
-        String personEmail = acct.getEmail();
-        String personId = acct.getId();
-
-        Log.d(GeneralVariable.TAG, "onCreate: IdToken : " + acct.getIdToken());
-//        Log.d(GeneralVariable.TAG, "onCreate: ServerAuthCode : " + acct.getServerAuthCode());
-        Log.d(GeneralVariable.TAG, "onCreate: GrantedScope : " + acct.getGrantedScopes().toString());
-        Log.d(GeneralVariable.TAG, "onCreate: personName : " + personName);
-        Log.d(GeneralVariable.TAG, "onCreate: personGivenName : " + personGivenName);
-        Log.d(GeneralVariable.TAG, "onCreate: person" +
-                "FamilyName : " + personFamilyName);
-        Log.d(GeneralVariable.TAG, "onCreate: personEmail : " + personEmail);
-        Log.d(GeneralVariable.TAG, "onCreate: personId : " + personId);
-        Log.d(GeneralVariable.TAG, "onCreate: photoURL : " + acct.getPhotoUrl());
-        // Google Login test
-
-//        homeFragment = new HomeFragment();
-//        menuFragment = new MenuFragment();
-//        couponInfoFragment = new CouponInfoFragment();
+        Log.d(GeneralVariable.TAG, "onCreate Digicu Token: " + DigicuAuth.getToken(socialUserDataModel));
 
         if (savedInstanceState == null) {
             setUpBottomNav();

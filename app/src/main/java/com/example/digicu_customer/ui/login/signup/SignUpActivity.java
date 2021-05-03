@@ -14,13 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.digicu_customer.R;
+import com.example.digicu_customer.auth.DigicuAuth;
+import com.example.digicu_customer.data.dataset.DigicuTokenDataModel;
 import com.example.digicu_customer.data.dataset.SocialUserDataModel;
 import com.example.digicu_customer.data.remote.ApiUtils;
-import com.example.digicu_customer.data.remote.DigicuService;
+import com.example.digicu_customer.data.remote.DigicuUserService;
 import com.example.digicu_customer.general.GeneralVariable;
-import com.example.digicu_customer.ui.login.LoginActivity;
-import com.example.digicu_customer.ui.main.MainActivity;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        DigicuService digicuService;
+        DigicuUserService digicuUserService;
 
         if (view.getId() == R.id.signup_btn) {
             if (phone.getText().toString().isEmpty()) {
@@ -81,14 +82,22 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 return;
             }
 
-            digicuService = ApiUtils.getDigicuUserService();
+            socialUserDataModel.setPhone(phone.getText().toString().replaceAll("[-]", ""));
 
-            digicuService.postSocial(socialUserDataModel).enqueue(new Callback<String>() {
+            Log.d(GeneralVariable.TAG, "onClick: " + socialUserDataModel.toString());
+
+            digicuUserService = ApiUtils.getDigicuUserService();
+
+            digicuUserService.postSocial(socialUserDataModel).enqueue(new Callback<DigicuTokenDataModel>() {
                 @Override
-                public void onResponse(Call<String> call, Response<String> response) {
+                public void onResponse(Call<DigicuTokenDataModel> call, Response<DigicuTokenDataModel> response) {
                     Log.d(GeneralVariable.TAG, "postSocial: " + response.code());
                     switch (response.code()) {
                         case 200:
+//                            Intent intent = new Intent();
+//                            intent.putExtra("digicu_token", response.body());
+                            DigicuAuth.setToken(response.body().getToken(), socialUserDataModel);
+
                             setResult(SIGNUP_SUCCESS);
                             finish();
                             break;
@@ -102,7 +111,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
+                public void onFailure(Call<DigicuTokenDataModel> call, Throwable t) {
                     Log.d(GeneralVariable.TAG, "postSocial onFailure: " + t.getMessage());
                     Toast.makeText(SignUpActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                 }

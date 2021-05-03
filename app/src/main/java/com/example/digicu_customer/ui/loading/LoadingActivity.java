@@ -7,20 +7,17 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.digicu_customer.R;
+import com.example.digicu_customer.auth.DigicuAuth;
+import com.example.digicu_customer.data.dataset.DigicuTokenDataModel;
 import com.example.digicu_customer.data.dataset.SocialUserDataModel;
 import com.example.digicu_customer.data.remote.ApiUtils;
-import com.example.digicu_customer.data.remote.DigicuService;
+import com.example.digicu_customer.data.remote.DigicuCouponService;
+import com.example.digicu_customer.data.remote.DigicuUserService;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.example.digicu_customer.ui.login.LoginActivity;
-import com.example.digicu_customer.ui.login.signup.SignUpActivity;
 import com.example.digicu_customer.ui.main.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +30,7 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_loading);
+        DigicuAuth.setContext(this);
     }
 
     @Override
@@ -46,21 +44,55 @@ public class LoadingActivity extends AppCompatActivity {
     private void updateUI(GoogleSignInAccount account) {
         if (account != null) {
             // Check Server
-            DigicuService digicuService = ApiUtils.getDigicuUserService();
+            DigicuUserService digicuUserService = ApiUtils.getDigicuUserService();
 
-            Log.d(GeneralVariable.TAG, "updateUI: " + account.getId());
-
-            digicuService.getSocial(account.getId()).enqueue(new Callback<SocialUserDataModel>() {
+            digicuUserService.getSocial(account.getId()).enqueue(new Callback<SocialUserDataModel>() {
                 @Override
                 public void onResponse(Call<SocialUserDataModel> call, Response<SocialUserDataModel> response) {
                     Log.d(GeneralVariable.TAG, "getSocial : " + response.code());
+                    SocialUserDataModel socialUserDataModel;
 
                     if(response.code() == 200) {
                         // Todo send user token data to MainActivity
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }
+                        String digicu_token = DigicuAuth.getToken(response.body());
 
-                    finish();
+                        Log.d(GeneralVariable.TAG, "updateUI: " + account.getId() + ", Login_User_token : " + digicu_token);
+
+                        if (digicu_token == null || digicu_token.isEmpty()) {
+                            // token 갱신 루틴
+                            Log.d(GeneralVariable.TAG, "onResponse: token Nothing");
+
+                            socialUserDataModel = response.body();
+                            if (socialUserDataModel.getSocial_id() == null || socialUserDataModel.getSocial_id().isEmpty()) {
+                                socialUserDataModel.setSocial_id(account.getId());
+                            }
+
+                            digicuUserService.patchSocial(socialUserDataModel).enqueue(new Callback<DigicuTokenDataModel>() {
+                                @Override
+                                public void onResponse(Call<DigicuTokenDataModel> call, Response<DigicuTokenDataModel> response) {
+                                    if (response.code() == 200) {
+                                        Intent intent;
+                                        intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        intent.putExtra("social_data", socialUserDataModel);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Log.d(GeneralVariable.TAG, "onResponse: get token error // " + response.code());
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<DigicuTokenDataModel> call, Throwable t) {
+                                    Log.d(GeneralVariable.TAG, "onResponse: get token error // " + t.getMessage());
+                                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                    finish();
+                                }
+                            });
+                        }
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        finish();
+                    }
                 }
 
                 @Override

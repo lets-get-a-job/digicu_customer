@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digicu_customer.R;
+import com.example.digicu_customer.data.dataset.DigicuTokenDataModel;
 import com.example.digicu_customer.data.dataset.SocialUserDataModel;
 import com.example.digicu_customer.data.remote.ApiUtils;
-import com.example.digicu_customer.data.remote.DigicuService;
+import com.example.digicu_customer.data.remote.DigicuUserService;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.example.digicu_customer.ui.login.signup.SignUpActivity;
 import com.example.digicu_customer.ui.main.MainActivity;
@@ -24,7 +23,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Date;
 
@@ -59,18 +57,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void updateUI(GoogleSignInAccount account) {
         if (account != null) {
             // Check Server
-            DigicuService digicuService = ApiUtils.getDigicuUserService();
+            DigicuUserService digicuUserService = ApiUtils.getDigicuUserService();
 
             Log.d(GeneralVariable.TAG, "updateUI: " + account.getId());
 
-            digicuService.getSocial(account.getId()).enqueue(new Callback<SocialUserDataModel>() {
+            digicuUserService.getSocial(account.getId()).enqueue(new Callback<SocialUserDataModel>() {
                 @Override
                 public void onResponse(Call<SocialUserDataModel> call, Response<SocialUserDataModel> response) {
+                    Intent intent;
+                    SocialUserDataModel socialUserDataModel;
                     Log.d(GeneralVariable.TAG, "getSocial : " + response.code());
-
                     if(response.code() == 404) {
                         // Todo modify data model
-                        SocialUserDataModel socialUserDataModel = new SocialUserDataModel(
+                        socialUserDataModel = new SocialUserDataModel(
                                 account.getId(),
                                 account.getIdToken(),
                                 account.getEmail(),
@@ -78,16 +77,41 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 account.getPhotoUrl() != null? account.getPhotoUrl().toString(): "",
                                 account.getPhotoUrl() != null? account.getPhotoUrl().toString(): "",
                                 new Date(),
-                                new Date()
+                                new Date(),
+                                null
                         );
 
-                        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                        intent = new Intent(getApplicationContext(), SignUpActivity.class);
                         intent.putExtra("account", socialUserDataModel);
                         startActivityForResult(intent, SignUpActivity.SIGNUP_REQUEST);
                     } else if(response.code() == 200) {
-                        // Already digicu user
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
+                        // get user token
+                        Log.d(GeneralVariable.TAG, "onResponse: " + response.body().toString());
+
+                        socialUserDataModel = response.body();
+                        if (socialUserDataModel.getSocial_id() == null || socialUserDataModel.getSocial_id().isEmpty()) {
+                            socialUserDataModel.setSocial_id(account.getId());
+                        }
+
+                        digicuUserService.patchSocial(socialUserDataModel).enqueue(new Callback<DigicuTokenDataModel>() {
+                            @Override
+                            public void onResponse(Call<DigicuTokenDataModel> call, Response<DigicuTokenDataModel> response) {
+                                if (response.code() == 200) {
+                                    Intent intent;
+                                    intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    intent.putExtra("social_data", socialUserDataModel);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Log.d(GeneralVariable.TAG, "onResponse: get token error // " + response.code());
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<DigicuTokenDataModel> call, Throwable t) {
+                                Log.d(GeneralVariable.TAG, "onResponse: get token error // " + t.getMessage());
+                            }
+                        });
                     }
                 }
 
@@ -129,8 +153,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             handleSignInResult(task);
         } else if(requestCode == SignUpActivity.SIGNUP_REQUEST) {
             if (resultCode == SignUpActivity.SIGNUP_SUCCESS) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
+                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+                updateUI(account);
             } else {
                 signOut();
             }
@@ -140,6 +164,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void handleSignInResult(Task<GoogleSignInAccount> task) {
         try {
             GoogleSignInAccount account = task.getResult(ApiException.class);
+
 //            Log.d(GeneralVariable.TAG, "handleSignInResult: IdToken : " + account.getIdToken());
 //            Log.d(GeneralVariable.TAG, "handleSignInResult: ServerAuthCode : " + account.getServerAuthCode());
             updateUI(account);
