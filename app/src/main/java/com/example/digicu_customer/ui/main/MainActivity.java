@@ -14,12 +14,22 @@ import android.view.MenuItem;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.auth.DigicuAuth;
+import com.example.digicu_customer.data.dataset.DigicuTokenDataModel;
+import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.example.digicu_customer.data.dataset.SocialUserDataModel;
+import com.example.digicu_customer.data.remote.ApiUtils;
+import com.example.digicu_customer.data.remote.DigicuUserService;
 import com.example.digicu_customer.data.remote.RetrofitClient;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -44,6 +54,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // token expire test
+        DigicuUserService digicuUserService = ApiUtils.getDigicuUserService();
+
+        digicuUserService.getCompanies(1, 1, "company_name", false).enqueue(new Callback<List<ShopDataModel>>() {
+            @Override
+            public void onResponse(Call<List<ShopDataModel>> call, Response<List<ShopDataModel>> response) {
+                Log.d(GeneralVariable.TAG, "onResponse: " + response.code());
+                if (response.code() == 401) { // token expire
+                    digicuUserService.patchSocial(socialUserDataModel).enqueue(new Callback<DigicuTokenDataModel>() {
+                        @Override
+                        public void onResponse(Call<DigicuTokenDataModel> call, Response<DigicuTokenDataModel> response) {
+                            if (response.code() == 200) {
+                                DigicuAuth.setToken(response.body().getToken(), socialUserDataModel);
+                            } else {
+                                Log.d(GeneralVariable.TAG, "onResponse: " + response.code());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<DigicuTokenDataModel> call, Throwable t) {
+                            Log.d(GeneralVariable.TAG, "onFailure: " + t.getMessage());
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ShopDataModel>> call, Throwable t) {
+                Log.d(GeneralVariable.TAG, "onFailure: " + t.getMessage());
+            }
+        });
 
         Log.d(GeneralVariable.TAG, "onResume: Main");
     }
