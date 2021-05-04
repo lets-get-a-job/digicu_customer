@@ -11,6 +11,13 @@ public class DigicuTokenDataModel implements Serializable {
     @SerializedName("expires_in")
     private String expire;
 
+    @Override
+    public String toString() {
+        return "DigicuTokenDataModel{" +
+                "token='" + token + '\'' +
+                ", expire='" + expire + '\'' +
+                '}';
+    }
 
     public String getToken() {
         return token;

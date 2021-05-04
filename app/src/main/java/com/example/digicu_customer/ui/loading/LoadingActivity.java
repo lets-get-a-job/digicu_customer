@@ -74,6 +74,9 @@ public class LoadingActivity extends AppCompatActivity {
                                         Intent intent;
                                         intent = new Intent(getApplicationContext(), MainActivity.class);
                                         intent.putExtra("social_data", socialUserDataModel);
+
+                                        DigicuAuth.setToken(response.body().getToken(), socialUserDataModel);
+
                                         startActivity(intent);
                                         finish();
                                     } else {

@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digicu_customer.R;
+import com.example.digicu_customer.auth.DigicuAuth;
 import com.example.digicu_customer.data.dataset.DigicuTokenDataModel;
 import com.example.digicu_customer.data.dataset.SocialUserDataModel;
 import com.example.digicu_customer.data.remote.ApiUtils;
@@ -100,6 +101,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     Intent intent;
                                     intent = new Intent(getApplicationContext(), MainActivity.class);
                                     intent.putExtra("social_data", socialUserDataModel);
+
+                                    DigicuAuth.setToken(response.body().getToken(), socialUserDataModel);
                                     startActivity(intent);
                                     finish();
                                 } else {
