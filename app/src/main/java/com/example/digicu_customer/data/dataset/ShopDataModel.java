@@ -5,30 +5,50 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class ShopDataModel implements Serializable {
+    @SerializedName("company_number")
+    private String id;
     @SerializedName("company_name")
     private String name;
+    @SerializedName("company_phone")
+    private String phone;
     @SerializedName("company_address")
     private String address;
-    @SerializedName("company_phone")
-    private String number;
+    @SerializedName("company_owner")
+    private String owner;
+    @SerializedName("company_homepage")
+    private String company_homepage;
     @SerializedName("company_logo")
     private String logo_url;
 
-    public ShopDataModel(String name, String address, String number, String logo_url) {
+    public ShopDataModel(String id, String name, String phone, String address, String owner, String company_homepage, String logo_url) {
+        this.id = id;
         this.name = name;
+        this.phone = phone;
         this.address = address;
-        this.number = number;
+        this.owner = owner;
+        this.company_homepage = company_homepage;
         this.logo_url = logo_url;
     }
 
     @Override
     public String toString() {
         return "ShopDataModel{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
-                ", number='" + number + '\'' +
+                ", owner='" + owner + '\'' +
+                ", company_homepage='" + company_homepage + '\'' +
                 ", logo_url='" + logo_url + '\'' +
                 '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,6 +59,14 @@ public class ShopDataModel implements Serializable {
         this.name = name;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -47,12 +75,20 @@ public class ShopDataModel implements Serializable {
         this.address = address;
     }
 
-    public String getNumber() {
-        return number;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getCompany_homepage() {
+        return company_homepage;
+    }
+
+    public void setCompany_homepage(String company_homepage) {
+        this.company_homepage = company_homepage;
     }
 
     public String getLogo_url() {

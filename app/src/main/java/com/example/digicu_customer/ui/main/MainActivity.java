@@ -24,6 +24,7 @@ import com.example.digicu_customer.general.GeneralVariable;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.List;
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(GeneralVariable.TAG, "onCreate: " + socialUserDataModel.toString());
 
         Log.d(GeneralVariable.TAG, "onCreate Digicu Token: " + DigicuAuth.getToken(socialUserDataModel));
+        Log.d("_log", "onStart: " + FirebaseInstanceId.getInstance().getToken());
 
         if (savedInstanceState == null) {
             setUpBottomNav();
@@ -105,15 +107,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-//        NavHostFragment.findNavController(couponInfoFragment).navigate(R.id);
-        Log.d(GeneralVariable.TAG, "onSupportNavigateUp: ");
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.digicu_main_nav_host);
-        NavController navController = navHostFragment.getNavController();
-
-        return navController.navigateUp() || super.onSupportNavigateUp();
-    }
+//    @Override
+//    public boolean onSupportNavigateUp() {
+////        NavHostFragment.findNavController(couponInfoFragment).navigate(R.id);
+//        Log.d(GeneralVariable.TAG, "onSupportNavigateUp: ");
+//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.digicu_main_nav_host);
+//        NavController navController = navHostFragment.getNavController();
+//
+//        return navController.navigateUp() || super.onSupportNavigateUp();
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

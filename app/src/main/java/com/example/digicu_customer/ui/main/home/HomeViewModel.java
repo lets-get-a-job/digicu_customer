@@ -24,18 +24,18 @@ public class HomeViewModel extends ViewModel {
     protected void loadCouponInfo() {
         // get data from server
         ShopDataModel shopDataModels[] = new ShopDataModel[5];
-        shopDataModels[0] = new ShopDataModel("test1", "상도동1", "010-1234-1234", "");
-        shopDataModels[1] = new ShopDataModel("test2", "상도동2", "010-1234-1234", "");
-        shopDataModels[2] = new ShopDataModel("test3", "상도동3", "010-1234-1234", "");
-        shopDataModels[3] = new ShopDataModel("test4", "상도동4", "010-1234-1234", "");
-        shopDataModels[4] = new ShopDataModel("test5", "상도동5", "010-1234-1234", "");
+        shopDataModels[0] = new ShopDataModel("1233", "test1", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "");
+        shopDataModels[1] = new ShopDataModel("1234", "test2", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "");
+        shopDataModels[2] = new ShopDataModel("1235", "test3", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "");
+        shopDataModels[3] = new ShopDataModel("1236", "test4", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "");
+        shopDataModels[4] = new ShopDataModel("1237", "test5", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "");
 
         List<CouponInfoDataModel> couponInfoDataModelList = new ArrayList<>();
         couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[0], CouponInfoDataModel.CouponType.STAMP, 10));
-        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[1], CouponInfoDataModel.CouponType.MILEAGE, 0));
+        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[1], CouponInfoDataModel.CouponType.STAMP, 10));
         couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[2], CouponInfoDataModel.CouponType.STAMP, 15));
         couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[3], CouponInfoDataModel.CouponType.STAMP, 10));
-        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[4], CouponInfoDataModel.CouponType.MILEAGE, 0));
+        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[4], CouponInfoDataModel.CouponType.STAMP, 10));
 
         this.couponInfo.setValue(couponInfoDataModelList);
     }

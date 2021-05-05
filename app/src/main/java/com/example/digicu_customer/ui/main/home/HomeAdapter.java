@@ -4,6 +4,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+    boolean imgExtension;
+
+    public void setImageVisible(boolean imgExtension) {
+        this.imgExtension = imgExtension;
+    }
+
     public interface OnItemClickLister {
         void onItemClick(View v, int pos, CouponInfoDataModel data);
     }
@@ -33,12 +41,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView shopName;
         private final TextView mileage;
+        private final LinearLayout imgGroup;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             this.shopName = itemView.findViewById(R.id.shop_name);
             this.mileage = itemView.findViewById(R.id.mileage);
+            this.imgGroup = itemView.findViewById(R.id.shop_image_group);
 
             itemView.findViewById(R.id.card_view_item).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -52,6 +62,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                     }
                 }
             });
+        }
+
+        public LinearLayout getImgGroup() {
+            return imgGroup;
         }
 
         public TextView getShopName() {
@@ -82,6 +96,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CouponInfoDataModel couponInfoDataModel = data.get(position);
+
+
+        if (imgExtension) {
+            holder.getImgGroup().setVisibility(View.GONE);
+        } else {
+            holder.getImgGroup().setVisibility(View.VISIBLE);
+        }
 
         holder.getShopName().setText(couponInfoDataModel.getShopDataModel().getName());
         if (couponInfoDataModel.getType() == CouponInfoDataModel.CouponType.STAMP) {

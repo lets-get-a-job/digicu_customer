@@ -6,6 +6,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/main_title"
+            android:text="@string/coupon_list"
+            android:textColor="@color/digicu_black_color"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageButton
+            android:id="@+id/main_close_btn"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_black_close_24"
+            android:background="#00000000"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageButton
+            android:id="@+id/main_image_extension"
+            android:src="@drawable/ic_baseline_black_image_24"
+            android:background="#00000000"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <View
+        android:background="@color/digicu_dark_gray_color"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"/>
+
     <fragment
         android:id="@+id/digicu_main_nav_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -19,5 +56,6 @@
         android:id="@+id/digicu_main_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_navigation_menu"/>
 </LinearLayout>

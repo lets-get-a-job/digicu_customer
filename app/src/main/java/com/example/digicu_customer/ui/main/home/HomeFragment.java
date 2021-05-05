@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -17,6 +18,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.digicu_customer.general.GeneralVariable;
@@ -36,6 +39,9 @@ public class HomeFragment extends Fragment {
     CouponInfoFragment couponInfoFragment;
     MaterialCardView materialCardView;
     HomeAdapter homeAdapter;
+    ImageButton imageExtension;
+    boolean imgExtension = true;
+    AppCompatActivity mainActivity;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -45,12 +51,41 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         homeViewModel.loadCouponInfo();
+        mainActivity = ((AppCompatActivity)getActivity());
+        imageExtension = mainActivity.findViewById(R.id.main_image_extension);
+
+        if(imgExtension) {
+            imageExtension.setImageResource(R.drawable.ic_baseline_black_image_24);
+        } else {
+            imageExtension.setImageResource(R.drawable.ic_baseline_black_hide_image_24);
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        TextView title = mainActivity.findViewById(R.id.main_title);
+        title.setText(getString(R.string.coupon_list));
+
+        imageExtension.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(imgExtension) {
+                    imageExtension.setImageResource(R.drawable.ic_baseline_black_hide_image_24);
+                } else {
+                    imageExtension.setImageResource(R.drawable.ic_baseline_black_image_24);
+                }
+
+                homeAdapter.setImageVisible(imgExtension);
+                homeAdapter.notifyDataSetChanged();
+
+                imgExtension = !imgExtension;
+            }
+        });
+
+        imageExtension.setVisibility(View.VISIBLE);
+//        actionBar.setDisplayHomeAsUpEnabled(false);
+//        actionBar.setTitle(getString(R.string.coupon_list));
     }
 
     @Override
@@ -107,15 +142,15 @@ public class HomeFragment extends Fragment {
 
         couponInfoFragment = new CouponInfoFragment();
 
-        materialCardView = view.findViewById(R.id.digicu_home_add_coupon);
-        materialCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // add Coupon data to server
-                QrGenerator qrGenerator = new QrGenerator(getActivity(), HomeFragment.this);
-                qrGenerator.startQRCode();
-            }
-        });
+//        materialCardView = view.findViewById(R.id.digicu_home_add_coupon);
+//        materialCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // add Coupon data to server
+//                QrGenerator qrGenerator = new QrGenerator(getActivity(), HomeFragment.this);
+//                qrGenerator.startQRCode();
+//            }
+//        });
 
         homeAdapter.setOnItemClickLister(new HomeAdapter.OnItemClickLister() {
             @Override
@@ -126,5 +161,11 @@ public class HomeFragment extends Fragment {
                 NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_page_1_to_couponInfoFragment, bundle);
             }
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        imageExtension.setVisibility(View.GONE);
     }
 }

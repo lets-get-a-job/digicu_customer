@@ -49,18 +49,6 @@
         <action
             android:id="@+id/action_couponInfoFragment_to_page_1"
             app:destination="@id/page_1" />
-        <action
-            android:id="@+id/action_couponInfoFragment_to_receiptFragment"
-            app:destination="@id/receiptFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/receiptFragment"
-        android:name="com.example.digicu_customer.ui.main.home.couponinfo.receipt.ReceiptFragment"
-        android:label="fragment_receipt"
-        tools:layout="@layout/fragment_receipt" >
-        <action
-            android:id="@+id/action_receiptFragment_to_couponInfoFragment"
-            app:destination="@id/couponInfoFragment" />
     </fragment>
 
 

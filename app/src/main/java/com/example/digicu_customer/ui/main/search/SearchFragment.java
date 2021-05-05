@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
@@ -41,7 +43,8 @@ public class SearchFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        TextView title = ((AppCompatActivity)getActivity()).findViewById(R.id.main_title);
+        title.setText(getString(R.string.bottom_menu_title3));
     }
 
     @Override

@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.digicu_customer.ui.login.LoginActivity;
 import com.example.digicu_customer.R;
@@ -44,7 +46,8 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        TextView title = ((AppCompatActivity)getActivity()).findViewById(R.id.main_title);
+        title.setText(getString(R.string.bottom_menu_title5));
     }
 
     @Override

@@ -4,12 +4,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.digicu_customer.R;
 import com.google.android.material.tabs.TabLayout;
@@ -23,6 +26,14 @@ public class TradeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        TextView title = ((AppCompatActivity)getActivity()).findViewById(R.id.main_title);
+        title.setText(getString(R.string.bottom_menu_title2));
     }
 
     @Override
