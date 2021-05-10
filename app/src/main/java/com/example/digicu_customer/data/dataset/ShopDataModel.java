@@ -19,8 +19,10 @@ public class ShopDataModel implements Serializable {
     private String company_homepage;
     @SerializedName("company_logo")
     private String logo_url;
+    @SerializedName("email")
+    private String email;
 
-    public ShopDataModel(String id, String name, String phone, String address, String owner, String company_homepage, String logo_url) {
+    public ShopDataModel(String id, String name, String phone, String address, String owner, String company_homepage, String logo_url, String email) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -28,6 +30,7 @@ public class ShopDataModel implements Serializable {
         this.owner = owner;
         this.company_homepage = company_homepage;
         this.logo_url = logo_url;
+        this.email = email;
     }
 
     @Override
@@ -40,6 +43,7 @@ public class ShopDataModel implements Serializable {
                 ", owner='" + owner + '\'' +
                 ", company_homepage='" + company_homepage + '\'' +
                 ", logo_url='" + logo_url + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -97,5 +101,13 @@ public class ShopDataModel implements Serializable {
 
     public void setLogo_url(String logo_url) {
         this.logo_url = logo_url;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

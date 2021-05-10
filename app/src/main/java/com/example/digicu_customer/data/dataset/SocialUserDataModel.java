@@ -26,6 +26,8 @@ public class SocialUserDataModel implements Serializable {
     private String letter_ok;
     @SerializedName("phone")
     private String phone;
+    @SerializedName("fcm_token")
+    private String fcm_token;
 
     private DigicuTokenDataModel digicuTokenDataModel;
 
@@ -57,6 +59,8 @@ public class SocialUserDataModel implements Serializable {
                 ", registration_date='" + registration_date + '\'' +
                 ", letter_ok='" + letter_ok + '\'' +
                 ", phone='" + phone + '\'' +
+                ", fcm_token='" + fcm_token + '\'' +
+                ", digicuTokenDataModel=" + digicuTokenDataModel +
                 '}';
     }
 
@@ -146,5 +150,13 @@ public class SocialUserDataModel implements Serializable {
 
     public void setDigicuTokenDataModel(DigicuTokenDataModel digicuTokenDataModel) {
         this.digicuTokenDataModel = digicuTokenDataModel;
+    }
+
+    public String getFcm_token() {
+        return fcm_token;
+    }
+
+    public void setFcm_token(String fcm_token) {
+        this.fcm_token = fcm_token;
     }
 }
