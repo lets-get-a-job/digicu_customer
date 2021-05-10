@@ -1,35 +1,40 @@
 package com.example.digicu_customer.data.dataset;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class CouponInfoDataModel implements Serializable {
+    @SerializedName("id")
+    private int couponId;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("goal")
+    private int goal;
+    @SerializedName("type")
+    private CouponType couponType;
+    @SerializedName("period")
+    private int period;
+    @SerializedName("value")
+    private int value;
     // coupon type ex) mileage or stamp
     public enum CouponType {
-        MILEAGE,
-        STAMP
+        DISCOUNT,
     }
 
     private ShopDataModel shopDataModel;
-    private CouponType type;
-    //if type is MILEAGE
-    private double percent;
-    //if type is STAMP
-    private int countCanBeTransfer;
 
-    public CouponInfoDataModel(ShopDataModel shopDataModel, CouponType type, int countCanBeTransfer) {
+    public CouponInfoDataModel(ShopDataModel shopDataModel, int couponId, String name, int goal, String couponType, int period, int value) {
         this.shopDataModel = shopDataModel;
-        this.type = type;
-        this.countCanBeTransfer = countCanBeTransfer;
-        this.percent = 0.05;
-    }
+        this.couponId = couponId;
+        this.name = name;
+        this.goal = goal;
 
-    @Override
-    public String toString() {
-        return "Coupon{" +
-                "shop=" + shopDataModel +
-                ", type=" + type +
-                ", countCanBeTransfer=" + countCanBeTransfer +
-                '}';
+        if(couponType.equals("DISCOUNT"))
+            this.couponType = CouponType.DISCOUNT;
+
+        this.period = period;
+        this.value = value;
     }
 
     public ShopDataModel getShopDataModel() {
@@ -40,27 +45,52 @@ public class CouponInfoDataModel implements Serializable {
         this.shopDataModel = shopDataModel;
     }
 
-    public CouponType getType() {
-        return type;
+    public int getCouponId() {
+        return couponId;
     }
 
-    public void setType(CouponType type) {
-        this.type = type;
+    public void setCouponId(int couponId) {
+        this.couponId = couponId;
     }
 
-    public int getCountCanBeTransfer() {
-        return countCanBeTransfer;
+    public String getName() {
+        return name;
     }
 
-    public double getPercent() {
-        return percent;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPercent(int percent) {
-        this.percent = percent;
+    public int getGoal() {
+        return goal;
     }
 
-    public void setCountCanBeTransfer(int countCanBeTransfer) {
-        this.countCanBeTransfer = countCanBeTransfer;
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
+
+    public CouponType getCouponType() {
+        return couponType;
+    }
+
+    public void setCouponType(String couponType) {
+        if(couponType.equals("DISCOUNT"))
+            this.couponType = CouponType.DISCOUNT;
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(int period) {
+        this.period = period;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

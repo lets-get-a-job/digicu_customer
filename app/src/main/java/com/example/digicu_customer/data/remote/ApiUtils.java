@@ -12,5 +12,6 @@ public class ApiUtils {
 
     public static DigicuCouponService getDigicuCouponService() {
         return RetrofitClient.getClient(BASE_URL).create(DigicuCouponService.class);
+//        return RetrofitClient.getClient(LOCAL_BASE_URL).create(DigicuCouponService.class);
     }
 }

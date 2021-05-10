@@ -1,15 +1,17 @@
 package com.example.digicu_customer.data.remote;
 
-import com.example.digicu_customer.data.dataset.ShopDataModel;
-import com.example.digicu_customer.data.dataset.SocialUserDataModel;
+import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface DigicuCouponService {
-    @GET("/coupon/hi")
-    Call<String> getTest();
+    @GET("/coupon/coupon_spec")
+    Call<List<CouponInfoDataModel>> getCouponInfoByOwnerEmail(@Query("email") String email);
 }

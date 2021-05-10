@@ -17,7 +17,7 @@ public class RecordOfPurchaseDataModel implements Serializable {
         this.receiptNumber = receiptNumber;
         this.purchaseDate = purchaseDate;
         this.productDataModels = productDataModels;
-        mileage = getTotalPrice() * couponInfoDataModel.getPercent();
+
 
         int product_cnt = 0;
 
