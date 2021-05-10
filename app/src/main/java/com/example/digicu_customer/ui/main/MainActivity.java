@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(GeneralVariable.TAG, "onCreate: " + socialUserDataModel.toString());
 
         Log.d(GeneralVariable.TAG, "onCreate Digicu Token: " + DigicuAuth.getToken(socialUserDataModel));
-        Log.d("_log", "onStart: " + FirebaseInstanceId.getInstance().getToken());
+        Log.d("_log", "FCM token : " + FirebaseInstanceId.getInstance().getToken());
 
         if (savedInstanceState == null) {
             setUpBottomNav();

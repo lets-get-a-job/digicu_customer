@@ -83,12 +83,12 @@ public class ReceiptFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd(E) HH:mm");
 
         ((TextView)view.findViewById(R.id.receipt_date)).setText(dateFormat.format(recordOfPurchaseDataModel.getPurchaseDate()));
-        if (recordOfPurchaseDataModel.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
+//        if (recordOfPurchaseDataModel.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
             // Todo modify code after establish coupon strategy
             ((TextView)view.findViewById(R.id.receipt_mileage)).setText("적립도장 : " + recordOfPurchaseDataModel.getStampCnt() + "개");
-        } else {
-            ((TextView)view.findViewById(R.id.receipt_mileage)).setText("적립 포인트 : " + NumberFormat.getInstance(Locale.getDefault()).format(recordOfPurchaseDataModel.getMileage()) + "points");
-        }
+//        } else {
+//            ((TextView)view.findViewById(R.id.receipt_mileage)).setText("적립 포인트 : " + NumberFormat.getInstance(Locale.getDefault()).format(recordOfPurchaseDataModel.getMileage()) + "points");
+//        }
         ((TextView)view.findViewById(R.id.receipt_price)).setText(NumberFormat.getInstance(Locale.getDefault()).format(recordOfPurchaseDataModel.getTotalPrice()) + "원");
     }
 }

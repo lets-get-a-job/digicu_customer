@@ -84,11 +84,11 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
         CouponInfoDataModel couponInfoDataModel = data.get(position);
 
         holder.getShopName().setText(couponInfoDataModel.getShopDataModel().getName());
-        if (couponInfoDataModel.getType() == CouponInfoDataModel.CouponType.STAMP) {
-            holder.getMileage().setText(0 + "/" + couponInfoDataModel.getCountCanBeTransfer());
-        } else {
-            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(0) + " points");
-        }
+//        if (couponInfoDataModel.getType() == CouponInfoDataModel.CouponType.STAMP) {
+//            holder.getMileage().setText(0 + "/" + couponInfoDataModel.getCountCanBeTransfer());
+//        } else {
+//            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(0) + " points");
+//        }
     }
 
     @Override

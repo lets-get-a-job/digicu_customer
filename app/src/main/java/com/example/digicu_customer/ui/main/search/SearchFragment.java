@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -69,6 +70,17 @@ public class SearchFragment extends Fragment {
         textInputLayout = view.findViewById(R.id.search_textfield_layout);
 
         imageAdapter = new ImageAdapter(getContext());
+        imageAdapter.setOnItemClickLister(new ImageAdapter.OnItemClickLister() {
+            @Override
+            public void onItemClick(View v, int pos, ShopDataModel shopDataModel) {
+                Log.d(TAG, "onItemClick: " + shopDataModel.toString());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("shopDataModel", shopDataModel);
+
+                NavHostFragment.findNavController(SearchFragment.this).navigate(R.id.action_page_3_to_couponInfoFragment2, bundle);
+            }
+        });
+
         recycler = view.findViewById(R.id.search_recyclerview);
         recycler.setLayoutManager(linearLayoutManager);
         recycler.setAdapter(imageAdapter);

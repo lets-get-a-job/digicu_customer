@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
@@ -28,10 +29,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     public interface OnItemClickLister {
-        void onItemClick(View v, int pos, CouponInfoDataModel data);
+        void onItemClick(View v, int pos, ShopDataModel data);
     }
 
-    private List<CouponInfoDataModel> data;
+    private List<ShopDataModel> data;
     private OnItemClickLister onItemClickLister;
 
     public void setOnItemClickLister(OnItemClickLister onItemClickLister) {
@@ -81,7 +82,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         this.data = new ArrayList<>();
     }
 
-    public HomeAdapter(List<CouponInfoDataModel> data) {
+    public HomeAdapter(List<ShopDataModel> data) {
         this.data = data;
     }
 
@@ -95,7 +96,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CouponInfoDataModel couponInfoDataModel = data.get(position);
+        ShopDataModel couponInfoDataModel = data.get(position);
 
 
         if (imgExtension) {
@@ -104,12 +105,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             holder.getImgGroup().setVisibility(View.VISIBLE);
         }
 
-        holder.getShopName().setText(couponInfoDataModel.getShopDataModel().getName());
-        if (couponInfoDataModel.getType() == CouponInfoDataModel.CouponType.STAMP) {
-            holder.getMileage().setText(0 + "/" + couponInfoDataModel.getCountCanBeTransfer());
-        } else {
-            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(0) + " points");
-        }
+        holder.getShopName().setText(couponInfoDataModel.getName());
+//        if (couponInfoDataModel.getType() == CouponInfoDataModel.CouponType.STAMP) {
+//            holder.getMileage().setText(0 + "/" + couponInfoDataModel.getCountCanBeTransfer());
+//        } else {
+//            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(0) + " points");
+//        }
     }
 
     @Override
@@ -117,7 +118,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         return data.size();
     }
 
-    public void setData(List<CouponInfoDataModel> data) {
+    public void setData(List<ShopDataModel> data) {
         this.data = data;
     }
 }

@@ -20,12 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder> {
+public class CouponInfoAdapter extends RecyclerView.Adapter<CouponInfoAdapter.ViewHolder> {
     public interface OnItemClickLister {
-        void onItemClick(View v, int pos, RecordOfPurchaseDataModel data);
+        void onItemClick(View v, int pos, CouponInfoDataModel data);
     }
 
-    private List<RecordOfPurchaseDataModel> data;
+    private List<CouponInfoDataModel> data;
     private OnItemClickLister onItemClickLister;
 
 
@@ -34,18 +34,16 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView purchaseDate;
-        private final TextView mileage_lv;
-        private final TextView mileage;
-        private final TextView totalPrice;
+        private final TextView couponName;
+        private final TextView couponType;
+        private final TextView needStamp;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            this.purchaseDate = itemView.findViewById(R.id.purchase_date);
-            this.mileage = itemView.findViewById(R.id.record_mileage);
-            this.mileage_lv = itemView.findViewById(R.id.mileage_label);
-            this.totalPrice = itemView.findViewById(R.id.total_price);
+            this.couponName = itemView.findViewById(R.id.item_coupon_name);
+            this.couponType = itemView.findViewById(R.id.discount_type);
+            this.needStamp = itemView.findViewById(R.id.need_stamp_count);
 
             itemView.findViewById(R.id.card_view_item).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -61,28 +59,24 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
             });
         }
 
-        public TextView getPurchaseDate() {
-            return purchaseDate;
+        public TextView getCouponName() {
+            return couponName;
         }
 
-        public TextView getMileage_lv() {
-            return mileage_lv;
+        public TextView getCouponType() {
+            return couponType;
         }
 
-        public TextView getMileage() {
-            return mileage;
-        }
-
-        public TextView getTotalPrice() {
-            return totalPrice;
+        public TextView getNeedStamp() {
+            return needStamp;
         }
     }
 
-    public void setData(List<RecordOfPurchaseDataModel> data) {
+    public void setData(List<CouponInfoDataModel> data) {
         this.data = data;
     }
 
-    public RecordAdapter(List<RecordOfPurchaseDataModel> data) {
+    public CouponInfoAdapter(List<CouponInfoDataModel> data) {
         this.data = data;
         if(this.data == null) {
             this.data = new ArrayList<>();
@@ -92,26 +86,18 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.digicu_record_recyclerview_item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.digicu_coupon_info_recyclerview_item_layout, parent, false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        RecordOfPurchaseDataModel record = data.get(position);
+        CouponInfoDataModel couponInfoDataModel = data.get(position);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd(E) HH:mm");
-
-        holder.getPurchaseDate().setText(dateFormat.format(record.getPurchaseDate()));
-        holder.getTotalPrice().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice())  + "원");
-//        if (record.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
-            holder.getMileage_lv().setText("적립 도장 ");
-            holder.getMileage().setText(record.getProductDataModels().size() + "개");
-//        } else {
-//            holder.getMileage_lv().setText("적립 마일리지 ");
-//            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice() * record.getCouponInfoDataModel().getPercent()) + " points");
-//        }
+        holder.getCouponName().setText(couponInfoDataModel.getName());
+        holder.getCouponType().setText(couponInfoDataModel.getValue() + "원 " + couponInfoDataModel.getCouponType().name());
+        holder.getNeedStamp().setText(String.valueOf(couponInfoDataModel.getGoal()));
     }
 
     @Override

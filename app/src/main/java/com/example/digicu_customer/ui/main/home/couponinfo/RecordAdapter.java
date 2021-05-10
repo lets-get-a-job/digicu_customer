@@ -105,13 +105,13 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
 
         holder.getPurchaseDate().setText(dateFormat.format(record.getPurchaseDate()));
         holder.getTotalPrice().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice())  + "원");
-        if (record.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
+//        if (record.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
             holder.getMileage_lv().setText("적립 도장 ");
             holder.getMileage().setText(record.getProductDataModels().size() + "개");
-        } else {
-            holder.getMileage_lv().setText("적립 마일리지 ");
-            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice() * record.getCouponInfoDataModel().getPercent()) + " points");
-        }
+//        } else {
+//            holder.getMileage_lv().setText("적립 마일리지 ");
+//            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice() * record.getCouponInfoDataModel().getPercent()) + " points");
+//        }
     }
 
     @Override

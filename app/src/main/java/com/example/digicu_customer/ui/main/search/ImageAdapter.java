@@ -23,7 +23,7 @@ import static com.example.digicu_customer.general.GeneralVariable.TAG;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
     public interface OnItemClickLister {
-        void onItemClick(View v, int pos);//, CouponInfoDataModel data);
+        void onItemClick(View v, int pos, ShopDataModel shopDataModel);//, CouponInfoDataModel data);
     }
 
     List<ShopDataModel> shopDataModels;
@@ -66,7 +66,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION){
                         if (onItemClickLister != null)
-                            onItemClickLister.onItemClick(view, pos);
+                            onItemClickLister.onItemClick(view, pos, shopDataModels.get(pos));
                     }
                 }
             });

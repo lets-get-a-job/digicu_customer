@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -22,11 +21,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment;
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
-import com.example.digicu_customer.util.qr_generator.QrGenerator;
 import com.google.android.material.card.MaterialCardView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -50,7 +49,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        homeViewModel.loadCouponInfo();
+        homeViewModel.loadShopInfo();
         mainActivity = ((AppCompatActivity)getActivity());
         imageExtension = mainActivity.findViewById(R.id.main_image_extension);
 
@@ -108,7 +107,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
                 // Update Data
-                homeViewModel.loadCouponInfo();
+                homeViewModel.loadShopInfo();
             }
         }
     }
@@ -127,14 +126,14 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
-        final Observer<List<CouponInfoDataModel>> couponInfoObserver = new Observer<List<CouponInfoDataModel>>() {
+        final Observer<List<ShopDataModel>> shopInfoObserver = new Observer<List<ShopDataModel>>() {
             @Override
-            public void onChanged(List<CouponInfoDataModel> couponInfo) {
-                homeAdapter.setData(couponInfo);
+            public void onChanged(List<ShopDataModel> shopInfo) {
+                homeAdapter.setData(shopInfo);
                 homeAdapter.notifyDataSetChanged();
             }
         };
-        homeViewModel.getCouponInfo().observe(requireActivity(), couponInfoObserver);
+        homeViewModel.getShopInfo().observe(requireActivity(), shopInfoObserver);
 
         mRecyclerView = view.findViewById(R.id.digicu_home_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -154,9 +153,9 @@ public class HomeFragment extends Fragment {
 
         homeAdapter.setOnItemClickLister(new HomeAdapter.OnItemClickLister() {
             @Override
-            public void onItemClick(View v, int pos, CouponInfoDataModel data) {
+            public void onItemClick(View v, int pos, ShopDataModel data) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("CouponInfo", data);
+                bundle.putSerializable("shopDataModel", data);
 
                 NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_page_1_to_couponInfoFragment, bundle);
             }

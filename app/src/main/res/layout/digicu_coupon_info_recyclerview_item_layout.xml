@@ -38,14 +38,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="구매일 : "
+                        android:text="쿠폰명 : "
                         android:textColor="@color/digicu_black_color"
                         />
 
                     <TextView
-                        android:id="@+id/purchase_date"
+                        android:id="@+id/item_coupon_name"
                         android:textColor="@color/digicu_black_color"
-                        android:text="2020-11-12(월) 오후 2:22"
+                        android:text="Coupon!"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -62,15 +62,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="구매금액 : "
+                        android:text="쿠폰종류 : "
                         android:textColor="@color/digicu_black_color"
                         />
 
                     <TextView
-                        android:id="@+id/total_price"
-
+                        android:id="@+id/discount_type"
                         android:textColor="@color/digicu_black_color"
-                        android:text="999999999원"
+                        android:text="DISCOUNT(할인)"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -88,16 +87,16 @@
                         android:id="@+id/mileage_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="적립 마일리지 : "
+                        android:text="필요 도장 : "
                         android:textStyle="bold"
                         android:textColor="@color/digicu_black_color"
                         />
 
                     <TextView
-                        android:id="@+id/record_mileage"
+                        android:id="@+id/need_stamp_count"
                         android:textColor="@color/digicu_black_color"
                         android:textStyle="bold"
-                        android:text="1000 points"
+                        android:text="10개"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -108,13 +107,13 @@
             <View
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/digicu_black_color"
+                android:background="@color/digicu_dark_gray_color"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"/>
 
             <TextView
                 android:gravity="center"
-                android:text="영수증"
+                android:text="교환하기"
                 android:layout_marginRight="5dp"
                 android:textColor="@color/digicu_black_color"
                 android:layout_width="wrap_content"

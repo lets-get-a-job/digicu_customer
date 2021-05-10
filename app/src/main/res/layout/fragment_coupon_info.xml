@@ -46,102 +46,117 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
+            android:padding="10dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:text="@string/shop_name"
-                android:textColor="@color/digicu_black_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/coupon_info_shop_name"
-                android:textColor="@color/digicu_black_color"
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <TextView
+                    android:text="@string/shop_name"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/coupon_info_shop_name"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:text="@string/shop_owner"
-                android:textColor="@color/digicu_black_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/coupon_info_shop_owner"
-                android:textColor="@color/digicu_black_color"
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <TextView
+                    android:text="@string/shop_owner"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/coupon_info_shop_owner"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:text="@string/shop_phone"
-                android:textColor="@color/digicu_black_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/coupon_info_shop_phone"
-                android:textColor="@color/digicu_black_color"
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <TextView
+                    android:text="@string/shop_phone"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/coupon_info_shop_phone"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:text="@string/shop_address"
-                android:textColor="@color/digicu_black_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/coupon_info_shop_address"
-                android:textColor="@color/digicu_black_color"
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <TextView
+                    android:text="@string/shop_address"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/coupon_info_shop_address"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:text="@string/shop_homepage"
-                android:textColor="@color/digicu_black_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/coupon_info_shop_homepage"
-                android:textColor="@color/digicu_black_color"
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/shop_homepage"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:gravity="right"
+                    android:autoLink="web"
+                    android:textColorLink="@color/digicu_base_primary_color"
+                    android:id="@+id/coupon_info_shop_homepage"
+                    android:textColor="@color/digicu_black_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -150,6 +165,11 @@
             android:background="@color/digicu_dark_gray_color"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/coupon_kind_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </LinearLayout>
