@@ -22,6 +22,7 @@ import com.example.digicu_customer.data.remote.DigicuUserService;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,6 +84,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             }
 
             socialUserDataModel.setPhone(phone.getText().toString().replaceAll("[-]", ""));
+            socialUserDataModel.setFcm_token(FirebaseInstanceId.getInstance().getToken());
 
             Log.d(GeneralVariable.TAG, "onClick: " + socialUserDataModel.toString());
 
@@ -126,14 +128,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_menu_close) {
-            setResult(SIGNUP_FAIL);
-            finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(SIGNUP_FAIL);
+        finish();
     }
 
     @Override

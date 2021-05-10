@@ -18,6 +18,7 @@ import com.example.digicu_customer.ui.login.LoginActivity;
 import com.example.digicu_customer.ui.main.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +29,6 @@ public class LoadingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_loading);
         DigicuAuth.setContext(this);
     }
@@ -36,6 +36,8 @@ public class LoadingActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        Log.d("_log", "onStart: " + FirebaseInstanceId.getInstance().getToken());
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         updateUI(account);
