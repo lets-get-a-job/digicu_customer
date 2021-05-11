@@ -5,61 +5,53 @@ import java.util.Date;
 import java.util.List;
 
 public class RecordOfPurchaseDataModel implements Serializable {
-    private CouponInfoDataModel couponInfoDataModel;
-    private int receiptNumber;
-    private Date purchaseDate;
+    private int id;
+    private Date date;
+    private int price;
     private List<ProductDataModel> productDataModels;
-    private double mileage;
-    private int stampCnt;
+    private ShopDataModel shopDataModel;
 
-    public RecordOfPurchaseDataModel(CouponInfoDataModel couponInfoDataModel, int receiptNumber, Date purchaseDate, List<ProductDataModel> productDataModels) {
-        this.couponInfoDataModel = couponInfoDataModel;
-        this.receiptNumber = receiptNumber;
-        this.purchaseDate = purchaseDate;
+    public RecordOfPurchaseDataModel(int id, Date date, int price, List<ProductDataModel> productDataModels, ShopDataModel shopDataModel) {
+        this.id = id;
+        this.date = date;
+        this.price = price;
         this.productDataModels = productDataModels;
-
-
-        int product_cnt = 0;
-
-        for (ProductDataModel productDataModel: productDataModels) {
-            product_cnt+=productDataModel.getCount();
-        }
-
-        stampCnt = product_cnt;
+        this.shopDataModel = shopDataModel;
     }
 
     @Override
     public String toString() {
         return "RecordOfPurchaseDataModel{" +
-                "couponInfoDataModel=" + couponInfoDataModel +
-                ", receiptNumber=" + receiptNumber +
-                ", purchaseDate=" + purchaseDate +
+                "id=" + id +
+                ", date=" + date +
+                ", price=" + price +
                 ", productDataModels=" + productDataModels +
+                ", shopDataModel=" + shopDataModel +
                 '}';
     }
 
-    public CouponInfoDataModel getCouponInfoDataModel() {
-        return couponInfoDataModel;
+    public int getId() {
+        return id;
     }
 
-    public void setCouponInfoDataModel(CouponInfoDataModel couponInfoDataModel) {
-        this.couponInfoDataModel = couponInfoDataModel;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getReceiptNumber() {
-        return receiptNumber;
+    public Date getDate() {
+        return date;
     }
 
-    public void setReceiptNumber(int receiptNumber) {
-        this.receiptNumber = receiptNumber;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Date getPurchaseDate() {
-        return purchaseDate;
+    public int getPrice() {
+        return price;
     }
 
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public List<ProductDataModel> getProductDataModels() {
@@ -70,21 +62,11 @@ public class RecordOfPurchaseDataModel implements Serializable {
         this.productDataModels = productDataModels;
     }
 
-    public int getTotalPrice() {
-        int totalPrice = 0;
-
-        for (ProductDataModel pr : productDataModels) {
-            totalPrice+=(pr.getPrice() * pr.getCount());
-        }
-
-        return totalPrice;
+    public ShopDataModel getShopDataModel() {
+        return shopDataModel;
     }
 
-    public double getMileage() {
-        return mileage;
-    }
-
-    public int getStampCnt() {
-        return stampCnt;
+    public void setShopDataModel(ShopDataModel shopDataModel) {
+        this.shopDataModel = shopDataModel;
     }
 }

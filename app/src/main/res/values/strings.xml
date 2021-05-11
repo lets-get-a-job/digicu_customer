@@ -47,6 +47,10 @@
 
     <string name="loading">로딩중입니다..</string>
 
+    <string name="purchase_shop_name">가게명</string>
+    <string name="purchase_price">결제금액</string>
+    <string name="purchase_date">결제일</string>
+
     <string name="server_client_id">547207036785-pl6vbj6vkbh12se1frq5pn371djq66dj.apps.googleusercontent.com</string>
     <string name="digicu_preference_file_name">com.example.digicu_customer</string>
     <string name="digicu_token">digicu_token</string>
