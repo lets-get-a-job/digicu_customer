@@ -30,7 +30,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-        setupToolBar();
+//        setupToolBar();
         setupObj();
         setupListener();
         viewData();
@@ -58,12 +58,6 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         userEmail = findViewById(R.id.user_info_email);
         changeSimplePass = findViewById(R.id.user_info_change_pass);
         checkAuth = findViewById(R.id.user_info_auth);
-    }
-
-    private void setupToolBar() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_close_24);
-        getSupportActionBar().setTitle("Digicu 계정");
     }
 
     @Override
