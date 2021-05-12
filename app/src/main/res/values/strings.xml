@@ -30,7 +30,7 @@
     <string name="bottom_menu_title4">Log</string>
     <string name="bottom_menu_title5">Menu</string>
 
-    <string name="coupon_list">적립중인 쿠폰 목록</string>
+    <string name="coupon_list">적립중인 가게 목록</string>
     <string name="coupon_info">쿠폰 정보</string>
     <string name="coupon_tab_log">적립기록</string>
     <string name="coupon_tab_item">쿠폰함</string>
@@ -50,6 +50,8 @@
     <string name="purchase_shop_name">가게명</string>
     <string name="purchase_price">결제금액</string>
     <string name="purchase_date">결제일</string>
+
+    <string name="insufficient">도장개수가 모자랍니다.</string>
 
     <string name="server_client_id">547207036785-pl6vbj6vkbh12se1frq5pn371djq66dj.apps.googleusercontent.com</string>
     <string name="digicu_preference_file_name">com.example.digicu_customer</string>

@@ -39,7 +39,7 @@ public class SocialUserDataModel implements Serializable {
         this.profile_image = profile_image;
         this.thumbnail_image = thumbnail_image;
 
-        SimpleDateFormat dateFormat = CustomDate.getDigicuDataFormat();
+        SimpleDateFormat dateFormat = CustomDate.getDigicuDateFormat();
 
         this.registration_date = dateFormat.format(registration_date);
         this.letter_ok = dateFormat.format(letter_ok);
@@ -117,7 +117,7 @@ public class SocialUserDataModel implements Serializable {
     }
 
     public void setRegistration_date(Date registration_date) {
-        this.registration_date = CustomDate.getDigicuDataFormat().format(registration_date);
+        this.registration_date = CustomDate.getDigicuDateFormat().format(registration_date);
     }
 
     public Date getLetter_ok() {
@@ -125,7 +125,7 @@ public class SocialUserDataModel implements Serializable {
     }
 
     public void setLetter_ok(Date letter_ok) {
-        this.letter_ok = CustomDate.getDigicuDataFormat().format(letter_ok);
+        this.letter_ok = CustomDate.getDigicuDateFormat().format(letter_ok);
     }
 
     public void setRegistration_date(String registration_date) {
