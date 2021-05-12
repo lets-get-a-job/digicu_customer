@@ -28,7 +28,11 @@ public class LogViewModel extends ViewModel {
         recordOfPurchaseDataModels.add(new RecordOfPurchaseDataModel(1, new Date(), 3000, null,
                 new ShopDataModel("2", "STARBUCKS", "010-1234-1234", "address", "owner", "naver.com", "", "test@test1.com")));
         recordOfPurchaseDataModels.add(new RecordOfPurchaseDataModel(2, new Date(), 3500, null,
-                new ShopDataModel("2", "CAFE bene", "010-4434-1234", "address", "owner", "naver.com", "", "test@test2.com")));
+                new ShopDataModel("2", "CAFE bene1", "010-4434-1234", "address", "owner", "naver.com", "", "test@test2.com")));
+        recordOfPurchaseDataModels.add(new RecordOfPurchaseDataModel(2, new Date(), 3500, null,
+                new ShopDataModel("2", "CAFE bene2", "010-4434-1234", "address", "owner", "naver.com", "", "test@test2.com")));
+        recordOfPurchaseDataModels.add(new RecordOfPurchaseDataModel(2, new Date(), 3500, null,
+                new ShopDataModel("2", "CAFE bene3", "010-4434-1234", "address", "owner", "naver.com", "", "test@test2.com")));
 
         this.records.setValue(recordOfPurchaseDataModels);
     }

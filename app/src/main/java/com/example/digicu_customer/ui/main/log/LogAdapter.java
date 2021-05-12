@@ -15,6 +15,7 @@ import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
+import com.example.digicu_customer.util.qr_generator.CustomDate;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -106,7 +107,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         RecordOfPurchaseDataModel recordOfPurchaseDataModel = data.get(position);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = CustomDate.getDigicuDateFormatDetail();
 
         holder.getShopName().setText(recordOfPurchaseDataModel.getShopDataModel().getName());
         holder.getDate().setText(dateFormat.format(recordOfPurchaseDataModel.getDate()));
