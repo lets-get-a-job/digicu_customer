@@ -12,8 +12,8 @@
         android:name="com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment"
         android:label="CouponInfoFragment">
         <action
-            android:id="@+id/action_couponInfoFragment2_to_page_3"
-            app:destination="@id/page_3" />
+            android:id="@+id/action_couponInfoFragment2_to_page_4"
+            app:destination="@id/page_4" />
     </fragment>
     <fragment
         android:id="@+id/page_1"
@@ -37,7 +37,7 @@
             android:id="@+id/action_placeholder5_to_placeholder6"
             app:destination="@id/page_3" />
     </fragment>
-    <fragment android:id="@+id/page_3"
+    <fragment android:id="@+id/page_4"
         android:name="com.example.digicu_customer.ui.main.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search">
@@ -45,14 +45,18 @@
             android:id="@+id/action_page_3_to_couponInfoFragment2"
             app:destination="@id/couponInfoFragment2" />
         <action
-            android:id="@+id/action_page_3_to_logFragment"
-            app:destination="@id/page_4" />
+            android:id="@+id/action_page_4_to_page_5"
+            app:destination="@id/page_5" />
     </fragment>
     <fragment
         android:id="@+id/page_5"
         android:name="com.example.digicu_customer.ui.main.menu.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_page_5_to_payment_log"
+            app:destination="@id/payment_log" />
+    </fragment>
     <fragment
         android:id="@+id/couponInfoFragment"
         android:name="com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment"
@@ -62,12 +66,27 @@
             app:destination="@id/page_1" />
     </fragment>
     <fragment
-        android:id="@+id/page_4"
+        android:id="@+id/page_3"
         android:name="com.example.digicu_customer.ui.main.log.LogFragment"
         android:label="log_fragment"
         tools:layout="@layout/log_fragment" >
         <action
+            android:id="@+id/action_page_3_to_page_4"
+            app:destination="@id/page_4" />
+    </fragment>
+    <fragment
+        android:id="@+id/payment_log"
+        android:name="com.example.digicu_customer.ui.main.log.LogFragment"
+        android:label="log_fragment"
+        tools:layout="@layout/log_fragment">
+        <action
             android:id="@+id/action_logFragment_to_page_4"
+            app:destination="@id/page_5" />
+        <action
+            android:id="@+id/action_page__to_page_5"
+            app:destination="@id/page_5" />
+        <action
+            android:id="@+id/action_page__to_page_52"
             app:destination="@id/page_5" />
     </fragment>
 

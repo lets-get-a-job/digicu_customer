@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_item"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Title, secondary and supporting text -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="쿠폰명 : "
+                        android:textColor="@color/digicu_black_color"
+                        />
+
+                    <TextView
+                        android:id="@+id/item_coupon_name"
+                        android:textColor="@color/digicu_black_color"
+                        android:text="Coupon!"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Title, secondary and supporting text -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="쿠폰종류 : "
+                        android:textColor="@color/digicu_black_color"
+                        />
+
+                    <TextView
+                        android:id="@+id/discount_type"
+                        android:textColor="@color/digicu_black_color"
+                        android:text="DISCOUNT(할인)"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Title, secondary and supporting text -->
+
+                    <TextView
+                        android:id="@+id/mileage_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="필요 도장 : "
+                        android:textStyle="bold"
+                        android:textColor="@color/digicu_black_color"
+                        />
+
+                    <TextView
+                        android:id="@+id/need_stamp_count"
+                        android:textColor="@color/digicu_black_color"
+                        android:textStyle="bold"
+                        android:text="10개"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/digicu_dark_gray_color"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:gravity="center"
+                android:text="교환하기"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/digicu_black_color"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
