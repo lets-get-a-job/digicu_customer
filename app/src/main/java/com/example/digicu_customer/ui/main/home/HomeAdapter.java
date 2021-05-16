@@ -11,10 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.digicu_customer.data.dataset.CouponDataModel;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
+import com.example.digicu_customer.util.qr_generator.CustomDate;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -22,17 +24,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
-    boolean imgExtension;
-
-    public void setImageVisible(boolean imgExtension) {
-        this.imgExtension = imgExtension;
-    }
-
     public interface OnItemClickLister {
-        void onItemClick(View v, int pos, ShopDataModel data);
+        void onItemClick(View v, int pos, CouponDataModel data);
     }
 
-    private List<ShopDataModel> data;
+    private List<CouponDataModel> data;
     private OnItemClickLister onItemClickLister;
 
     public void setOnItemClickLister(OnItemClickLister onItemClickLister) {
@@ -40,16 +36,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView shopName;
+        private final TextView couponName;
+        private final TextView createDate;
         private final TextView mileage;
-        private final LinearLayout imgGroup;
+        private final TextView expiration_date;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            this.shopName = itemView.findViewById(R.id.shop_name);
+            this.couponName = itemView.findViewById(R.id.coupon_name);
+            this.createDate = itemView.findViewById(R.id.createDate);
             this.mileage = itemView.findViewById(R.id.mileage);
-            this.imgGroup = itemView.findViewById(R.id.shop_image_group);
+            this.expiration_date = itemView.findViewById(R.id.expiration_date);
 
             itemView.findViewById(R.id.card_view_item).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -65,16 +63,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             });
         }
 
-        public LinearLayout getImgGroup() {
-            return imgGroup;
+        public TextView getCouponName() {
+            return couponName;
         }
 
-        public TextView getShopName() {
-            return shopName;
+        public TextView getCreateDate() {
+            return createDate;
         }
 
         public TextView getMileage() {
             return mileage;
+        }
+
+        public TextView getExpiration_date() {
+            return expiration_date;
         }
     }
 
@@ -82,7 +84,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         this.data = new ArrayList<>();
     }
 
-    public HomeAdapter(List<ShopDataModel> data) {
+    public HomeAdapter(List<CouponDataModel> data) {
         this.data = data;
     }
 
@@ -96,21 +98,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ShopDataModel couponInfoDataModel = data.get(position);
+        CouponDataModel couponDataModel = data.get(position);
 
-
-        if (imgExtension) {
-            holder.getImgGroup().setVisibility(View.GONE);
-        } else {
-            holder.getImgGroup().setVisibility(View.VISIBLE);
-        }
-
-        holder.getShopName().setText(couponInfoDataModel.getName());
-//        if (couponInfoDataModel.getType() == CouponInfoDataModel.CouponType.STAMP) {
-//            holder.getMileage().setText(0 + "/" + couponInfoDataModel.getCountCanBeTransfer());
-//        } else {
-//            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(0) + " points");
-//        }
+        holder.getCouponName().setText(couponDataModel.getName());
+        holder.getCreateDate().setText(CustomDate.getDigicuDateFormat().format(couponDataModel.getCreatedAt()));
+        holder.getExpiration_date().setText("만료일 : " + CustomDate.getDigicuDateFormat().format(couponDataModel.getExpirationDate()));
+        holder.getMileage().setText(couponDataModel.getCount() + "/" + couponDataModel.getGoal());
     }
 
     @Override
@@ -118,7 +111,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         return data.size();
     }
 
-    public void setData(List<ShopDataModel> data) {
+    public void setData(List<CouponDataModel> data) {
         this.data = data;
     }
 }

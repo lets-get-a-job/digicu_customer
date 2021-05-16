@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.auth.DigicuAuth;
@@ -21,8 +23,6 @@ import com.example.digicu_customer.data.remote.ApiUtils;
 import com.example.digicu_customer.data.remote.DigicuUserService;
 import com.example.digicu_customer.data.remote.RetrofitClient;
 import com.example.digicu_customer.general.GeneralVariable;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -33,8 +33,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int COUPON_SELECT_REQUEST = 10001;
+
     BottomNavigationView bottomNavigationView;
     SocialUserDataModel socialUserDataModel;
+    ImageButton coupon_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

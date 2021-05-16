@@ -21,11 +21,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.digicu_customer.data.dataset.CouponDataModel;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
-import com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment;
+import com.example.digicu_customer.ui.main.home.savingcoupon.CouponInfoFragment;
 import com.example.digicu_customer.R;
-import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.google.android.material.card.MaterialCardView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -38,8 +38,6 @@ public class HomeFragment extends Fragment {
     CouponInfoFragment couponInfoFragment;
     MaterialCardView materialCardView;
     HomeAdapter homeAdapter;
-    ImageButton imageExtension;
-    boolean imgExtension = true;
     AppCompatActivity mainActivity;
 
     public HomeFragment() {
@@ -49,15 +47,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        homeViewModel.loadShopInfo();
+        homeViewModel.loadCouponInfo();
         mainActivity = ((AppCompatActivity)getActivity());
-        imageExtension = mainActivity.findViewById(R.id.main_image_extension);
-
-        if(imgExtension) {
-            imageExtension.setImageResource(R.drawable.ic_baseline_black_image_24);
-        } else {
-            imageExtension.setImageResource(R.drawable.ic_baseline_black_hide_image_24);
-        }
     }
 
     @Override
@@ -66,23 +57,7 @@ public class HomeFragment extends Fragment {
         TextView title = mainActivity.findViewById(R.id.main_title);
         title.setText(getString(R.string.coupon_list));
 
-        imageExtension.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(imgExtension) {
-                    imageExtension.setImageResource(R.drawable.ic_baseline_black_hide_image_24);
-                } else {
-                    imageExtension.setImageResource(R.drawable.ic_baseline_black_image_24);
-                }
-
-                homeAdapter.setImageVisible(imgExtension);
-                homeAdapter.notifyDataSetChanged();
-
-                imgExtension = !imgExtension;
-            }
-        });
-
-        imageExtension.setVisibility(View.VISIBLE);
+//        imageExtension.setVisibility(View.VISIBLE);
 //        actionBar.setDisplayHomeAsUpEnabled(false);
 //        actionBar.setTitle(getString(R.string.coupon_list));
     }
@@ -107,7 +82,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
                 // Update Data
-                homeViewModel.loadShopInfo();
+                homeViewModel.loadCouponInfo();
             }
         }
     }
@@ -126,14 +101,14 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
-        final Observer<List<ShopDataModel>> shopInfoObserver = new Observer<List<ShopDataModel>>() {
+        final Observer<List<CouponDataModel>> couponObserver = new Observer<List<CouponDataModel>>() {
             @Override
-            public void onChanged(List<ShopDataModel> shopInfo) {
-                homeAdapter.setData(shopInfo);
+            public void onChanged(List<CouponDataModel> couponInfo) {
+                homeAdapter.setData(couponInfo);
                 homeAdapter.notifyDataSetChanged();
             }
         };
-        homeViewModel.getShopInfo().observe(requireActivity(), shopInfoObserver);
+        homeViewModel.getCouponInfo().observe(requireActivity(), couponObserver);
 
         mRecyclerView = view.findViewById(R.id.digicu_home_recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -153,9 +128,9 @@ public class HomeFragment extends Fragment {
 
         homeAdapter.setOnItemClickLister(new HomeAdapter.OnItemClickLister() {
             @Override
-            public void onItemClick(View v, int pos, ShopDataModel data) {
+            public void onItemClick(View v, int pos, CouponDataModel data) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("shopDataModel", data);
+                bundle.putSerializable("couponDataModel", data);
 
                 NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_page_1_to_couponInfoFragment, bundle);
             }
@@ -165,6 +140,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        imageExtension.setVisibility(View.GONE);
+//        imageExtension.setVisibility(View.GONE);
     }
 }

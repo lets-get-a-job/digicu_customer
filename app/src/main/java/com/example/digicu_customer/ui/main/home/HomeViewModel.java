@@ -1,41 +1,55 @@
 package com.example.digicu_customer.ui.main.home;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.digicu_customer.auth.DigicuAuth;
+import com.example.digicu_customer.data.dataset.CouponDataModel;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
+import com.example.digicu_customer.data.dataset.SocialUserDataModel;
+import com.example.digicu_customer.data.remote.ApiUtils;
+import com.example.digicu_customer.data.remote.DigicuCouponService;
+import com.example.digicu_customer.data.remote.DigicuUserService;
+import com.example.digicu_customer.data.remote.RetrofitClient;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeViewModel extends ViewModel {
-    private MutableLiveData<List<ShopDataModel>> shopInfo;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    public MutableLiveData<List<ShopDataModel>> getShopInfo() {
-        if (shopInfo == null) {
-            shopInfo = new MutableLiveData<>();
-            loadShopInfo();
+import static com.example.digicu_customer.general.GeneralVariable.TAG;
+
+public class HomeViewModel extends ViewModel {
+    private MutableLiveData<List<CouponDataModel>> couponInfo;
+
+    public MutableLiveData<List<CouponDataModel>> getCouponInfo() {
+        if (couponInfo == null) {
+            couponInfo = new MutableLiveData<>();
+            loadCouponInfo();
         }
 
-        return shopInfo;
+        return couponInfo;
     }
 
-    protected void loadShopInfo() {
-        // get data from server
-//        ShopDataModel shopDataModels[] = new ShopDataModel[5];
-//        shopDataModels[0] = new ShopDataModel("1233", "test1", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "", "");
-//        shopDataModels[1] = new ShopDataModel("1234", "test2", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "", "");
-//        shopDataModels[2] = new ShopDataModel("1235", "test3", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "", "");
-//        shopDataModels[3] = new ShopDataModel("1236", "test4", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "", "");
-//        shopDataModels[4] = new ShopDataModel("1237", "test5", "010-1234-1234", "상도동1", "JJS", "https://naver.com/", "", "");
-//
-//        List<CouponInfoDataModel> couponInfoDataModelList = new ArrayList<>();
-//        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[0], CouponInfoDataModel.CouponType.STAMP, 10));
-//        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[1], CouponInfoDataModel.CouponType.STAMP, 10));
-//        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[2], CouponInfoDataModel.CouponType.STAMP, 15));
-//        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[3], CouponInfoDataModel.CouponType.STAMP, 10));
-//        couponInfoDataModelList.add(new CouponInfoDataModel(shopDataModels[4], CouponInfoDataModel.CouponType.STAMP, 10));
+    protected void loadCouponInfo() {
+        DigicuCouponService digicuCouponService = ApiUtils.getDigicuCouponService();
+        SocialUserDataModel socialUserDataModel = RetrofitClient.getSocialUserDataModel();
 
-        this.shopInfo.setValue(new ArrayList<>());
+        digicuCouponService.getStateUserCouponData(socialUserDataModel.getPhone(), CouponDataModel.coupon_state.normal.name()).enqueue(new Callback<List<CouponDataModel>>() {
+            @Override
+            public void onResponse(Call<List<CouponDataModel>> call, Response<List<CouponDataModel>> response) {
+                Log.d(TAG, "onResponse: " + response.body().toString());
+                getCouponInfo().setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<CouponDataModel>> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
     }
 }

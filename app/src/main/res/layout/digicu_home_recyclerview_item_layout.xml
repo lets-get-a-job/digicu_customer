@@ -20,41 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:id="@+id/shop_image_group"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/shop_img"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/sample_logo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/digicu_dark_gray_color"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"/>
-
-            </LinearLayout>
+            android:padding="10dp">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1">
                 <TextView
-                    android:id="@+id/shop_name"
+                    android:id="@+id/coupon_name"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:textColor="@color/digicu_black_color"
-                    android:text="상호명"
+                    android:text="쿠폰명"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -83,8 +62,61 @@
                         />
 
                 </LinearLayout>
+
+
             </LinearLayout>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Title, secondary and supporting text -->
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Title, secondary and supporting text -->
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="쿠폰 발급일 : "
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            android:textColor="?android:attr/textColorSecondary"
+                            />
+                        <TextView
+                            android:id="@+id/createDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2021-05-15"
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            android:textColor="?android:attr/textColorSecondary"
+                            />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/expiration_date"
+                        android:gravity="right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1111-11-11"
+
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
