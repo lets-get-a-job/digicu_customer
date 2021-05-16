@@ -8,9 +8,9 @@
 
 
     <fragment
-        android:id="@+id/couponInfoFragment2"
-        android:name="com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment"
-        android:label="CouponInfoFragment">
+        android:id="@+id/shopInfoFragment2"
+        android:name="com.example.digicu_customer.ui.main.search.shopinfo.ShopInfoFragment"
+        android:label="ShopInfoFragment">
         <action
             android:id="@+id/action_couponInfoFragment2_to_page_4"
             app:destination="@id/page_4" />
@@ -43,7 +43,7 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_page_3_to_couponInfoFragment2"
-            app:destination="@id/couponInfoFragment2" />
+            app:destination="@id/shopInfoFragment2" />
         <action
             android:id="@+id/action_page_4_to_page_5"
             app:destination="@id/page_5" />
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/couponInfoFragment"
-        android:name="com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment"
+        android:name="com.example.digicu_customer.ui.main.home.savingcoupon.CouponInfoFragment"
         android:label="CouponInfoFragment" >
         <action
             android:id="@+id/action_couponInfoFragment_to_page_1"
@@ -67,16 +67,16 @@
     </fragment>
     <fragment
         android:id="@+id/page_3"
-        android:name="com.example.digicu_customer.ui.main.log.LogFragment"
-        android:label="log_fragment"
-        tools:layout="@layout/log_fragment" >
+        android:name="com.example.digicu_customer.ui.main.coupon.CouponFragment"
+        android:label="coupon_fragment"
+        tools:layout="@layout/coupon_fragment" >
         <action
             android:id="@+id/action_page_3_to_page_4"
             app:destination="@id/page_4" />
     </fragment>
     <fragment
         android:id="@+id/payment_log"
-        android:name="com.example.digicu_customer.ui.main.log.LogFragment"
+        android:name="com.example.digicu_customer.ui.main.menu.log.LogFragment"
         android:label="log_fragment"
         tools:layout="@layout/log_fragment">
         <action
