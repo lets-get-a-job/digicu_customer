@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.digicu_customer.ui.login.LoginActivity;
 import com.example.digicu_customer.R;
+import com.example.digicu_customer.ui.main.home.HomeFragment;
 import com.example.digicu_customer.ui.main.menu.userinfo.UserInfoActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -47,17 +49,20 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onResume() {
         super.onResume();
         TextView title = ((AppCompatActivity)getActivity()).findViewById(R.id.main_title);
-        title.setText(getString(R.string.bottom_menu_title5));
+        title.setText(getString(R.string.bottom_menu_title5_kr));
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         switch (position) {
                 case 0:
+                    NavHostFragment.findNavController(MenuFragment.this).navigate(R.id.action_page_5_to_payment_log);
+                    break;
+                case 1:
                     startActivity(new Intent(getContext(), UserInfoActivity.class));
                     getActivity().overridePendingTransition(R.anim.in_from_up, R.anim.fade_out);
                     break;
-                case 1:
+                case 2:
                     Intent intent = new Intent(getContext(), LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -80,7 +85,7 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dataStrings = new String[]{"회원정보", "로그아웃"};
+        dataStrings = new String[]{"결제이력보기", "회원정보", "로그아웃"};
         ArrayList<String> list = new ArrayList<>();
 
         for (String data : dataStrings)
