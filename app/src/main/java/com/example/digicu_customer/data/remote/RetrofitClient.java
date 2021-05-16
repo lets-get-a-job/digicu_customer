@@ -4,8 +4,11 @@ import android.util.Log;
 
 import com.example.digicu_customer.auth.DigicuAuth;
 import com.example.digicu_customer.data.dataset.SocialUserDataModel;
+import com.example.digicu_customer.data.gson.GsonLocalDateTimeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.time.LocalDateTime;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -21,8 +24,15 @@ public class RetrofitClient {
 
     public static Retrofit createClient(String baseUrl) {
         Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 .setLenient()
                 .create();
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//        } else {
+//            gson = new GsonBuilder()
+//                    .setLenient()
+//                    .create();
+//        }
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -59,6 +69,10 @@ public class RetrofitClient {
         if (retrofit == null) createClient(baseUrl);
 
         return retrofit;
+    }
+
+    public static SocialUserDataModel getSocialUserDataModel() {
+        return socialUserDataModel;
     }
 
     public static void setSocialUserDataModel(SocialUserDataModel socialUserDataModel) {

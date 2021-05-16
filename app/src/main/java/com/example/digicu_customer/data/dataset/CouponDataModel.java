@@ -1,48 +1,80 @@
 package com.example.digicu_customer.data.dataset;
 
+import android.util.Log;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-public class CouponDataModel implements Serializable {
-    private ShopDataModel shopDataModel;
-    // 쿠폰 일련번호
-    private int couponKey;
-    private String name;
-    private Date expirationDate;
-    private boolean available;
+import static com.example.digicu_customer.general.GeneralVariable.TAG;
 
-    public CouponDataModel(ShopDataModel shopDataModel, int couponKey, String name, Date expirationDate, boolean available) {
-        this.shopDataModel = shopDataModel;
+public class CouponDataModel implements Serializable {
+    public enum coupon_state {
+        done, // available
+        used,
+        normal,
+        expired,
+        trading
+    }
+
+    // 쿠폰 일련번호
+    @SerializedName("id")
+    private int couponKey;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("owner")
+    private String owner;
+    @SerializedName("type")
+    private CouponInfoDataModel.CouponType type;
+    @SerializedName("value")
+    private int value;
+    @SerializedName("state")
+    private String state;
+    @SerializedName("count")
+    private int count;
+    @SerializedName("goal")
+    private int goal;
+    @SerializedName("expirationDate")
+    private Date expirationDate;
+    @SerializedName("createdDate")
+    private Date createdAt;
+
+    public CouponDataModel(int couponKey, String name, String owner, CouponInfoDataModel.CouponType type, int value, String state, int count, int goal, Date expirationDate, Date createdAt) {
         this.couponKey = couponKey;
         this.name = name;
+        this.owner = owner;
+        this.type = type;
+        this.value = value;
+        this.state = state;
+        this.count = count;
+        this.goal = goal;
         this.expirationDate = expirationDate;
-        this.available = available;
+        this.createdAt = createdAt;
     }
 
     @Override
     public String toString() {
-        return "Coupon{" +
-                "shop=" + shopDataModel +
-                ", couponNum=" + couponKey +
+        return "CouponDataModel{" +
+                "couponKey=" + couponKey +
                 ", name='" + name + '\'' +
+                ", owner='" + owner + '\'' +
+                ", type=" + type +
+                ", value=" + value +
+                ", state=" + state +
+                ", count=" + count +
+                ", goal=" + goal +
                 ", expirationDate=" + expirationDate +
-                ", available=" + available +
+                ", createdAt=" + createdAt +
                 '}';
     }
 
-    public ShopDataModel getShopDataModel() {
-        return shopDataModel;
-    }
-
-    public void setShopDataModel(ShopDataModel shopDataModel) {
-        this.shopDataModel = shopDataModel;
-    }
-
-    public int getCouponNum() {
+    public int getCouponKey() {
         return couponKey;
     }
 
-    public void setCouponNum(int couponKey) {
+    public void setCouponKey(int couponKey) {
         this.couponKey = couponKey;
     }
 
@@ -54,6 +86,56 @@ public class CouponDataModel implements Serializable {
         this.name = name;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public CouponInfoDataModel.CouponType getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        if (type.equals("DISCOUNT")) {
+            this.type = CouponInfoDataModel.CouponType.DISCOUNT;
+        }
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getGoal() {
+        return goal;
+    }
+
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
+
     public Date getExpirationDate() {
         return expirationDate;
     }
@@ -62,11 +144,11 @@ public class CouponDataModel implements Serializable {
         this.expirationDate = expirationDate;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
