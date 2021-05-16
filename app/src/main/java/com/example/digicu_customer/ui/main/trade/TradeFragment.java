@@ -33,7 +33,7 @@ public class TradeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         TextView title = ((AppCompatActivity)getActivity()).findViewById(R.id.main_title);
-        title.setText(getString(R.string.bottom_menu_title2));
+        title.setText(getString(R.string.bottom_menu_title2_kr));
     }
 
     @Override

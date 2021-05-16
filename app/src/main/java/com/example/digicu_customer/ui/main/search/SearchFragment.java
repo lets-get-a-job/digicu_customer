@@ -45,7 +45,7 @@ public class SearchFragment extends Fragment {
     public void onResume() {
         super.onResume();
         TextView title = ((AppCompatActivity)getActivity()).findViewById(R.id.main_title);
-        title.setText(getString(R.string.bottom_menu_title3));
+        title.setText(getString(R.string.bottom_menu_title3_kr));
     }
 
     @Override
