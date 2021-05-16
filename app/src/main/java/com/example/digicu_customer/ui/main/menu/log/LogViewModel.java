@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.log;
+package com.example.digicu_customer.ui.main.menu.log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

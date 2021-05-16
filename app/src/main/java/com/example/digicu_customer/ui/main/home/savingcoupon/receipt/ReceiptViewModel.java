@@ -1,13 +1,9 @@
-package com.example.digicu_customer.ui.main.home.couponinfo.receipt;
-
-import android.util.Log;
+package com.example.digicu_customer.ui.main.home.savingcoupon.receipt;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
-
-import static com.example.digicu_customer.general.GeneralVariable.TAG;
 
 public class ReceiptViewModel extends ViewModel {
     MutableLiveData<RecordOfPurchaseDataModel> record;

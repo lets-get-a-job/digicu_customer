@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.home.couponinfo.receipt;
+package com.example.digicu_customer.ui.main.home.savingcoupon.receipt;
 
 import android.os.Bundle;
 
@@ -15,16 +15,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.digicu_customer.R;
-import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
 
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 public class ReceiptFragment extends Fragment {
     ReceiptViewModel receiptViewModel;
@@ -82,13 +78,13 @@ public class ReceiptFragment extends Fragment {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd(E) HH:mm");
 
-        ((TextView)view.findViewById(R.id.receipt_date)).setText(dateFormat.format(recordOfPurchaseDataModel.getPurchaseDate()));
-//        if (recordOfPurchaseDataModel.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
-            // Todo modify code after establish coupon strategy
-            ((TextView)view.findViewById(R.id.receipt_mileage)).setText("적립도장 : " + recordOfPurchaseDataModel.getStampCnt() + "개");
-//        } else {
-//            ((TextView)view.findViewById(R.id.receipt_mileage)).setText("적립 포인트 : " + NumberFormat.getInstance(Locale.getDefault()).format(recordOfPurchaseDataModel.getMileage()) + "points");
-//        }
-        ((TextView)view.findViewById(R.id.receipt_price)).setText(NumberFormat.getInstance(Locale.getDefault()).format(recordOfPurchaseDataModel.getTotalPrice()) + "원");
+//        ((TextView)view.findViewById(R.id.receipt_date)).setText(dateFormat.format(recordOfPurchaseDataModel.getPurchaseDate()));
+////        if (recordOfPurchaseDataModel.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
+//            // Todo modify code after establish coupon strategy
+//            ((TextView)view.findViewById(R.id.receipt_mileage)).setText("적립도장 : " + recordOfPurchaseDataModel.getStampCnt() + "개");
+////        } else {
+////            ((TextView)view.findViewById(R.id.receipt_mileage)).setText("적립 포인트 : " + NumberFormat.getInstance(Locale.getDefault()).format(recordOfPurchaseDataModel.getMileage()) + "points");
+////        }
+//        ((TextView)view.findViewById(R.id.receipt_price)).setText(NumberFormat.getInstance(Locale.getDefault()).format(recordOfPurchaseDataModel.getTotalPrice()) + "원");
     }
 }

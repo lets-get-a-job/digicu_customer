@@ -1,22 +1,15 @@
-package com.example.digicu_customer.ui.main.home.couponinfo;
+package com.example.digicu_customer.ui.main.home.savingcoupon;
 
 import android.util.Log;
 
-import androidx.annotation.LongDef;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.digicu_customer.data.dataset.CouponDataModel;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
-import com.example.digicu_customer.data.dataset.ProductDataModel;
-import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.example.digicu_customer.data.remote.ApiUtils;
 import com.example.digicu_customer.data.remote.DigicuCouponService;
-import com.example.digicu_customer.general.GeneralVariable;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;

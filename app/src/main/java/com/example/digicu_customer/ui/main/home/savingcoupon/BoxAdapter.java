@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.home.couponinfo;
+package com.example.digicu_customer.ui.main.home.savingcoupon;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,7 +94,7 @@ public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.ViewHolder> {
 
         holder.getCouponName().setText(couponDataModel.getName());
         holder.getExpiration().setText(dateFormat.format(couponDataModel.getExpirationDate()));
-        holder.getAvailable().setText(couponDataModel.isAvailable()?"사용가능":"사용불가");
+//        holder.getAvailable().setText(couponDataModel.isAvailable()?"사용가능":"사용불가");
     }
 
     @Override

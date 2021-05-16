@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.home.couponinfo;
+package com.example.digicu_customer.ui.main.home.savingcoupon;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,15 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
-import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
 
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder> {
     public interface OnItemClickLister {
@@ -103,11 +100,11 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd(E) HH:mm");
 
-        holder.getPurchaseDate().setText(dateFormat.format(record.getPurchaseDate()));
-        holder.getTotalPrice().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice())  + "원");
-//        if (record.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
-            holder.getMileage_lv().setText("적립 도장 ");
-            holder.getMileage().setText(record.getProductDataModels().size() + "개");
+//        holder.getPurchaseDate().setText(dateFormat.format(record.getPurchaseDate()));
+//        holder.getTotalPrice().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice())  + "원");
+////        if (record.getCouponInfoDataModel().getType() == CouponInfoDataModel.CouponType.STAMP) {
+//            holder.getMileage_lv().setText("적립 도장 ");
+//            holder.getMileage().setText(record.getProductDataModels().size() + "개");
 //        } else {
 //            holder.getMileage_lv().setText("적립 마일리지 ");
 //            holder.getMileage().setText(NumberFormat.getInstance(Locale.getDefault()).format(record.getTotalPrice() * record.getCouponInfoDataModel().getPercent()) + " points");

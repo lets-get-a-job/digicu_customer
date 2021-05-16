@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.home.couponinfo;
+package com.example.digicu_customer.ui.main.home.savingcoupon;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,14 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
-import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
 
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CouponInfoAdapter extends RecyclerView.Adapter<CouponInfoAdapter.ViewHolder> {
     public interface OnItemClickLister {

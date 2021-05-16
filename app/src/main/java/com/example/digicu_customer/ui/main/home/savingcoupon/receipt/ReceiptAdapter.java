@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.home.couponinfo.receipt;
+package com.example.digicu_customer.ui.main.home.savingcoupon.receipt;
 
 import android.view.LayoutInflater;
 import android.view.View;

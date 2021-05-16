@@ -1,6 +1,5 @@
-package com.example.digicu_customer.ui.main.log;
+package com.example.digicu_customer.ui.main.menu.log;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
-import com.example.digicu_customer.data.dataset.ShopDataModel;
-import com.example.digicu_customer.general.GeneralVariable;
 import com.example.digicu_customer.util.qr_generator.CustomDate;
 
 import java.text.SimpleDateFormat;
