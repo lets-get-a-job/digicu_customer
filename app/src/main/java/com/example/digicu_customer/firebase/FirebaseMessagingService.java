@@ -33,6 +33,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             handleNow();
         }
 
+
+
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body : " + remoteMessage.getNotification().getBody());
 

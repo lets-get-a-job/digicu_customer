@@ -33,12 +33,22 @@
     <string name="bottom_menu_title5">Menu</string>
     <string name="bottom_menu_title5_kr">메뉴</string>
 
+    <string name="coupon_name">쿠폰명</string>
+    <string name="coupon_type">쿠폰 종류</string>
+    <string name="coupon_value">쿠폰 가치</string>
+    <string name="coupon_saving_count">적립 도장 수</string>
+    <string name="coupon_creation_date">생성일</string>
+    <string name="coupon_expiration_date">만료일</string>
     <string name="coupon_list">적립중인 쿠폰 목록</string>
     <string name="coupon_info">쿠폰 정보</string>
     <string name="coupon_tab_log">적립기록</string>
     <string name="coupon_tab_item">쿠폰함</string>
     <string name="coupon_add_msg">쿠폰을 추가해 봐요!</string>
+    <string name="coupon_state">쿠폰 상태</string>
 
+    <string name="publish_coupon">쿠폰 발급</string>
+    <string name="trade_coupon">쿠폰 거래 등록</string>
+    
     <string name="coupon_state_available">사용가능</string>
     <string name="coupon_state_trading">거래중</string>
     <string name="coupon_state_used">사용완료</string>

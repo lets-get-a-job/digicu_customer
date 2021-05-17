@@ -46,20 +46,16 @@
                     <!-- Title, secondary and supporting text -->
 
                     <TextView
+                        android:text="쿠폰 상태 : "
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="적립 현황 : "
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="?android:attr/textColorSecondary"
-                        />
+                        android:layout_height="wrap_content"/>
+
                     <TextView
-                        android:id="@+id/mileage"
+                        android:id="@+id/coupon_state"
+                        android:textStyle="bold"
+                        android:text="@string/coupon_state_available"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1/10"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="?android:attr/textColorSecondary"
-                        />
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
@@ -116,25 +112,6 @@
                         />
 
                 </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="5dp"
-                android:gravity="right"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="쿠폰 상태 : "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/coupon_state"
-                    android:textStyle="bold"
-                    android:text="@string/coupon_state_available"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
         </LinearLayout>

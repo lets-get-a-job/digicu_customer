@@ -8,6 +8,14 @@
 
 
     <fragment
+        android:id="@+id/couponInfoFragment2"
+        android:name="com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment"
+        android:label="CouponInfoFragment">
+        <action
+            android:id="@+id/action_couponInfoFragment2_to_page_3"
+            app:destination="@id/page_3" />
+    </fragment>
+    <fragment
         android:id="@+id/shopInfoFragment2"
         android:name="com.example.digicu_customer.ui.main.search.shopinfo.ShopInfoFragment"
         android:label="ShopInfoFragment">
@@ -59,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/couponInfoFragment"
-        android:name="com.example.digicu_customer.ui.main.home.savingcoupon.CouponInfoFragment"
+        android:name="com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment"
         android:label="CouponInfoFragment" >
         <action
             android:id="@+id/action_couponInfoFragment_to_page_1"
@@ -73,6 +81,9 @@
         <action
             android:id="@+id/action_page_3_to_page_4"
             app:destination="@id/page_4" />
+        <action
+            android:id="@+id/action_page_3_to_couponInfoFragment22"
+            app:destination="@id/couponInfoFragment2" />
     </fragment>
     <fragment
         android:id="@+id/payment_log"

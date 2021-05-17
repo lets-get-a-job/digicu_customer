@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.example.digicu_customer.auth.DigicuAuth;
 import com.example.digicu_customer.data.dataset.SocialUserDataModel;
-import com.example.digicu_customer.data.gson.GsonLocalDateTimeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
