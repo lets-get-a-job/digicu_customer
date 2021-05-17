@@ -33,7 +33,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView couponName;
         private final TextView createDate;
-        private final TextView mileage;
+//        private final TextView mileage;
         private final TextView expiration_date;
         private final TextView coupon_state;
 
@@ -42,7 +42,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
 
             this.couponName = itemView.findViewById(R.id.coupon_name);
             this.createDate = itemView.findViewById(R.id.createDate);
-            this.mileage = itemView.findViewById(R.id.mileage);
+//            this.mileage = itemView.findViewById(R.id.mileage);
             this.expiration_date = itemView.findViewById(R.id.expiration_date);
             this.coupon_state = itemView.findViewById(R.id.coupon_state);
 
@@ -68,9 +68,9 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
             return createDate;
         }
 
-        public TextView getMileage() {
-            return mileage;
-        }
+//        public TextView getMileage() {
+//            return mileage;
+//        }
 
         public TextView getExpiration_date() {
             return expiration_date;
@@ -104,18 +104,18 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
         holder.getCouponName().setText(couponDataModel.getName());
         holder.getCreateDate().setText(CustomDate.getDigicuDateFormat().format(couponDataModel.getCreatedAt()));
         holder.getExpiration_date().setText("만료일 : " + CustomDate.getDigicuDateFormat().format(couponDataModel.getExpirationDate()));
-        holder.getMileage().setText(couponDataModel.getCount() + "/" + couponDataModel.getGoal());
+//        holder.getMileage().setText(couponDataModel.getCount() + "/" + couponDataModel.getGoal());
 
         switch (couponDataModel.getState()){
             case "USED":
                 holder.getCoupon_state().setText("사용완료");
                 holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.digicu_black_color));
                 break;
-            case "TRADING":
+            case "DONE":
                 holder.getCoupon_state().setText("사용가능");
                 holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.digicu_base_primary_color));
                 break;
-            case "DONE":
+            case "TRADING":
                 holder.getCoupon_state().setText("거래중");
                 holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.digicu_red));
                 break;

@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +24,7 @@ import android.widget.TextView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponDataModel;
+import com.example.digicu_customer.ui.main.home.HomeAdapter;
 
 import java.util.List;
 
@@ -97,6 +100,19 @@ public class CouponFragment extends Fragment {
         unavailableCouponListAdapter = new CouponListAdapter();
         section02_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         section02_recyclerView.setAdapter(unavailableCouponListAdapter);
+
+        HomeAdapter.OnItemClickLister onItemClickLister = new HomeAdapter.OnItemClickLister() {
+            @Override
+            public void onItemClick(View v, int pos, CouponDataModel data) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("couponData", data);
+
+                NavHostFragment.findNavController(CouponFragment.this).navigate(R.id.action_page_3_to_couponInfoFragment22, bundle);
+            }
+        };
+
+        availableCouponListAdapter.setOnItemClickLister(onItemClickLister);
+        unavailableCouponListAdapter.setOnItemClickLister(onItemClickLister);
 
         final Observer<List<CouponDataModel>> availableCouponObserver = new Observer<List<CouponDataModel>>() {
             @Override

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        <ScrollView-->
+<!--            android:scrollbars="none"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1">-->
+
+<!--            -->
+
+<!--        </ScrollView>-->
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:backgroundTint="@color/digicu_coupon_color"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:padding="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/coupon_title"
+                        android:text="Coupon Title"
+                        android:textColor="@color/digicu_black_color"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <GridView
+                        android:id="@+id/coupon_stamp_gridview"
+                        android:scrollbars="none"
+                        android:padding="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/state_text"
+                    android:clickable="true"
+                    android:visibility="gone"
+                    android:background="#2F000000"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFF0000"
+                    android:gravity="center"
+                    android:text="@string/coupon_state_used"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_marginBottom="5dp"
+                android:background="@color/digicu_dark_gray_color"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/coupon_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/coupon_info_coupon_name"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/coupon_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/coupon_info_coupon_type"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/coupon_saving_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/coupon_info_coupon_saving_count"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/coupon_creation_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/coupon_info_coupon_creation_date"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/coupon_expiration_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/coupon_info_coupon_expiration_date"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/coupon_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/coupon_info_coupon_state"
+                        android:textStyle="bold"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <GridLayout
+            android:id="@+id/coupon_info_button_group"
+            android:columnCount="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/coupon_info_publish_coupon_btn"
+                android:text="@string/publish_coupon"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"/>
+
+            <androidx.legacy.widget.Space
+                android:layout_width="5dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/coupon_info_trade_coupon_btn"
+                android:text="@string/trade_coupon"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"/>
+        </GridLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

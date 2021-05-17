@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.home.savingcoupon;
+package com.example.digicu_customer.ui.main.home.couponinfo;
 
 import android.util.Log;
 

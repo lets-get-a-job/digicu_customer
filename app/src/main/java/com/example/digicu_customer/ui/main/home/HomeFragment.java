@@ -17,14 +17,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.digicu_customer.data.dataset.CouponDataModel;
-import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
-import com.example.digicu_customer.ui.main.home.savingcoupon.CouponInfoFragment;
+import com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment;
 import com.example.digicu_customer.R;
 import com.google.android.material.card.MaterialCardView;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -130,7 +128,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(View v, int pos, CouponDataModel data) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("couponDataModel", data);
+                bundle.putSerializable("couponData", data);
 
                 NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_page_1_to_couponInfoFragment, bundle);
             }
