@@ -17,6 +17,11 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+        <View
+            android:background="@color/digicu_dark_gray_color"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/trade_view_pager"
             android:layout_width="match_parent"

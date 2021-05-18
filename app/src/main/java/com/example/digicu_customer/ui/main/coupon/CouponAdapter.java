@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.trade.tabs.couponlist;
+package com.example.digicu_customer.ui.main.coupon;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,17 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponDataModel;
-import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
-import com.example.digicu_customer.ui.main.coupon.CouponAdapter;
 import com.example.digicu_customer.util.qr_generator.CustomDate;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.ViewHolder> {
+public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder> {
     public interface OnItemClickLister {
         void onItemClick(View v, int pos, CouponDataModel data);
     }
@@ -36,7 +32,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView couponName;
         private final TextView createDate;
-        //        private final TextView mileage;
+//        private final TextView mileage;
         private final TextView expiration_date;
         private final TextView coupon_state;
 
@@ -84,11 +80,11 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
         }
     }
 
-    public CouponListAdapter() {
+    public CouponAdapter() {
         this.data = new ArrayList<>();
     }
 
-    public CouponListAdapter(List<CouponDataModel> data) {
+    public CouponAdapter(List<CouponDataModel> data) {
         this.data = data;
     }
 

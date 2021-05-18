@@ -1,5 +1,6 @@
 package com.example.digicu_customer.ui.main.home.couponinfo;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -23,6 +25,8 @@ import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponDataModel;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
+import com.example.digicu_customer.data.remote.ApiUtils;
+import com.example.digicu_customer.data.remote.DigicuCouponService;
 import com.example.digicu_customer.util.qr_generator.CustomDate;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -110,6 +114,32 @@ public class CouponInfoFragment extends Fragment {
         // bottom button
         publishCoupon = view.findViewById(R.id.coupon_info_publish_coupon_btn);
         tradeCoupon = view.findViewById(R.id.coupon_info_trade_coupon_btn);
+
+        publishCoupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        tradeCoupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                builder.setMessage("'" + couponDataModel.getName() + "' 쿠폰을 거래 등록을 하시겠습니까?")
+                        .setTitle("거래등록확인")
+                        .setPositiveButton("아니오", null)
+                        .setNegativeButton("예", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                requestTradeCoupon(couponDataModel);
+                            }
+                        })
+                        .show();
+            }
+        });
+
         //
 
         state_text = view.findViewById(R.id.state_text);
@@ -161,6 +191,12 @@ public class CouponInfoFragment extends Fragment {
             default:
                 break;
         }
+    }
+
+    public void requestTradeCoupon(CouponDataModel couponDataModel) {
+        DigicuCouponService digicuCouponService = ApiUtils.getDigicuCouponService();
+
+        // Todo update Coupon state to trading and update current coupon list
     }
 
     @Override

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -42,8 +41,8 @@ public class CouponFragment extends Fragment {
     private ImageButton section02_img;
     private CouponViewModel mViewModel;
 
-    private CouponListAdapter availableCouponListAdapter;
-    private CouponListAdapter unavailableCouponListAdapter;
+    private CouponAdapter availableCouponAdapter;
+    private CouponAdapter unavailableCouponAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -94,12 +93,12 @@ public class CouponFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(CouponViewModel.class);
-        availableCouponListAdapter = new CouponListAdapter();
+        availableCouponAdapter = new CouponAdapter();
         section01_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        section01_recyclerView.setAdapter(availableCouponListAdapter);
-        unavailableCouponListAdapter = new CouponListAdapter();
+        section01_recyclerView.setAdapter(availableCouponAdapter);
+        unavailableCouponAdapter = new CouponAdapter();
         section02_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        section02_recyclerView.setAdapter(unavailableCouponListAdapter);
+        section02_recyclerView.setAdapter(unavailableCouponAdapter);
 
         HomeAdapter.OnItemClickLister onItemClickLister = new HomeAdapter.OnItemClickLister() {
             @Override
@@ -111,14 +110,14 @@ public class CouponFragment extends Fragment {
             }
         };
 
-        availableCouponListAdapter.setOnItemClickLister(onItemClickLister);
-        unavailableCouponListAdapter.setOnItemClickLister(onItemClickLister);
+        availableCouponAdapter.setOnItemClickLister(onItemClickLister);
+        unavailableCouponAdapter.setOnItemClickLister(onItemClickLister);
 
         final Observer<List<CouponDataModel>> availableCouponObserver = new Observer<List<CouponDataModel>>() {
             @Override
             public void onChanged(List<CouponDataModel> couponDataModels) {
-                availableCouponListAdapter.setData(couponDataModels);
-                availableCouponListAdapter.notifyDataSetChanged();
+                availableCouponAdapter.setData(couponDataModels);
+                availableCouponAdapter.notifyDataSetChanged();
             }
         };
 
@@ -126,8 +125,8 @@ public class CouponFragment extends Fragment {
             @Override
             public void onChanged(List<CouponDataModel> couponDataModels) {
                 Log.d(TAG, "onChanged: " + couponDataModels.toString());
-                unavailableCouponListAdapter.setData(couponDataModels);
-                unavailableCouponListAdapter.notifyDataSetChanged();
+                unavailableCouponAdapter.setData(couponDataModels);
+                unavailableCouponAdapter.notifyDataSetChanged();
             }
         };
 

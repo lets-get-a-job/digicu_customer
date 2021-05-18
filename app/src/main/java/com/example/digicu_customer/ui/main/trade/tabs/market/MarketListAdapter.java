@@ -1,4 +1,4 @@
-package com.example.digicu_customer.ui.main.trade.tabs.couponlist;
+package com.example.digicu_customer.ui.main.trade.tabs.market;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,17 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponDataModel;
-import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
-import com.example.digicu_customer.ui.main.coupon.CouponAdapter;
 import com.example.digicu_customer.util.qr_generator.CustomDate;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.ViewHolder> {
+public class MarketListAdapter extends RecyclerView.Adapter<MarketListAdapter.ViewHolder> {
     public interface OnItemClickLister {
         void onItemClick(View v, int pos, CouponDataModel data);
     }
@@ -38,7 +34,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
         private final TextView createDate;
         //        private final TextView mileage;
         private final TextView expiration_date;
-        private final TextView coupon_state;
+        private final TextView couponValue;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -47,7 +43,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
             this.createDate = itemView.findViewById(R.id.createDate);
 //            this.mileage = itemView.findViewById(R.id.mileage);
             this.expiration_date = itemView.findViewById(R.id.expiration_date);
-            this.coupon_state = itemView.findViewById(R.id.coupon_state);
+            this.couponValue = itemView.findViewById(R.id.coupon_value);
 
             itemView.findViewById(R.id.card_view_item).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -79,23 +75,23 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
             return expiration_date;
         }
 
-        public TextView getCoupon_state() {
-            return coupon_state;
+        public TextView getCouponValue() {
+            return couponValue;
         }
     }
 
-    public CouponListAdapter() {
+    public MarketListAdapter() {
         this.data = new ArrayList<>();
     }
 
-    public CouponListAdapter(List<CouponDataModel> data) {
+    public MarketListAdapter(List<CouponDataModel> data) {
         this.data = data;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.digicu_available_coupon_recyclerview_item_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.digicu_trading_coupon_recyclerview_item_layout, parent, false);
 
         return new ViewHolder(view);
     }
@@ -107,24 +103,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
         holder.getCouponName().setText(couponDataModel.getName());
         holder.getCreateDate().setText(CustomDate.getDigicuDateFormat().format(couponDataModel.getCreatedAt()));
         holder.getExpiration_date().setText("만료일 : " + CustomDate.getDigicuDateFormat().format(couponDataModel.getExpirationDate()));
-//        holder.getMileage().setText(couponDataModel.getCount() + "/" + couponDataModel.getGoal());
-
-        switch (couponDataModel.getState()){
-            case "USED":
-                holder.getCoupon_state().setText("사용완료");
-                holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.digicu_black_color));
-                break;
-            case "DONE":
-                holder.getCoupon_state().setText("사용가능");
-                holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.digicu_base_primary_color));
-                break;
-            case "TRADING":
-                holder.getCoupon_state().setText("거래중");
-                holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.digicu_red));
-                break;
-            default:
-                break;
-        }
+        holder.getCouponValue().setText(String.valueOf(couponDataModel.getValue()) + "원");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.digicu_customer.ui.main.trade.tabs.couponlist;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -13,13 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.digicu_customer.R;
+import com.example.digicu_customer.data.dataset.CouponDataModel;
 
-public class CouponListlFragment extends Fragment {
+import java.util.List;
+
+public class CouponListFragment extends Fragment {
     private CouponListAdapter couponListAdapter;
     private CouponListViewModel mViewModel;
     private RecyclerView recyclerView;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -32,21 +38,30 @@ public class CouponListlFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.coupon_list_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        couponListAdapter = new CouponListAdapter();
+        recyclerView.setAdapter(couponListAdapter);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(CouponListViewModel.class);
-        // TODO: Use the ViewModel
+
+        final Observer<List<CouponDataModel>> observer = new Observer<List<CouponDataModel>>() {
+            @Override
+            public void onChanged(List<CouponDataModel> couponDataModels) {
+                couponListAdapter.setData(couponDataModels);
+                couponListAdapter.notifyDataSetChanged();
+            }
+        };
+
+        mViewModel.getTradingCouponModel().observe(getViewLifecycleOwner(), observer);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        couponListAdapter = new CouponListAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(couponListAdapter);
     }
 }
 
