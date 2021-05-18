@@ -70,8 +70,15 @@
     <string name="purchase_price">결제금액</string>
     <string name="purchase_date">결제일</string>
 
+    <string name="payment_log">결제 기록</string>
+
     <string name="insufficient">도장개수가 모자랍니다.</string>
 
+    <string name="notificationServicePerm">Digicu 알림 서비스를 이용하시겠습니까?</string>
+    <string name="digicu_channel_id">12451245</string>
+    <string name="digicu_channel_name">digicu_channel</string>
+    <string name="digicu_channel_description">Digicu Application 전용 FCM 채널입니다.</string>
+    <string name="digicu_notification_perm">알림서비스</string>
     <string name="server_client_id">547207036785-pl6vbj6vkbh12se1frq5pn371djq66dj.apps.googleusercontent.com</string>
     <string name="digicu_preference_file_name">com.example.digicu_customer</string>
     <string name="digicu_token">digicu_token</string>

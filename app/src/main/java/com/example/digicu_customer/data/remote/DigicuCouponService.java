@@ -17,7 +17,7 @@ public interface DigicuCouponService {
     Call<List<CouponInfoDataModel>> getCouponInfoByOwnerEmail(@Query("email") String email);
 
     @GET("/coupon/")
-    Call<List<CouponDataModel>> getAllUserCouponData(@Query("phone") String phone);
+    Call<List<CouponDataModel>> getAllUserCouponDataWithState(@Query("state") String state);
 
     @GET("/coupon/")
     Call<List<CouponDataModel>> getStateUserCouponData(@Query("phone") String phone, @Query("state") String state);

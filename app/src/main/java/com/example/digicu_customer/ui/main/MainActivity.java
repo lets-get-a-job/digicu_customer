@@ -22,6 +22,7 @@ import com.example.digicu_customer.data.dataset.SocialUserDataModel;
 import com.example.digicu_customer.data.remote.ApiUtils;
 import com.example.digicu_customer.data.remote.DigicuUserService;
 import com.example.digicu_customer.data.remote.RetrofitClient;
+import com.example.digicu_customer.firebase.NotificationSetting;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(GeneralVariable.TAG, "onCreate Digicu Token: " + DigicuAuth.getToken(socialUserDataModel));
         Log.d("_log", "FCM token : " + FirebaseInstanceId.getInstance().getToken());
+
+        NotificationSetting.buildNotificationChannel(this);
 
         if (savedInstanceState == null) {
             setUpBottomNav();

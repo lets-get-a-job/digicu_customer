@@ -68,7 +68,7 @@ public class LogFragment extends Fragment {
     public void onStart() {
         super.onStart();
         mainActivity = (AppCompatActivity) getActivity();
-        ((TextView)mainActivity.findViewById(R.id.main_title)).setText(getString(R.string.bottom_menu_title4));
+        ((TextView)mainActivity.findViewById(R.id.main_title)).setText(getString(R.string.payment_log));
     }
 
     @Override

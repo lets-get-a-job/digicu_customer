@@ -1,9 +1,13 @@
 package com.example.digicu_customer.ui.login.signup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +23,7 @@ import com.example.digicu_customer.data.dataset.DigicuTokenDataModel;
 import com.example.digicu_customer.data.dataset.SocialUserDataModel;
 import com.example.digicu_customer.data.remote.ApiUtils;
 import com.example.digicu_customer.data.remote.DigicuUserService;
+import com.example.digicu_customer.firebase.NotificationSetting;
 import com.example.digicu_customer.general.GeneralVariable;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,6 +87,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(this, "Please input your phone number", Toast.LENGTH_LONG).show();
                 return;
             }
+
+            // Notification Service permission request
+            NotificationSetting.setUpNotificationConfirmWithAlert(this);
 
             socialUserDataModel.setPhone(phone.getText().toString().replaceAll("[-]", ""));
             socialUserDataModel.setFcm_token(FirebaseInstanceId.getInstance().getToken());
