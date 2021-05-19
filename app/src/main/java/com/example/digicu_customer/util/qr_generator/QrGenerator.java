@@ -20,6 +20,9 @@ public class QrGenerator {
     Activity mActivity;
     Fragment mFragment;
 
+    public QrGenerator() {
+    }
+
     public QrGenerator(Activity activity) {
         this.mActivity = activity;
     }

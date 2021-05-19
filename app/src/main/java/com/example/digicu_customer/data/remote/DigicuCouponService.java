@@ -19,6 +19,9 @@ public interface DigicuCouponService {
     @GET("/coupon/")
     Call<List<CouponDataModel>> getAllUserCouponDataWithState(@Query("state") String state);
 
+    @GET("/coupon/{id}")
+    Call<CouponDataModel> getCouponDataByID(@Path("id") int id);
+
     @GET("/coupon/")
     Call<List<CouponDataModel>> getStateUserCouponData(@Query("phone") String phone, @Query("state") String state);
 }

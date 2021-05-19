@@ -48,11 +48,13 @@
 
     <string name="publish_coupon">쿠폰 발급</string>
     <string name="trade_coupon">쿠폰 거래 등록</string>
-    
+
     <string name="coupon_state_available">사용가능</string>
     <string name="coupon_state_trading">거래중</string>
     <string name="coupon_state_used">사용완료</string>
     <string name="coupon_state_expiration">유효기간 만료</string>
+
+    <string name="show_qrcode_to_the_publisher">발급된 QR을 직원에게 보여주세요!</string>
 
     <string name="shop_info">가게 정보</string>
     <string name="shop_name">상호명</string>
@@ -82,4 +84,6 @@
     <string name="server_client_id">547207036785-pl6vbj6vkbh12se1frq5pn371djq66dj.apps.googleusercontent.com</string>
     <string name="digicu_preference_file_name">com.example.digicu_customer</string>
     <string name="digicu_token">digicu_token</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
