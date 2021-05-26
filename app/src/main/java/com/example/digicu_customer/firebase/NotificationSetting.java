@@ -37,6 +37,16 @@ public class NotificationSetting {
         editor.commit();
     }
 
+    public static void setUpNotificationConfirmWithAlert(Context context, DialogInterface.OnClickListener yes, DialogInterface.OnClickListener no) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setMessage(context.getString(R.string.notificationServicePerm))
+                .setTitle("알림")
+                .setPositiveButton("아니오", no)
+                .setNegativeButton("예", yes)
+                .show();
+    }
+
     public static boolean getCurrentNotificationPermission(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.digicu_preference_file_name), Context.MODE_PRIVATE);
 

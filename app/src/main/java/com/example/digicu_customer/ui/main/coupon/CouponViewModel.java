@@ -30,15 +30,14 @@ public class CouponViewModel extends ViewModel {
         if (availableCouponModel == null) {
             availableCouponModel = new MutableLiveData<>();
             availableCouponModel.setValue(new ArrayList<>());
-            loadAvailableCouponData();
+//            loadAvailableCouponData();
         }
 
         return availableCouponModel;
     }
 
     protected void loadAvailableCouponData() {
-        List<CouponDataModel> list = availableCouponModel.getValue();
-        list.clear();
+        List<CouponDataModel> list = new ArrayList<>();
 
         DigicuCouponService digicuCouponService = ApiUtils.getDigicuCouponService();
         SocialUserDataModel socialUserDataModel = RetrofitClient.getSocialUserDataModel();
@@ -53,7 +52,7 @@ public class CouponViewModel extends ViewModel {
                             list.sort(new Comparator<CouponDataModel>() {
                                 @Override
                                 public int compare(CouponDataModel couponDataModel, CouponDataModel t1) {
-                                    return couponDataModel.getExpirationDate().compareTo(t1.getExpirationDate());
+                                    return couponDataModel.getState().compareTo(t1.getState());
                                 }
                             });
                         }
@@ -79,7 +78,33 @@ public class CouponViewModel extends ViewModel {
                                 list.sort(new Comparator<CouponDataModel>() {
                                     @Override
                                     public int compare(CouponDataModel couponDataModel, CouponDataModel t1) {
-                                        return couponDataModel.getExpirationDate().compareTo(t1.getExpirationDate());
+                                        return couponDataModel.getState().compareTo(t1.getState());
+                                    }
+                                });
+                            }
+                            availableCouponModel.setValue(list);
+                        } else {
+                            Log.d(TAG, "onResponse err: " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<CouponDataModel>> call, Throwable t) {
+                        Log.d(TAG, "onFailure: " + t.getMessage());
+                    }
+                });
+
+        digicuCouponService.getStateUserCouponData(socialUserDataModel.getPhone(), CouponDataModel.coupon_state.trading_req.toString())
+                .enqueue(new Callback<List<CouponDataModel>>() {
+                    @Override
+                    public void onResponse(Call<List<CouponDataModel>> call, Response<List<CouponDataModel>> response) {
+                        if (response.code() == 200) {
+                            list.addAll(response.body());
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                list.sort(new Comparator<CouponDataModel>() {
+                                    @Override
+                                    public int compare(CouponDataModel couponDataModel, CouponDataModel t1) {
+                                        return couponDataModel.getState().compareTo(t1.getState());
                                     }
                                 });
                             }
@@ -99,7 +124,7 @@ public class CouponViewModel extends ViewModel {
     public MutableLiveData<List<CouponDataModel>> getUnavailableCouponModel() {
         if (unavailableCouponModel == null) {
             unavailableCouponModel = new MutableLiveData<>();
-            loadUnavailableCouponData();
+//            loadUnavailableCouponData();
         }
 
         return unavailableCouponModel;

@@ -53,6 +53,20 @@
     <string name="coupon_state_trading">거래중</string>
     <string name="coupon_state_used">사용완료</string>
     <string name="coupon_state_expiration">유효기간 만료</string>
+    <string name="trade_notification">거래 요청</string>
+
+    <string name="coupon_trade_sell_req">교환 등록 쿠폰</string>
+    <string name="coupon_trade_buy_req">교환 요청 쿠폰</string>
+
+    <string name="trade_permit">교환 하기</string>
+    <string name="trade_request">교환 요청</string>
+    <string name="trade_cancel">등록 취소</string>
+    <string name="trade_request_cancel">교환 요청 취소</string>
+    <string name="trade_table">쿠폰 교환</string>
+    <string name="choose_trade_coupon">교환할 쿠폰 선택</string>
+    <string name="choose_trade_coupon_v2">교환할 쿠폰을 선택 하세요!</string>
+    <string name="there_is_not_coupon">교환할 수 있는 쿠폰이 없습니다!</string>
+    <string name="back">뒤로</string>
 
     <string name="show_qrcode_to_the_publisher">발급된 QR을 직원에게 보여주세요!</string>
 
@@ -77,6 +91,8 @@
     <string name="insufficient">도장개수가 모자랍니다.</string>
 
     <string name="notificationServicePerm">Digicu 알림 서비스를 이용하시겠습니까?</string>
+    <string name="tradeCancelPerm">정말 교한 등록된 쿠폰을 취소하시겠습니까?</string>
+
     <string name="digicu_channel_id">12451245</string>
     <string name="digicu_channel_name">digicu_channel</string>
     <string name="digicu_channel_description">Digicu Application 전용 FCM 채널입니다.</string>
@@ -84,6 +100,5 @@
     <string name="server_client_id">547207036785-pl6vbj6vkbh12se1frq5pn371djq66dj.apps.googleusercontent.com</string>
     <string name="digicu_preference_file_name">com.example.digicu_customer</string>
     <string name="digicu_token">digicu_token</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

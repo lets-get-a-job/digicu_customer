@@ -42,8 +42,12 @@ public class HomeViewModel extends ViewModel {
         digicuCouponService.getStateUserCouponData(socialUserDataModel.getPhone(), CouponDataModel.coupon_state.normal.name()).enqueue(new Callback<List<CouponDataModel>>() {
             @Override
             public void onResponse(Call<List<CouponDataModel>> call, Response<List<CouponDataModel>> response) {
-                Log.d(TAG, "onResponse: " + response.body().toString());
-                getCouponInfo().setValue(response.body());
+//                Log.d(TAG, "onResponse: " + response.body().toString());
+                if (response.code() == 200) {
+                    getCouponInfo().setValue(response.body());
+                } else {
+                    Log.d(TAG, "onResponse: " + response.code());
+                }
             }
 
             @Override

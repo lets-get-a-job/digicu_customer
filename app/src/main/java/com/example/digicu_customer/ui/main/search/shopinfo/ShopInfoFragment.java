@@ -25,7 +25,6 @@ import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.data.dataset.ShopDataModel;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 

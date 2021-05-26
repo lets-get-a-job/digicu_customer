@@ -1,4 +1,4 @@
-package com.example.digicu_customer.util.qr_generator;
+package com.example.digicu_customer.general;
 
 import java.text.SimpleDateFormat;
 

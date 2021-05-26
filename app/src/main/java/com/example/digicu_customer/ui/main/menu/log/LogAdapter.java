@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.RecordOfPurchaseDataModel;
-import com.example.digicu_customer.util.qr_generator.CustomDate;
+import com.example.digicu_customer.general.CustomDate;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

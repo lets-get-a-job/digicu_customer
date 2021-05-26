@@ -8,23 +8,27 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponDataModel;
+import com.example.digicu_customer.ui.main.home.HomeAdapter;
 
 import java.util.List;
 
 public class CouponListFragment extends Fragment {
-    private CouponListAdapter couponListAdapter;
+    private CouponListAdapter couponTradeListAdapter;
+    private CouponListAdapter couponTradeReqListAdapter;
+
     private CouponListViewModel mViewModel;
-    private RecyclerView recyclerView;
+    private RecyclerView tradeRecyclerView;
+    private RecyclerView tradeReqRecyclerView;
 
 
     @Override
@@ -37,10 +41,36 @@ public class CouponListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = view.findViewById(R.id.coupon_list_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        couponListAdapter = new CouponListAdapter();
-        recyclerView.setAdapter(couponListAdapter);
+        tradeRecyclerView = view.findViewById(R.id.coupon_sell_req_recyclerview);
+        tradeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        tradeReqRecyclerView = view.findViewById(R.id.coupon_buy_req_recyclerview);
+        tradeReqRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        couponTradeListAdapter = new CouponListAdapter();
+        couponTradeReqListAdapter = new CouponListAdapter();
+        tradeRecyclerView.setAdapter(couponTradeListAdapter);
+        tradeReqRecyclerView.setAdapter(couponTradeReqListAdapter);
+
+        couponTradeListAdapter.setOnItemClickLister(new HomeAdapter.OnItemClickLister() {
+            @Override
+            public void onItemClick(View v, int pos, CouponDataModel data) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("couponData", data);
+                bundle.putString("viewType", "trade_request");
+
+                NavHostFragment.findNavController(CouponListFragment.this).navigate(R.id.action_page_2_to_couponInfoFragment3, bundle);
+            }
+        });
+
+        couponTradeReqListAdapter.setOnItemClickLister(new HomeAdapter.OnItemClickLister() {
+            @Override
+            public void onItemClick(View v, int pos, CouponDataModel data) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("couponData", data);
+                bundle.putString("viewType", "trade_request");
+
+                NavHostFragment.findNavController(CouponListFragment.this).navigate(R.id.action_page_2_to_couponInfoFragment3, bundle);
+            }
+        });
     }
 
     @Override
@@ -48,21 +78,35 @@ public class CouponListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(CouponListViewModel.class);
 
-        final Observer<List<CouponDataModel>> observer = new Observer<List<CouponDataModel>>() {
+        final Observer<List<CouponDataModel>> observerTrade = new Observer<List<CouponDataModel>>() {
             @Override
             public void onChanged(List<CouponDataModel> couponDataModels) {
-                couponListAdapter.setData(couponDataModels);
-                couponListAdapter.notifyDataSetChanged();
+                couponTradeListAdapter.setData(couponDataModels);
+                couponTradeListAdapter.notifyDataSetChanged();
             }
         };
 
-        mViewModel.getTradingCouponModel().observe(getViewLifecycleOwner(), observer);
+        final Observer<List<CouponDataModel>> observerTradeReq = new Observer<List<CouponDataModel>>() {
+            @Override
+            public void onChanged(List<CouponDataModel> couponDataModels) {
+                couponTradeReqListAdapter.setData(couponDataModels);
+                couponTradeReqListAdapter.notifyDataSetChanged();
+            }
+        };
+
+        mViewModel.getTradingCouponModel().observe(getViewLifecycleOwner(), observerTrade);
+        mViewModel.getTradingReqCouponModel().observe(getViewLifecycleOwner(), observerTradeReq);
     }
 
     @Override
     public void onStart() {
         super.onStart();
     }
-}
 
-//action_page_3_to_couponInfoFragment22
+    @Override
+    public void onResume() {
+        super.onResume();
+        mViewModel.loadTradeCouponData();
+        mViewModel.loadTradeReqCouponData();
+    }
+}

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".ui.main.home.couponinfo.tradetable.TradeTableFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="등록한 쿠폰"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/digicu_black_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <include
+            android:id="@+id/trade_table_order"
+            layout="@layout/digicu_trading_coupon_recyclerview_item_layout" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="선택한 쿠폰"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/digicu_black_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/trade_table_requester"
+                layout="@layout/digicu_trading_coupon_recyclerview_item_layout" />
+
+            <TextView
+                android:id="@+id/trade_table_choose_empty_item"
+                android:background="@drawable/inner_shadow"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:text="@string/choose_trade_coupon_v2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="교환 요청 쿠폰"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/digicu_black_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/trade_table_trade_req_coupon"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/trade_table_empty_item"
+            android:background="@drawable/inner_shadow"
+            android:visibility="gone"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:text="@string/there_is_not_coupon"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <GridLayout
+            android:columnCount="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/trade_table_permit_btn"
+                android:text="@string/trade_permit"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"/>
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/trade_table_back_btn"
+                android:text="@string/back"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"/>
+        </GridLayout>
+    </LinearLayout>
+
+</FrameLayout>

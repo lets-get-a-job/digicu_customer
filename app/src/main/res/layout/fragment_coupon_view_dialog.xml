@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:text="@string/choose_trade_coupon"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:textColor="@color/digicu_black_color"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/coupon_view_dialog_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/coupon_view_dialog_empty"
+        android:visibility="gone"
+        android:text="@string/there_is_not_coupon"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+</LinearLayout>

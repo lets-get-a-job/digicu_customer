@@ -17,6 +17,7 @@ import android.widget.ImageView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.general.GeneralVariable;
+import com.example.digicu_customer.util.crypto.DigicuCrypto;
 import com.example.digicu_customer.util.qr_generator.QrGenerator;
 
 import static com.example.digicu_customer.general.GeneralVariable.TAG;
@@ -58,7 +59,11 @@ public class QRViewerFragment extends DialogFragment {
         Log.d(TAG, "onViewCreated: ");
         mImageView = view.findViewById(R.id.qr_viewer_img);
         QrGenerator qrGenerator = new QrGenerator();
-        qrGenerator.generateQRCode("sample", 600, 600, mImageView);
+        String data = getArguments().getString("transferDate");
+        // Todo : encrypt transfer data
+//        String cryptData = DigicuCrypto.
+
+        qrGenerator.generateQRCode(data, 600, 600, mImageView);
     }
 
     @NonNull

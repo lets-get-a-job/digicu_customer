@@ -105,6 +105,7 @@ public class CouponFragment extends Fragment {
             public void onItemClick(View v, int pos, CouponDataModel data) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("couponData", data);
+                bundle.putString("viewType", "coupon_box");
 
                 NavHostFragment.findNavController(CouponFragment.this).navigate(R.id.action_page_3_to_couponInfoFragment22, bundle);
             }
@@ -145,6 +146,9 @@ public class CouponFragment extends Fragment {
         super.onResume();
         TextView title = mainActivity.findViewById(R.id.main_title);
         title.setText(getString(R.string.coupon_tab_item));
+
+        mViewModel.loadAvailableCouponData();
+        mViewModel.loadUnavailableCouponData();
     }
 
 }

@@ -14,6 +14,20 @@
         <action
             android:id="@+id/action_couponInfoFragment2_to_page_3"
             app:destination="@id/page_3" />
+        <action
+            android:id="@+id/action_couponInfoFragment2_to_tradeTableFragment3"
+            app:destination="@id/tradeTableFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/couponInfoFragment3"
+        android:name="com.example.digicu_customer.ui.main.home.couponinfo.CouponInfoFragment"
+        android:label="CouponInfoFragment">
+        <action
+            android:id="@+id/action_couponInfoFragment3_to_page_2"
+            app:destination="@id/page_2" />
+        <action
+            android:id="@+id/action_couponInfoFragment3_to_tradeTableFragment2"
+            app:destination="@id/tradeTableFragment2" />
     </fragment>
     <fragment
         android:id="@+id/shopInfoFragment2"
@@ -44,6 +58,9 @@
         <action
             android:id="@+id/action_placeholder5_to_placeholder6"
             app:destination="@id/page_3" />
+        <action
+            android:id="@+id/action_page_2_to_couponInfoFragment3"
+            app:destination="@id/couponInfoFragment3" />
     </fragment>
     <fragment android:id="@+id/page_4"
         android:name="com.example.digicu_customer.ui.main.search.SearchFragment"
@@ -99,6 +116,24 @@
         <action
             android:id="@+id/action_page__to_page_52"
             app:destination="@id/page_5" />
+    </fragment>
+    <fragment
+        android:id="@+id/tradeTableFragment2"
+        android:name="com.example.digicu_customer.ui.main.home.couponinfo.tradetable.TradeTableFragment"
+        android:label="trade_table_fragment"
+        tools:layout="@layout/trade_table_fragment">
+        <action
+            android:id="@+id/action_tradeTableFragment2_to_couponInfoFragment3"
+            app:destination="@id/couponInfoFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/tradeTableFragment3"
+        android:name="com.example.digicu_customer.ui.main.home.couponinfo.tradetable.TradeTableFragment"
+        android:label="trade_table_fragment"
+        tools:layout="@layout/trade_table_fragment">
+        <action
+            android:id="@+id/action_tradeTableFragment2_to_couponInfoFragment2"
+            app:destination="@id/couponInfoFragment2" />
     </fragment>
 
 

@@ -9,8 +9,8 @@ import com.example.digicu_customer.ui.main.trade.tabs.couponlist.CouponListFragm
 import com.example.digicu_customer.ui.main.trade.tabs.tradelog.TradeLogFragment;
 
 public class FragmentAdapter extends FragmentStateAdapter {
-    Fragment[] fragments = {new MarketFragment(), new CouponListFragment(), new TradeLogFragment()};
-    String[] title = {"장터", "등록된 쿠폰", "거래 기록"};
+    Fragment[] fragments = {new MarketFragment(), new CouponListFragment()};//, new TradeLogFragment()};
+    String[] title = {"장터", "거래 목록"};//, "거래 기록"};
 
     public FragmentAdapter(@NonNull Fragment fragment) {
         super(fragment);

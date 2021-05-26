@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Digicu_customer">
+
         <activity android:name=".ui.loading.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

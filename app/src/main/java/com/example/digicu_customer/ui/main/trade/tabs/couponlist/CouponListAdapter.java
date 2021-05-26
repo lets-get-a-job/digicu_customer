@@ -11,15 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponDataModel;
-import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
 import com.example.digicu_customer.general.GeneralVariable;
-import com.example.digicu_customer.ui.main.coupon.CouponAdapter;
-import com.example.digicu_customer.util.qr_generator.CustomDate;
+import com.example.digicu_customer.general.CustomDate;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.ViewHolder> {
     public interface OnItemClickLister {
@@ -112,7 +108,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
         switch (couponDataModel.getState()){
             case "USED":
                 holder.getCoupon_state().setText("사용완료");
-                holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.digicu_black_color));
+                holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.digicu_dark_gray_color));
                 break;
             case "DONE":
                 holder.getCoupon_state().setText("사용가능");
@@ -121,6 +117,10 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Vi
             case "TRADING":
                 holder.getCoupon_state().setText("거래중");
                 holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.digicu_red));
+                break;
+            case "TRADING_REQ":
+                holder.getCoupon_state().setText("거래 요청 중");
+                holder.getCoupon_state().setTextColor(holder.getCoupon_state().getContext().getResources().getColor(R.color.purple_200));
                 break;
             default:
                 break;

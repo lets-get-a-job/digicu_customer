@@ -19,18 +19,19 @@ import retrofit2.Response;
 import static com.example.digicu_customer.general.GeneralVariable.TAG;
 
 public class CouponListViewModel extends ViewModel {
-    MutableLiveData<List<CouponDataModel>> couponMutableLiveData;
+    MutableLiveData<List<CouponDataModel>> couponTradeData;
+    MutableLiveData<List<CouponDataModel>> couponTradeReqData;
 
     public MutableLiveData<List<CouponDataModel>> getTradingCouponModel() {
-        if (couponMutableLiveData == null) {
-            couponMutableLiveData = new MutableLiveData<>();
-            loadCouponData();
+        if (couponTradeData == null) {
+            couponTradeData = new MutableLiveData<>();
+            loadTradeCouponData();
         }
 
-        return couponMutableLiveData;
+        return couponTradeData;
     }
 
-    protected void loadCouponData() {
+    protected void loadTradeCouponData() {
         DigicuCouponService digicuCouponService = ApiUtils.getDigicuCouponService();
         SocialUserDataModel socialUserDataModel = RetrofitClient.getSocialUserDataModel();
 
@@ -39,7 +40,39 @@ public class CouponListViewModel extends ViewModel {
                     @Override
                     public void onResponse(Call<List<CouponDataModel>> call, Response<List<CouponDataModel>> response) {
                         if (response.code() == 200) {
-                            couponMutableLiveData.setValue(response.body());
+                            couponTradeData.setValue(response.body());
+                            Log.d(TAG, "onResponse: " + response.body());
+                        } else {
+                            Log.d(TAG, "onResponse: " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<CouponDataModel>> call, Throwable t) {
+                        Log.d(TAG, "onFailure: " + t.getMessage());
+                    }
+                });
+    }
+
+    public MutableLiveData<List<CouponDataModel>> getTradingReqCouponModel() {
+        if (couponTradeReqData == null) {
+            couponTradeReqData = new MutableLiveData<>();
+            loadTradeReqCouponData();
+        }
+
+        return couponTradeReqData;
+    }
+
+    protected void loadTradeReqCouponData() {
+        DigicuCouponService digicuCouponService = ApiUtils.getDigicuCouponService();
+        SocialUserDataModel socialUserDataModel = RetrofitClient.getSocialUserDataModel();
+
+        digicuCouponService.getStateUserCouponData(socialUserDataModel.getPhone(), CouponDataModel.coupon_state.trading_req.toString())
+                .enqueue(new Callback<List<CouponDataModel>>() {
+                    @Override
+                    public void onResponse(Call<List<CouponDataModel>> call, Response<List<CouponDataModel>> response) {
+                        if (response.code() == 200) {
+                            couponTradeReqData.setValue(response.body());
                             Log.d(TAG, "onResponse: " + response.body());
                         } else {
                             Log.d(TAG, "onResponse: " + response.code());

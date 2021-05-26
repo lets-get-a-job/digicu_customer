@@ -1,14 +1,9 @@
 package com.example.digicu_customer.data.dataset;
 
-import android.util.Log;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
-
-import static com.example.digicu_customer.general.GeneralVariable.TAG;
 
 public class CouponDataModel implements Serializable {
     public enum coupon_state {
@@ -16,7 +11,8 @@ public class CouponDataModel implements Serializable {
         used,
         normal,
         expired,
-        trading
+        trading,
+        trading_req
     }
 
     // 쿠폰 일련번호
@@ -40,8 +36,10 @@ public class CouponDataModel implements Serializable {
     private Date expirationDate;
     @SerializedName("createdDate")
     private Date createdAt;
+    @SerializedName("tradeId")
+    private Integer tradeId;
 
-    public CouponDataModel(int couponKey, String name, String owner, CouponInfoDataModel.CouponType type, int value, String state, int count, int goal, Date expirationDate, Date createdAt) {
+    public CouponDataModel(int couponKey, String name, String owner, CouponInfoDataModel.CouponType type, int value, String state, int count, int goal, Date expirationDate, Date createdAt, Integer tradeId) {
         this.couponKey = couponKey;
         this.name = name;
         this.owner = owner;
@@ -52,6 +50,7 @@ public class CouponDataModel implements Serializable {
         this.goal = goal;
         this.expirationDate = expirationDate;
         this.createdAt = createdAt;
+        this.tradeId = tradeId;
     }
 
     @Override
@@ -62,11 +61,12 @@ public class CouponDataModel implements Serializable {
                 ", owner='" + owner + '\'' +
                 ", type=" + type +
                 ", value=" + value +
-                ", state=" + state +
+                ", state='" + state + '\'' +
                 ", count=" + count +
                 ", goal=" + goal +
                 ", expirationDate=" + expirationDate +
                 ", createdAt=" + createdAt +
+                ", tradeDataModel=" + tradeId +
                 '}';
     }
 
@@ -150,5 +150,13 @@ public class CouponDataModel implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Integer getTradeId() {
+        return tradeId;
+    }
+
+    public void setTradeId(Integer tradeId) {
+        this.tradeId = tradeId;
     }
 }

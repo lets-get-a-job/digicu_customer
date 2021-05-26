@@ -1,6 +1,6 @@
 package com.example.digicu_customer.data.dataset;
 
-import com.example.digicu_customer.util.qr_generator.CustomDate;
+import com.example.digicu_customer.general.CustomDate;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;

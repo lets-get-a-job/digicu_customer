@@ -80,50 +80,103 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        DigicuUserService digicuUserService;
-
         if (view.getId() == R.id.signup_btn) {
             if (phone.getText().toString().isEmpty()) {
                 Toast.makeText(this, "Please input your phone number", Toast.LENGTH_LONG).show();
                 return;
             }
 
+            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.digicu_preference_file_name), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
             // Notification Service permission request
-            NotificationSetting.setUpNotificationConfirmWithAlert(this);
-
-            socialUserDataModel.setPhone(phone.getText().toString().replaceAll("[-]", ""));
-            socialUserDataModel.setFcm_token(FirebaseInstanceId.getInstance().getToken());
-
-            Log.d(GeneralVariable.TAG, "onClick: " + socialUserDataModel.toString());
-
-            digicuUserService = ApiUtils.getDigicuUserService();
-
-            digicuUserService.postSocial(socialUserDataModel).enqueue(new Callback<DigicuTokenDataModel>() {
+            NotificationSetting.setUpNotificationConfirmWithAlert(this, new DialogInterface.OnClickListener() {
                 @Override
-                public void onResponse(Call<DigicuTokenDataModel> call, Response<DigicuTokenDataModel> response) {
-                    Log.d(GeneralVariable.TAG, "postSocial: " + response.code());
-                    switch (response.code()) {
-                        case 200:
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    DigicuUserService digicuUserService;
+
+                    editor.putString("digicu notification channel" + getString(R.string.digicu_token), "true");
+                    editor.commit();
+
+                    socialUserDataModel.setPhone(phone.getText().toString().replaceAll("[-]", ""));
+                    socialUserDataModel.setFcm_token(FirebaseInstanceId.getInstance().getToken());
+
+                    Log.d(GeneralVariable.TAG, "onClick: " + socialUserDataModel.toString());
+
+                    digicuUserService = ApiUtils.getDigicuUserService();
+
+                    digicuUserService.postSocial(socialUserDataModel).enqueue(new Callback<DigicuTokenDataModel>() {
+                        @Override
+                        public void onResponse(Call<DigicuTokenDataModel> call, Response<DigicuTokenDataModel> response) {
+                            Log.d(GeneralVariable.TAG, "postSocial: " + response.code());
+                            switch (response.code()) {
+                                case 200:
 //                            Intent intent = new Intent();
 //                            intent.putExtra("digicu_token", response.body());
-                            DigicuAuth.setToken(response.body().getToken(), socialUserDataModel);
+                                    DigicuAuth.setToken(response.body().getToken(), socialUserDataModel);
 
-                            setResult(SIGNUP_SUCCESS);
-                            finish();
-                            break;
-                        case 400:
-                        case 500:
-                            Toast.makeText(SignUpActivity.this, "digicu server error", Toast.LENGTH_LONG).show();
-                            break;
-                        default:
-                            Toast.makeText(SignUpActivity.this, "unknown res code", Toast.LENGTH_LONG).show();
-                    }
+                                    setResult(SIGNUP_SUCCESS);
+                                    finish();
+                                    break;
+                                case 400:
+                                case 500:
+                                    Toast.makeText(SignUpActivity.this, "digicu server error", Toast.LENGTH_LONG).show();
+                                    break;
+                                default:
+                                    Toast.makeText(SignUpActivity.this, "unknown res code", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<DigicuTokenDataModel> call, Throwable t) {
+                            Log.d(GeneralVariable.TAG, "postSocial onFailure: " + t.getMessage());
+                            Toast.makeText(SignUpActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
-
+            }, new DialogInterface.OnClickListener() {
                 @Override
-                public void onFailure(Call<DigicuTokenDataModel> call, Throwable t) {
-                    Log.d(GeneralVariable.TAG, "postSocial onFailure: " + t.getMessage());
-                    Toast.makeText(SignUpActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    DigicuUserService digicuUserService;
+
+                    editor.putString("digicu notification channel" + getString(R.string.digicu_token), "false");
+                    editor.commit();
+
+                    socialUserDataModel.setPhone(phone.getText().toString().replaceAll("[-]", ""));
+                    socialUserDataModel.setFcm_token(FirebaseInstanceId.getInstance().getToken());
+
+                    Log.d(GeneralVariable.TAG, "onClick: " + socialUserDataModel.toString());
+
+                    digicuUserService = ApiUtils.getDigicuUserService();
+
+                    digicuUserService.postSocial(socialUserDataModel).enqueue(new Callback<DigicuTokenDataModel>() {
+                        @Override
+                        public void onResponse(Call<DigicuTokenDataModel> call, Response<DigicuTokenDataModel> response) {
+                            Log.d(GeneralVariable.TAG, "postSocial: " + response.code());
+                            switch (response.code()) {
+                                case 200:
+//                            Intent intent = new Intent();
+//                            intent.putExtra("digicu_token", response.body());
+                                    DigicuAuth.setToken(response.body().getToken(), socialUserDataModel);
+
+                                    setResult(SIGNUP_SUCCESS);
+                                    finish();
+                                    break;
+                                case 400:
+                                case 500:
+                                    Toast.makeText(SignUpActivity.this, "digicu server error", Toast.LENGTH_LONG).show();
+                                    break;
+                                default:
+                                    Toast.makeText(SignUpActivity.this, "unknown res code", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<DigicuTokenDataModel> call, Throwable t) {
+                            Log.d(GeneralVariable.TAG, "postSocial onFailure: " + t.getMessage());
+                            Toast.makeText(SignUpActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             });
         }

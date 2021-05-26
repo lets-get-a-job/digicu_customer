@@ -3,11 +3,13 @@ package com.example.digicu_customer.ui.main.trade.tabs.market;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,9 @@ import android.view.ViewGroup;
 
 import com.example.digicu_customer.R;
 import com.example.digicu_customer.data.dataset.CouponDataModel;
+import com.example.digicu_customer.data.dataset.CouponInfoDataModel;
+import com.example.digicu_customer.ui.main.home.HomeAdapter;
+import com.example.digicu_customer.ui.main.home.HomeFragment;
 
 import java.util.List;
 
@@ -55,6 +60,23 @@ public class MarketFragment extends Fragment {
         };
 
         mViewModel.getCouponModel().observe(getViewLifecycleOwner(), observer);
+
+        marketListAdapter.setOnItemClickLister(new HomeAdapter.OnItemClickLister() {
+            @Override
+            public void onItemClick(View v, int pos, CouponDataModel data) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("couponData", data);
+                bundle.putString("viewType", "trade_request");
+
+                NavHostFragment.findNavController(MarketFragment.this).navigate(R.id.action_page_2_to_couponInfoFragment3, bundle);
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mViewModel.loadCouponData();
     }
 
 }
